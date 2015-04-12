@@ -11,6 +11,7 @@
 
 		echo $this->Html->css('cake.generic');
                 echo $this->Html->css('bootstrap.min');
+                echo $this->Html->css('main');
                 echo $this->Html->script('bootstrap.min');
 
 		echo $this->fetch('meta');
@@ -19,7 +20,7 @@
 	?>
 </head>
 <body>
-	<div id="container">
+	<!--<div id="container">-->
 		<div id="header">
                     <h1><a href="/"><?php echo __("Beta Electronics"); ?></a></h1>
 		</div>
@@ -40,7 +41,7 @@
 				<?php echo $cakeVersion; ?>
 			</p>
 		</div>-->
-	</div>
+	<!--</div>-->
 	<?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>
