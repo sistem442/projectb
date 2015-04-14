@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2015 at 10:23 AM
+-- Generation Time: Apr 14, 2015 at 05:12 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `processors` (
   `device_type` enum('desktop','laptop','','') NOT NULL DEFAULT 'desktop',
   `series` enum('i7','i5','i3','FX') DEFAULT NULL,
   `launch_year` enum('2014','2015','2013','') NOT NULL DEFAULT '2013'
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=ucs2;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=ucs2;
 
 --
 -- Dumping data for table `processors`
@@ -132,7 +132,29 @@ INSERT INTO `processors` (`id`, `product_name`, `code_name`, `brand`, `socket`, 
 (48, 'i5-4440S', 'Haswell', 'intel', 'LGA 1150', '22', 4, 4, '6 MB Intel® Smart Cache ', 2.8, 3.3, 65, 32, 2, 25.6, 187, 'Intel® HD Graphics 4600', 'desktop', 'i5', '2013'),
 (49, 'i5-4440', 'Haswell', 'intel', 'LGA 1150', '22', 4, 4, '6 MB Intel® Smart Cache ', 3.1, 3.3, 84, 32, 2, 25.6, 187, 'Intel® HD Graphics 4600', 'desktop', 'i5', '2013'),
 (50, 'i5-4430S', 'Haswell', 'intel', 'LGA 1150', '22', 4, 4, '6 MB Intel® Smart Cache ', 2.7, 3.2, 65, 32, 2, 25.6, 182, 'Intel® HD Graphics 4600', 'desktop', 'i5', '2013'),
-(51, 'i5-4430', 'Haswell', 'intel', 'LGA 1150', '22', 4, 4, '6 MB Intel® Smart Cache ', 3, 3.2, 84, 32, 2, 25.6, 187, 'Intel® HD Graphics 4600', 'desktop', 'i5', '2013');
+(51, 'i5-4430', 'Haswell', 'intel', 'LGA 1150', '22', 4, 4, '6 MB Intel® Smart Cache ', 3, 3.2, 84, 32, 2, 25.6, 187, 'Intel® HD Graphics 4600', 'desktop', 'i5', '2013'),
+(52, 'i3-4330', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '4 MB Intel® Smart Cache ', 3.5, 0, 54, 32, 2, 25.6, 147, 'Intel® HD Graphics 4600', 'desktop', 'i3', '2013'),
+(53, 'i3-4330T', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '4 MB Intel® Smart Cache ', 3, 0, 35, 32, 2, 25.6, 138, 'Intel® HD Graphics 4600', 'desktop', 'i3', '2013'),
+(54, 'i3-4340', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '4 MB Intel® Smart Cache ', 3, 0, 54, 32, 2, 25.6, 149, 'Intel® HD Graphics 4600', 'desktop', 'i3', '2013'),
+(55, 'i3-4350', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '4 MB Intel® Smart Cache ', 3, 0, 54, 32, 2, 25.6, 147, 'Intel® HD Graphics 4600', 'desktop', 'i3', '2014'),
+(56, 'i3-4350T', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '4 MB Intel® Smart Cache ', 3.1, 0, 35, 32, 2, 25.6, 138, 'Intel® HD Graphics 4600', 'desktop', 'i3', '2014'),
+(57, 'i3-4360', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '4 MB Intel® Smart Cache ', 3.7, 0, 54, 32, 2, 25.6, 138, 'Intel® HD Graphics 4600', 'desktop', 'i3', '2014'),
+(58, 'i3-4360T', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '4 MB Intel® Smart Cache ', 3.2, 0, 54, 32, 2, 25.6, 138, 'Intel® HD Graphics 4600', 'desktop', 'i3', '2014'),
+(59, 'i3-4370', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '4 MB Intel® Smart Cache ', 3.8, 0, 54, 32, 2, 25.6, 138, 'Intel® HD Graphics 4600', 'desktop', 'i3', '2014'),
+(60, 'i3-4370T', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '4 MB Intel® Smart Cache ', 3.3, 0, 35, 32, 2, 25.6, 138, 'Intel® HD Graphics 4600', 'desktop', 'i3', '2015'),
+(61, 'i3-4170T', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '3 MB', 3.2, 0, 35, 32, 2, 25.6, 117, 'Intel® HD Graphics 4400', 'desktop', 'i3', '2015'),
+(62, 'i3-4170', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '3 MB', 3.7, 0, 54, 32, 2, 25.6, 117, 'Intel® HD Graphics 4400', 'desktop', 'i3', '2015'),
+(63, 'i3-4160T', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '3 MB Intel® Smart Cache ', 3.1, 0, 35, 32, 2, 25.6, 117, 'Intel® HD Graphics 4400', 'desktop', 'i3', '2014'),
+(64, 'i3-4160', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '3 MB Intel® Smart Cache ', 3.6, 0, 54, 32, 2, 25.6, 117, 'Intel® HD Graphics 4400', 'desktop', 'i3', '2014'),
+(65, 'i3-4150T', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '3 MB Intel® Smart Cache ', 3, 0, 35, 32, 2, 25.6, 117, 'Intel® HD Graphics 4400', 'desktop', 'i3', '2014'),
+(66, 'i3-4150', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '3 MB Intel® Smart Cache ', 3.5, 0, 54, 32, 2, 25.6, 117, 'Intel® HD Graphics 4400', 'desktop', 'i3', '2014'),
+(67, 'i3-4130T', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '3 MB Intel® Smart Cache ', 2, 0, 35, 32, 2, 25.6, 117, 'Intel® HD Graphics 4400', 'desktop', 'i3', '2013'),
+(68, 'i3-4130', 'Haswell', 'intel', 'LGA 1150', '22', 2, 4, '3 MB Intel® Smart Cache ', 3, 0, 54, 32, 2, 25.6, 117, 'Intel® HD Graphics 4400', 'desktop', 'i3', '2013'),
+(69, 'i3-5020U', 'Broadwell', 'intel', 'FCBGA 1168', '14', 2, 4, '3 MB', 2, 0, 15, 16, 2, 25.6, 281, 'Intel® HD Graphics 5500', 'laptop', 'i3', '2015'),
+(70, 'i3-5015U', 'Broadwell', 'intel', 'FCBGA 1168', '14', 2, 4, '3 MB', 2.1, 0, 15, 16, 2, 25.6, 275, 'Intel® HD Graphics 5500', 'laptop', 'i3', '2015'),
+(71, 'i3-5157U', 'Broadwell', 'intel', 'FCBGA 1168', '14', 2, 4, '3 MB', 2.5, 0, 25, 16, 2, 25.6, 275, 'Intel® Iris™ Graphics 6100', 'laptop', 'i3', '2015'),
+(72, 'i3-5010U', 'Broadwell', 'intel', 'FCBGA 1168', '14', 2, 4, '3 MB', 2.1, 0, 15, 16, 2, 25.6, 281, 'Intel® HD Graphics 5500', 'laptop', 'i3', '2015'),
+(73, 'i3-5005U', 'Broadwell', 'intel', 'FCBGA 1168', '14', 2, 4, '3 MB', 2, 0, 15, 16, 2, 25.6, 275, 'Intel® HD Graphics 5500', 'laptop', 'i3', '2015');
 
 --
 -- Indexes for dumped tables
@@ -163,7 +185,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT for table `processors`
 --
 ALTER TABLE `processors`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=74;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

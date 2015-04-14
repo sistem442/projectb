@@ -32,6 +32,35 @@ class ProcessorsController extends AppController {
         }
         
         public function filter(){
+            
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                debug($_POST);
+                foreach ($_POST as $key => $value){
+                    foreach($value as $value2){
+                        if($value2 == '') 
+                        {
+                            $conditions[] = $key. ' IS NULL';
+                            continue;
+                        }
+                        $conditions[] = $key.'= "'.$value2.'"';
+                    }
+                    
+                }
+                debug($conditions);
+                
+                $query = 'SELECT brand,socket,price,device_type,series,code_name,number_of_cores,frequency,launch_year FROM processors WHERE '.  implode(' OR ', $conditions);
+                 
+                debug($query);
+                
+                $search = $this->Processor->query($query);
+                
+                debug($search);
+                
+                //die;
+            }
+            
+            
+            
             $search = $this->Processor->query('SELECT DISTINCT brand,socket,price,device_type,series,code_name,number_of_cores,frequency,launch_year FROM processors ');
             foreach ($search as $product)
             {
