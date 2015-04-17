@@ -32,64 +32,33 @@ class ProcessorsController extends AppController {
         }
         
         public function filter(){
-            
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                //debug($_POST);
-                foreach ($_POST as $key => $value){
-                    foreach($value as $value2){
-                        if($value2 == '') 
-                        {
-                            $conditions[] = $key. ' IS NULL';
-                            continue;
-                        }
-                        $conditions[] = $key.'= "'.$value2.'"';
-                    }
-                    
-                }
-                //debug($conditions);
-                
-                $query = 'SELECT brand,socket,price,device_type,product_name,number_of_cores,frequency,launch_year FROM processors WHERE '.  implode(' AND ', $conditions);
-                 
-                //debug($query);
-                
-                $search_results = $this->Processor->query($query);
+                $this->layout = false;
+                $conditions = $_POST['conditions'];
+                 if($conditions != '') $conditions = ' WHERE '.$conditions;
+                $search_results = $this->Processor->query($_POST['query'].$conditions);
                 $this->set('search_results',$search_results);
-                //debug($search_results);
-                
-                //die;
-                //set filter with only conditions
-                $search = $this->Processor->query('SELECT DISTINCT brand,socket,price,device_type,series,code_name,number_of_cores,frequency,launch_year FROM processors WHERE '.  implode(' AND ', $conditions));
-                foreach ($search as $product)
-                {
-                    $brands[] = $product['processors']['brand'];
-                    $socket[] = $product['processors']['socket'];
-                    $price[] = $product['processors']['price'];
-                    $device_type[] = $product['processors']['device_type'];
-                    $series[] = $product['processors']['series'];
-                    $code_name[] = $product['processors']['code_name'];
-                    $number_of_cores[] = $product['processors']['number_of_cores'];
-                    $frequency[] = $product['processors']['frequency'];
-                    $launch_year[] = $product['processors']['launch_year'];
-                }
+                $this->filter_conditions($conditions);
             }
             else{
-            
-                $search = $this->Processor->query('SELECT DISTINCT brand,socket,price,device_type,series,code_name,number_of_cores,frequency,launch_year FROM processors ');
-                foreach ($search as $product)
-                {
-                    $brands[] = $product['processors']['brand'];
-                    $socket[] = $product['processors']['socket'];
-                    $price[] = $product['processors']['price'];
-                    $device_type[] = $product['processors']['device_type'];
-                    $series[] = $product['processors']['series'];
-                    $code_name[] = $product['processors']['code_name'];
-                    $number_of_cores[] = $product['processors']['number_of_cores'];
-                    $frequency[] = $product['processors']['frequency'];
-                    $launch_year[] = $product['processors']['launch_year'];
-                }
+                $this->filter_conditions();
             }
-            
-            
+        }
+     
+        private function filter_conditions($conditions = ''){
+            $search = $this->Processor->query('SELECT DISTINCT brand,socket,price,device_type,series,code_name,number_of_cores,frequency,launch_year FROM processors '.$conditions);
+            foreach ($search as $product)
+            {
+                $brands[] = $product['processors']['brand'];
+                $socket[] = $product['processors']['socket'];
+                $price[] = $product['processors']['price'];
+                $device_type[] = $product['processors']['device_type'];
+                $series[] = $product['processors']['series'];
+                $code_name[] = $product['processors']['code_name'];
+                $number_of_cores[] = $product['processors']['number_of_cores'];
+                $frequency[] = $product['processors']['frequency'];
+                $launch_year[] = $product['processors']['launch_year'];
+            }
             
             $brands = array_unique($brands);
             $socket = array_unique($socket);
@@ -111,8 +80,15 @@ class ProcessorsController extends AppController {
             $this->set('number_of_cores', $number_of_cores);
             $this->set('frequency', $frequency);
             $this->set('launch_year', $launch_year);
-            
             $this->set('title', __('Processors filter')); 
+            
+             if($conditions != '') 
+            {
+                $this->layout = false;
+                $conditions = ' WHERE '.$conditions;
+                $this -> render('/Elements/filter_content');
+            }
         }
         
+                
 }
