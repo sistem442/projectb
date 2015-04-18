@@ -16,7 +16,14 @@
                     <li><b>Number of cores:</b> <?php echo $search_result['processors']['number_of_cores']; ?></li>
                     <li><b>Launch year:</b> <?php echo $search_result['processors']['launch_year']; ?></li>
                 </ul>
-                <?php endforeach; 
+                <?php endforeach; ?> 
+                
+            <div class="pagination">
+                <?php
+                for($i = 1; $i <=$num_of_pages; $i++){
+                    ?><li value="<?php echo $i; ?>" > <?php echo $i; ?></li> <?php
+                }
+                ?> </div><?php
             }
             else{?>
             <div class="center">Pick from filter. -></div>
