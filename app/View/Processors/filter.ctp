@@ -6,7 +6,7 @@
 <script type="text/javascript">
     window.sessionStorage.conditions = '';
     $( document ).ready(function() {
-        var query = 'SELECT brand,socket,price,device_type,product_name,number_of_cores,frequency,launch_year FROM processors ';
+        var query = 'SELECT brand,socket,price_range,device_type,product_name,number_of_cores,frequency_range,launch_year FROM processors ';
         var logic_operator = '';
         $("#main_content").on( "click","input[type='checkbox']", function() {
             var value = null;
