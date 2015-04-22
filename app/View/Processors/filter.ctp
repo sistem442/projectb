@@ -42,7 +42,20 @@
             });
         }
     });
-    
+    $('dl.main').each(function(){ 
+  var LiN = $(this).find('dd').length;
+  console.log(LiN);
+  if( LiN > 4){    
+    $('dd', this).eq(3).nextAll().hide().addClass('extras');
+    $(this).append('<dd class="more" style="text-align: right; padding-right: 10px; font-style: italic">More...</dd>');    
+  }
+});
+$('dl.main').on('click','.more',function(){
+  $this = $(this);
+  var text = ($this.text() == 'Less...') ? 'More...' : 'Less...';
+  $this.text(text);  
+  $(this).siblings('dd.extras').slideToggle();
+});
     
     
     </script>

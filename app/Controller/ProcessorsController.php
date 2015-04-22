@@ -81,6 +81,8 @@ class ProcessorsController extends AppController {
             $this -> render('/Elements/filter_content');
         }
     }
+    
+public function test(){}
         
                 
 }

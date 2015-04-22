@@ -1,4 +1,4 @@
-        <div class=" col-sm-9" >
+<div class=" col-sm-9" >
             <h2><?php echo __('Processors'); ?></h2>
 
             <?php
@@ -31,26 +31,6 @@
         </div>    
         <div class="col-sm-3">
             <div id="searchFacets" class="gdSearchList">
-                <?php $success = asort($socket); if($success): ?>
-                <dl class="main">
-                    <dt class="commondt">CPU Socket Type</dt>
-                    <?php foreach ($socket as $key => $value) { ?>
-                                <dd class="commondd">
-                                    <input  id="socket" name="socket[]"  autocomplete="off" type="checkbox" value="<?php echo $value; ?>">&nbsp;
-                                     <label for="socket"><?php echo $value; ?></label>                             
-                                 </dd>
-                    <?php } ?>
-                </dl>
-                <?php endif; ?>
-                <dl class="main">
-                    <dt class="commondt">Brand</dt>
-                    <?php foreach ($brands as $value) { ?>
-                                <dd class="commondd">
-                                     <input  id="brand" name="brand[]"  autocomplete="off" type="checkbox" value="<?php echo $value; ?>">&nbsp;
-                                     <label for="brand"><?php echo $value; ?></label>                             
-                                 </dd>
-                    <?php } ?>
-                </dl>
                 <?php $success = asort($price); if($success): ?>
                 <dl class="main">
                     <dt class="commondt">Price</dt>
@@ -62,6 +42,17 @@
                     <?php } ?>
                 </dl>
                 <?php endif; ?>
+                <?php $success = asort($launch_year); if($success): ?>
+                <dl class="main">
+                    <dt class="commondt">Launch Year</dt>
+                    <?php foreach ($launch_year as $value) { ?>
+                                <dd class="commondd">
+                                    <input  id="launch_year" name="launch_year[]" autocomplete="off" type="checkbox" value="<?php echo $value; ?>">&nbsp;
+                                     <label for="launch_year"><?php echo $value; ?></label>                             
+                                 </dd>
+                    <?php } ?>
+                </dl>
+                 <?php endif; ?>
                 <dl class="main">
                     <dt class="commondt">Device type</dt>
                     <?php foreach ($device_type as $value) { ?>
@@ -71,24 +62,8 @@
                                  </dd>
                     <?php } ?>
                 </dl>
-                <dl id="facet4816" class="main">
-                    <dt class="commondt">Series</dt>
-                    <?php foreach ($series as $value) { ?>
-                                <dd class="commondd">
-                                     <input  id="series" name="series[]"  autocomplete="off" type="checkbox" value="<?php echo $value; ?>">&nbsp;
-                                     <label for="series"><?php echo $value; ?></label>                             
-                                 </dd>
-                    <?php } ?>
-                </dl>
-                <dl class="main">
-                    <dt class="commondt">Code name</dt>
-                    <?php foreach ($code_name as $value) { ?>
-                                <dd class="commondd">
-                                     <input  id="code_name" name="code_name[]"  autocomplete="off" type="checkbox" value="<?php echo $value; ?>">&nbsp;
-                                     <label for="code_name"><?php echo $value; ?></label>                             
-                                 </dd>
-                    <?php } ?>
-                </dl>
+                
+                
                 <?php $success = asort($number_of_cores); if($success): ?>
                 <dl class="main">
                     <dt class="commondt">Number of cores</dt>
@@ -111,16 +86,43 @@
                     <?php } ?>
                 </dl>
                 <?php endif; ?>
-                <?php $success = asort($launch_year); if($success): ?>
                 <dl class="main">
-                    <dt class="commondt">Launch Year</dt>
-                    <?php foreach ($launch_year as $value) { ?>
+                    <dt class="commondt">Series</dt>
+                    <?php foreach ($series as $value) { ?>
                                 <dd class="commondd">
-                                    <input  id="launch_year" name="launch_year[]" autocomplete="off" type="checkbox" value="<?php echo $value; ?>">&nbsp;
-                                     <label for="launch_year"><?php echo $value; ?></label>                             
+                                     <input  id="series" name="series[]"  autocomplete="off" type="checkbox" value="<?php echo $value; ?>">&nbsp;
+                                     <label for="series"><?php echo $value; ?></label>                             
                                  </dd>
                     <?php } ?>
                 </dl>
-                 <?php endif; ?>
+                <dl class="main">
+                    <dt class="commondt">Code name</dt>
+                    <?php foreach ($code_name as $value) { ?>
+                                <dd class="commondd">
+                                     <input  id="code_name" name="code_name[]"  autocomplete="off" type="checkbox" value="<?php echo $value; ?>">&nbsp;
+                                     <label for="code_name"><?php echo $value; ?></label>                             
+                                 </dd>
+                    <?php } ?>
+                </dl>
+                <?php $success = asort($socket); if($success): ?>
+                <dl class="main">
+                    <dt class="commondt">CPU Socket Type</dt>
+                    <?php foreach ($socket as $key => $value) { ?>
+                                <dd class="commondd">
+                                    <input  id="socket" name="socket[]"  autocomplete="off" type="checkbox" value="<?php echo $value; ?>">&nbsp;
+                                     <label for="socket"><?php echo $value; ?></label>                             
+                                 </dd>
+                    <?php } ?>
+                </dl>
+                <?php endif; ?>
+                <dl class="main">
+                    <dt class="commondt">Brand</dt>
+                    <?php foreach ($brands as $value) { ?>
+                                <dd class="commondd">
+                                     <input  id="brand" name="brand[]"  autocomplete="off" type="checkbox" value="<?php echo $value; ?>">&nbsp;
+                                     <label for="brand"><?php echo $value; ?></label>                             
+                                 </dd>
+                    <?php } ?>
+                </dl>
             </div>         
         </div>
