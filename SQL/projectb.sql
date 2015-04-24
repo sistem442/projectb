@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 21, 2015 at 11:03 AM
+-- Generation Time: Apr 24, 2015 at 11:27 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `processors` (
   `product_name` varchar(50) NOT NULL,
   `launch_year` enum('2014','2015','2013','') NOT NULL DEFAULT '2013',
   `cache` varchar(100) DEFAULT NULL,
-  `price_range` enum('<50','50-100','100-150','150-200','200-250','250-300','>300','embeded','< $50','$50 - $100','$100 - $150','$150 - $200','$200- $250','$250 - $300','>$300') NOT NULL DEFAULT '>300',
+  `price_range` enum('< $50','$50 - $100','$100 - $150','$150 - $200','$200- $250','$250 - $300','>$300') NOT NULL DEFAULT '>$300',
   `frequency_range` enum('1,0GHz - 1,49GHz','1,5GHz - 1,99GHz','2,0GHz - 2,49GHz','2,5GHz - 2,99GHz','3,0GHz - 3,49GHz','3,5GHz - 3,99GHz','4,0GHz - 4,49GHz','4,5GHz - 4,99GHz','5,0GHz - 5,49GHz','5,5GHz - 5,99GHz','6,0GHz - 6,49GHz') NOT NULL DEFAULT '3,0GHz - 3,49GHz',
   `frequency` smallint(4) NOT NULL,
   `turbo_frequency` smallint(4) DEFAULT NULL,
@@ -76,15 +76,15 @@ CREATE TABLE IF NOT EXISTS `processors` (
   `max_memory_channels` tinyint(4) DEFAULT NULL,
   `max_memory_bandwidth` smallint(4) DEFAULT NULL,
   `brand` enum('AMD','Intel','','') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=ucs2;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=ucs2;
 
 --
 -- Dumping data for table `processors`
 --
 
 INSERT INTO `processors` (`product_name`, `launch_year`, `cache`, `price_range`, `frequency_range`, `frequency`, `turbo_frequency`, `tdp`, `max_ram_memory`, `graphics`, `device_type`, `series`, `code_name`, `number_of_cores`, `number_of_threads`, `socket`, `id`, `litography`, `max_memory_channels`, `max_memory_bandwidth`, `brand`) VALUES
-('i7-4790K', '2014', '8M Smart cache', '', '3,5GHz - 3,99GHz', 4000, 4400, 88, 32, '', 'desktop', 'i7', 'Devil''s Canyon', 4, 8, 'LGA 1150', 1, '22', 2, 25600, 'Intel'),
-('i7-4790', '2014', '8M Smart cache', '', '3,5GHz - 3,99GHz', 3600, 4000, 84, 32, '', 'desktop', 'i7', 'Haswell', 4, 4, 'LGA 1150', 2, '22', 2, 25600, 'Intel'),
+('i7-4790K', '2014', '8M Smart cache', '>$300', '4,0GHz - 4,49GHz', 4000, 4400, 88, 32, 'Intel® HD Graphics 4600', 'desktop', 'i7', 'Devil''s Canyon', 4, 8, 'LGA 1150', 1, '22', 2, 25600, 'Intel'),
+('i7-4790', '2014', '8M Smart cache', '>$300', '3,5GHz - 3,99GHz', 3600, 4000, 84, 32, ' 	Intel® HD Graphics 4600', 'desktop', 'i7', 'Haswell', 4, 4, 'LGA 1150', 2, '22', 2, 25600, 'Intel'),
 ('FX-9590', '2014', '8MB L2', '', '4,5GHz - 4,99GHz', 4700, NULL, 220, NULL, '', 'desktop', 'FX', 'Zambezi', 8, 8, 'AM3+', 3, '32', 2, NULL, 'AMD'),
 ('FX-8370', '2014', '8MB L2', '$150 - $200', '4,0GHz - 4,49GHz', 4000, NULL, 125, NULL, '', 'desktop', 'FX', 'Zambezi', 8, 8, 'AM3+', 4, '32', NULL, NULL, 'AMD'),
 ('FX-8370E', '2014', '8MB L2', '$150 - $200', '3,0GHz - 3,49GHz', 3300, NULL, 95, NULL, '', 'desktop', 'FX', 'Zambezi', 8, 8, 'AM3+', 5, '32', NULL, NULL, 'AMD'),
@@ -101,16 +101,16 @@ INSERT INTO `processors` (`product_name`, `launch_year`, `cache`, `price_range`,
 ('i7-4770T', '2014', '8M Smart cache', '', '2,5GHz - 2,99GHz', 2500, 3700, 45, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 4, 'LGA 1150', 16, '22', 2, 25600, 'Intel'),
 ('i7-4770', '2014', '8M Smart cache', '', '3,0GHz - 3,49GHz', 3400, 3900, 84, 32, 'Intel® HD Graphics 4600', 'desktop', 'i7', 'Haswell', 4, 4, 'LGA 1150', 17, '22', 2, 25600, 'Intel'),
 ('i7-4765T', '2014', '8M Smart cache', '', '2,0GHz - 2,49GHz', 2000, 3000, 35, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 4, 'LGA 1150', 18, '22', 2, 25600, 'Intel'),
-('i7-4790T', '2014', '8M Smart cache', '', '2,5GHz - 2,99GHz', 2700, 3900, 45, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 4, 'LGA 1150', 19, '22', 2, 25600, 'Intel'),
+('i7-4790T', '2014', '8M Smart cache', '', '2,5GHz - 2,99GHz', 2700, 3900, 45, 32, 'Intel® HD Graphics 4600', 'desktop', 'i7', 'Haswell', 4, 4, 'LGA 1150', 19, '22', 2, 25600, 'Intel'),
 ('i7-4770S', '2014', '8M Smart cache', '', '3,0GHz - 3,49GHz', 3100, 3900, 65, 32, '', 'desktop', 'i7', 'Haswell', 4, 4, 'LGA 1150', 20, '22', 2, 25600, 'Intel'),
 ('i7-4770R', '2014', '8M Smart cache', '', '3,0GHz - 3,49GHz', 3200, 3900, 65, 32, '', 'desktop', 'i7', 'Haswell', 4, 4, 'FCBGA 1364', 21, '22', 2, 25600, 'Intel'),
 ('i7-4790S', '2014', '8M Smart cache', '', '3,0GHz - 3,49GHz', 3200, 4000, 65, 32, '', 'desktop', 'i7', 'Haswell', 4, 4, 'LGA 1150', 22, '22', 2, 25600, 'Intel'),
 ('i7-4770K', '2014', '8M Smart cache', '', '3,5GHz - 3,99GHz', 3500, 3900, 84, 32, '', 'desktop', 'i7', 'Haswell', 4, 4, 'LGA 1150', 23, '22', 2, 25600, 'Intel'),
-('i5-5300U', '2015', '3MB', 'embeded', '2,0GHz - 2,49GHz', 2300, 2900, 15, 16, 'Intel® HD Graphics 5500', 'laptop', 'i5', 'Broadwell', 2, 4, 'FCBGA 1168', 24, '14nm', 2, 25600, 'Intel'),
-('i5-5200U ', '2013', '3MB', 'embeded', '2,0GHz - 2,49GHz', 2200, 2700, 15, 16, 'Intel® HD Graphics 5500', 'laptop', 'i5', 'Broadwell', 2, 4, 'FCBGA 1168', 25, '14nm', 2, 25600, 'Intel'),
-('i5-5287U', '2015', '3MB', 'embeded', '2,5GHz - 2,99GHz', 2900, NULL, 28, 16, 'Intel® Iris™ Graphics 6100', 'laptop', 'i5', 'Broadwell', 2, 4, 'FCBGA 1168', 26, '14nm', 2, 25600, 'Intel'),
-('i5-5257U', '2015', '3MB', 'embeded', '2,5GHz - 2,99GHz', 2700, 3100, 28, 16, 'Intel® Iris™ Graphics 6100', 'laptop', 'i5', 'Broadwell', 2, 4, 'FCBGA 1168', 27, '14nm', 2, 25600, 'Intel'),
-('i5-5250U', '2015', '3MB', 'embeded', '1,5GHz - 1,99GHz', 1600, 2700, 15, 16, 'Intel® Iris™ Graphics 6000', 'laptop', 'i5', 'Broadwell', 2, 4, 'FCBGA 1168', 28, '14nm', 2, 25600, 'Intel'),
+('i5-5300U', '2015', '3MB', '', '2,0GHz - 2,49GHz', 2300, 2900, 15, 16, 'Intel® HD Graphics 5500', 'laptop', 'i5', 'Broadwell', 2, 4, 'FCBGA 1168', 24, '14nm', 2, 25600, 'Intel'),
+('i5-5200U ', '2013', '3MB', '', '2,0GHz - 2,49GHz', 2200, 2700, 15, 16, 'Intel® HD Graphics 5500', 'laptop', 'i5', 'Broadwell', 2, 4, 'FCBGA 1168', 25, '14nm', 2, 25600, 'Intel'),
+('i5-5287U', '2015', '3MB', '', '2,5GHz - 2,99GHz', 2900, NULL, 28, 16, 'Intel® Iris™ Graphics 6100', 'laptop', 'i5', 'Broadwell', 2, 4, 'FCBGA 1168', 26, '14nm', 2, 25600, 'Intel'),
+('i5-5257U', '2015', '3MB', '', '2,5GHz - 2,99GHz', 2700, 3100, 28, 16, 'Intel® Iris™ Graphics 6100', 'laptop', 'i5', 'Broadwell', 2, 4, 'FCBGA 1168', 27, '14nm', 2, 25600, 'Intel'),
+('i5-5250U', '2015', '3MB', '', '1,5GHz - 1,99GHz', 1600, 2700, 15, 16, 'Intel® Iris™ Graphics 6000', 'laptop', 'i5', 'Broadwell', 2, 4, 'FCBGA 1168', 28, '14nm', 2, 25600, 'Intel'),
 ('i5-4670', '2015', '6 MB Intel® Smart Cache ', '', '3,0GHz - 3,49GHz', 3400, 3800, 84, 32, 'Intel® HD Graphics 4600', 'desktop', 'i5', 'Haswell', 4, 4, 'LGA 1150', 29, '22', 2, 25600, 'Intel'),
 ('i5-4670K', '2015', '6 MB Intel® Smart Cache ', '', '3,0GHz - 3,49GHz', 3400, 3800, 84, 32, 'Intel® HD Graphics 4600', 'desktop', 'i5', 'Haswell', 4, 4, 'LGA 1150', 30, '22', 2, 25600, 'Intel'),
 ('i5-4670R', '2013', '4 MB Intel® Smart Cache ', '', '3,0GHz - 3,49GHz', 3000, 3700, 65, 32, 'Intel® Iris™ Pro Graphics 5200', 'desktop', 'i5', 'Crystal Well', 4, 4, 'FCBGA 1364', 31, '22', 2, 25600, 'Intel'),
@@ -189,7 +189,25 @@ INSERT INTO `processors` (`product_name`, `launch_year`, `cache`, `price_range`,
 ('i3-4030U', '2014', '3 MB Intel® Smart Cache ', '$250 - $300', '1,5GHz - 1,99GHz', 1900, 0, 15, 16, 'Intel® HD Graphics 4400', 'laptop', 'i3', 'Haswell', 2, 4, 'FCBGA 1168', 104, '22', 2, 25600, 'Intel'),
 ('i3-4025U', '2014', '3 MB Intel® Smart Cache ', '$250 - $300', '1,5GHz - 1,99GHz', 1900, 0, 15, 16, 'Intel® HD Graphics 4400', 'laptop', 'i3', 'Haswell', 2, 4, 'FCBGA 1168', 105, '22', 2, 25600, 'Intel'),
 ('i3-4120U', '2014', '3 MB', '$250 - $300', '2,0GHz - 2,49GHz', 2000, 0, 15, 16, 'Intel® HD Graphics 4400', 'laptop', 'i3', 'Haswell', 2, 4, 'FCBGA 1168', 106, '22', 2, 25600, 'Intel'),
-('i3-4110M', '2014', '3 MB Intel® Smart Cache ', '$250 - $300', '2,5GHz - 2,99GHz', 2600, 0, 37, 32, 'Intel® HD Graphics 4600', 'laptop', 'i3', 'Haswell', 2, 4, 'FCPGA 946', 107, '22', 2, 25600, 'Intel');
+('i3-4110M', '2014', '3 MB Intel® Smart Cache ', '$250 - $300', '2,5GHz - 2,99GHz', 2600, 0, 37, 32, 'Intel® HD Graphics 4600', 'laptop', 'i3', 'Haswell', 2, 4, 'FCPGA 946', 107, '22', 2, 25600, 'Intel'),
+('i7-4790S', '2014', '8 MB Intel® Smart Cache', '', '3,0GHz - 3,49GHz', 3200, 4000, 65, 32, 'Intel® HD Graphics 4600', 'desktop', 'i7', 'Haswell', 4, 8, 'LGA 1150', 108, '22', 2, 25600, 'Intel'),
+('i7-4785T', '2014', '8 MB Intel® Smart Cache', '', '2,5GHz - 2,99GHz', 2200, 3200, 35, 32, 'Intel® HD Graphics 4600', 'desktop', 'i7', 'Haswell', 4, 8, 'LGA 1150', 110, '22', 2, 25600, 'Intel'),
+('i7-4980HQ', '2014', '6M', '>$300', '2,5GHz - 2,99GHz', 2800, 4000, 47, 32, 'Intel® Iris™ Pro Graphics 5200', 'laptop', 'i7', 'Crystal Well', 4, 8, 'FCBGA 1364', 111, '22', 2, 25600, 'Intel'),
+('i7-4870HQ', '2014', '6M', '>$300', '2,5GHz - 2,99GHz', 2500, 3700, 47, 32, 'Intel® Iris™ Pro Graphics 5200', 'laptop', 'i7', 'Crystal Well', 4, 8, 'FCBGA 1364', 112, '22', 2, 25600, 'Intel'),
+('i7-4770HQ', '2014', '6M', '>$300', '2,0GHz - 2,49GHz', 2200, 3400, 47, 32, 'Intel® Iris™ Pro Graphics 5200', 'laptop', 'i7', 'Crystal Well', 4, 8, 'FCBGA 1364', 113, '22', 2, 25600, 'Intel'),
+('i7-4578U', '2014', '4M', '>$300', '3,0GHz - 3,49GHz', 3000, 3500, 28, 16, 'Intel® Iris™ Pro Graphics 5100', 'laptop', 'i7', 'Crystal Well', 4, 8, 'FCBGA 1168', 114, '22', 2, 25600, 'Intel'),
+('i7-4510U', '2014', '4 MB Intel® Smart Cache ', '>$300', '2,0GHz - 2,49GHz', 2000, 3100, 15, 16, 'Intel® HD Graphics 4400', 'laptop', 'i7', 'Haswell', 2, 4, 'FCBGA 1168', 115, '22', 2, 25600, 'Intel'),
+('i7-4760HQ', '2014', '6 MB Intel® Smart Cache ', '>$300', '2,0GHz - 2,49GHz', 2100, 3300, 47, 32, 'Intel® Iris™ Pro Graphics 5200', 'laptop', 'i7', 'Crystal Well', 4, 8, 'FCBGA 1364', 116, '22', 2, 25600, 'Intel'),
+('i7-4712MQ', '2014', '6 MB Intel® Smart Cache ', '>$300', '2,0GHz - 2,49GHz', 2300, 3300, 47, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 8, 'FCPGA 946', 117, '22', 2, 25600, 'Intel'),
+('i7-4712HQ', '2014', '6 MB Intel® Smart Cache ', '>$300', '2,0GHz - 2,49GHz', 2300, 3300, 47, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 8, 'FCBGA 1364', 118, '22', 2, 25600, 'Intel'),
+('i7-4710MQ', '2014', '6 MB Intel® Smart Cache ', '>$300', '2,5GHz - 2,99GHz', 2500, 3500, 47, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 8, 'FCPGA 946', 119, '22', 2, 25600, 'Intel'),
+('i7-4710HQ', '2014', '6 MB Intel® Smart Cache ', '>$300', '2,5GHz - 2,99GHz', 2500, 3500, 47, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 8, 'FCBGA 1364', 120, '22', 2, 25600, 'Intel'),
+('i7-4700EC', '2014', '8 MB Intel® Smart Cache ', '>$300', '2,5GHz - 2,99GHz', 2700, 0, 43, 32, '', 'laptop', 'i7', 'Haswell', 4, 8, 'FCBGA 1364', 121, '22', 2, 25600, 'Intel'),
+('i7-4702EC', '2014', '8 MB Intel® Smart Cache ', '>$300', '2,0GHz - 2,49GHz', 2000, 0, 27, 32, '', 'laptop', 'i7', 'Haswell', 4, 8, 'FCBGA 1364', 122, '22', 2, 25600, 'Intel'),
+('i7-4910MQ', '2014', '8 MB Intel® Smart Cache ', '>$300', '2,5GHz - 2,99GHz', 2900, 3900, 47, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 8, 'FCPGA 946', 123, '22', 2, 25600, 'Intel'),
+('i7-4810MQ', '2014', '6 MB Intel® Smart Cache ', '>$300', '2,5GHz - 2,99GHz', 2800, 3800, 47, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 8, 'FCPGA 946', 124, '22', 2, 25600, 'Intel'),
+('i7-4610M', '2014', '4 MB Intel® Smart Cache ', '>$300', '3,0GHz - 3,49GHz', 3000, 3700, 37, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 8, 'FCPGA 946', 125, '22', 2, 25600, 'Intel'),
+('i7-4860HQ', '2014', '6MB Intel® Smart Cache ', '>$300', '2,0GHz - 2,49GHz', 2400, 3600, 47, 32, 'Intel® Iris™ Pro Graphics 5200', 'laptop', 'i7', 'Crystal Well', 4, 8, 'FCBGA 1364', 126, '22', 2, 25600, 'Intel');
 
 --
 -- Indexes for dumped tables
@@ -220,7 +238,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT for table `processors`
 --
 ALTER TABLE `processors`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=108;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=127;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -15,13 +15,14 @@
                     <li><b>Device type:</b> <?php echo $search_result['processors']['device_type']; ?></li>
                     <li><b>Number of cores:</b> <?php echo $search_result['processors']['number_of_cores']; ?></li>
                     <li><b>Launch year:</b> <?php echo $search_result['processors']['launch_year']; ?></li>
+                    <li class = 'comparison' comparison='add' value = '<?php echo $search_result['processors']['id']; ?>'><?php echo __('Add to comparison'); ?></li>
                 </ul>
                 <?php endforeach; ?> 
                 
-            <div class="pagination">
+            <div>
                 <?php
                 for($i = 1; $i <=$num_of_pages; $i++){
-                    ?><li value="<?php echo $i; ?>" > <?php echo $i; ?></li> <?php
+                    ?><li class = 'pagination' value="<?php echo $i; ?>" > <?php echo $i; ?></li> <?php
                 }
                 ?> </div><?php
             }
