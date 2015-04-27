@@ -31,6 +31,9 @@
             <?php } ?>
         </div>    
         <div class="col-sm-3">
+            <div id = 'removable-conditions' style="display:none">
+                
+            </div>
             <div id="searchFacets" class="gdSearchList">
                 <?php $success = asort($price); if($success): ?>
                 <dl class="main">

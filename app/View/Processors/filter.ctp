@@ -5,39 +5,63 @@
     </div>
 </div>
 <script type="text/javascript">
-    window.sessionStorage.conditions = '';
+    window.sessionStorage.query_conditions = '';
     $( document ).ready(function() {
         
         //check if comparison is set
         if(typeof window.sessionStorage.num_of_comparison_items != 'undefined')
         {
-            console.log('number of comaprison items = '+window.sessionStorage.num_of_comparison_items);
+            //console.log('number of comaprison items = '+window.sessionStorage.num_of_comparison_items);
             $('#comparison_div').css('display','block');
             var text = window.sessionStorage.num_of_comparison_items;
             $('#comparison_sum').html(text);
         }
         else
         {
-            console.log('undefined');
+            //console.log('undefined');
         }
         
         
-        var query = 'SELECT id,brand,socket,price_range,device_type,product_name,number_of_cores,frequency_range,launch_year FROM processors ';
+        
         var logic_operator = '';
         window.sessionStorage["comparison_items"] = '{}';
         
         //when checkbox is clicked, add condition to query and do ajax call
         $("#main_content").on( "click","input[type='checkbox']", function() {
             var value = null;
-                if($(this).val() === '') value = 'IS NULL'; else value = " = '"+$(this).val()+"'";
-                window.sessionStorage.conditions += " "+logic_operator +" "+this.id+" "+ value;
-                logic_operator = 'AND';
-                make_ajax_call(0);
+            if($(this).val() === '') 
+                value = 'IS NULL'; 
+            else 
+                value = " = '"+$(this).val()+"'";
+            window.sessionStorage.query_conditions += " "+logic_operator +" "+this.id+" "+ value;
+            
+            //set logic operator to and because and is needed between all condition except first one
+            logic_operator = 'AND';
+
+            //in this array save all removable conditions for displaing on top of filter div
+            if(typeof window.sessionStorage.num_of_conditions_items == 'undefined'){
+                window.sessionStorage.num_of_conditions_items = 0;
+            }
+            if(typeof window.sessionStorage.conditions_array == 'undefined'){
+                var conditions_array = [];
+            }
+            else{
+                var conditions_array = JSON.parse(window.sessionStorage.conditions_array);;
+            }
+                
+            
+            conditions_array[window.sessionStorage.num_of_conditions_items] = $(this).val();
+            window.sessionStorage.num_of_conditions_items++;
+            //console.log(conditions_array);
+            window.sessionStorage.conditions_array = JSON.stringify(conditions_array);
+
+            //reload page data with new query
+            make_ajax_call(0);
         });
         
         //pagination
         $("#main_content").on( "click",".pagination", function() {
-           // console.log($(this).val());
+           // //console.log($(this).val());
             make_ajax_call($(this).val());
         });
     
@@ -46,10 +70,25 @@
             {
                 url : '/processors/filter',
                 type: "POST",
-                data : {query: query, conditions: window.sessionStorage.conditions, page: page_number },
+                data : {conditions: window.sessionStorage.query_conditions, page: page_number },
                 success:function(data)
                 {
+                    //replace main data
                     $('#main_content').html(data) ;
+                    
+                    //add removable conditions on top of filter div
+                    if(typeof window.sessionStorage.conditions_array != 'undefined'){
+                        var conditions_array = JSON.parse(window.sessionStorage.conditions_array);
+                        //console.log(conditions_array);
+                        var arrayLength = conditions_array.length;
+                        var html = '';
+                        for (var i = 0; i < arrayLength; i++) {
+                            //console.log(conditions_array[i]);
+                            html = html + '<li value ='+conditions_array[i]+' >' + conditions_array[i] + '<span id = "remove_condition">x</span></li>';
+                        }
+                        $('#removable-conditions').html(html) ;
+                        $('#removable-conditions').css('display','block');
+                    }
                 },
                 error: function()
                 {
@@ -66,7 +105,7 @@
     ***************************************************************************/
     $('dl.main').each(function(){ 
         var LiN = $(this).find('dd').length;
-       //console.log(LiN);
+       ////console.log(LiN);
         if( LiN > 4){    
           $('dd', this).eq(3).nextAll().hide().addClass('extras');
           $(this).append('<dd class="more" style="text-align: right; padding-right: 10px; font-style: italic">More...</dd>');    
@@ -122,6 +161,14 @@
         delete window.sessionStorage.num_of_comparison_items;
         $('#comparison_div').css('display','none');
         $('li.comparison').html('Add to comparison.');
-    })
+    });
+     $('#main_content').on('click','#remove_condition',function(){
+         //remove condition from query
+         conditions = window.sessionStorage.query_conditions;
+         console.log('parent html is: ' + $(this).parent().val())
+         //remove condition from top of filter
+         conditions_array = JSON.parse(window.sessionStorage.conditions_array);
+         //do ajax call to reload page data based on new conditions
+    });
     
     </script>

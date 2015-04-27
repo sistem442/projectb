@@ -24,7 +24,8 @@ class ProcessorsController extends AppController {
             $conditions = $_POST['conditions'];
             $page = $_POST['page'];
              if($conditions != '') $conditions = ' WHERE '.$conditions;
-            $search_results = $this->Processor->query($_POST['query'].$conditions.' ORDER BY id DESC LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
+            $query = 'SELECT id,brand,socket,price_range,device_type,product_name,number_of_cores,frequency_range,launch_year FROM processors ';
+            $search_results = $this->Processor->query($query.$conditions.' ORDER BY id DESC LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
             $total_count_array = $this->Processor->query('SELECT COUNT(*) as total_results FROM processors '.$conditions);
             $total_count = $total_count_array[0][0]['total_results'];
             $num_of_pages = $total_count/$limit_per_page;
