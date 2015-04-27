@@ -19,11 +19,17 @@ class ProcessorsController extends AppController {
     public function filter(){
 
         $limit_per_page = 8;
+        $conditions = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->layout = false;
-            $conditions = $_POST['conditions'];
+            $conditions_array = json_decode($_POST['conditions'],TRUE);
+            foreach ($conditions_array as $key => $value){
+                $conditions = ' '.$conditions.$key.' = '.$value.' AND '; 
+            }
+            $conditions = substr($conditions, 0, -4);
             $page = $_POST['page'];
              if($conditions != '') $conditions = ' WHERE '.$conditions;
+
             $query = 'SELECT id,brand,socket,price_range,device_type,product_name,number_of_cores,frequency_range,launch_year FROM processors ';
             $search_results = $this->Processor->query($query.$conditions.' ORDER BY id DESC LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
             $total_count_array = $this->Processor->query('SELECT COUNT(*) as total_results FROM processors '.$conditions);
@@ -32,6 +38,7 @@ class ProcessorsController extends AppController {
             $this->set('search_results',$search_results);
             $this->set('num_of_pages',$num_of_pages);
             $this->filter_conditions($conditions);
+            
         }
         else{
             $this->filter_conditions();
@@ -40,6 +47,7 @@ class ProcessorsController extends AppController {
 
     private function filter_conditions($conditions = ''){
         $search = $this->Processor->query('SELECT DISTINCT brand,socket,price_range,device_type,series,code_name,number_of_cores,frequency_range,launch_year FROM processors '.$conditions);
+ 
         foreach ($search as $product)
         {
             $brands[] = $product['processors']['brand'];
