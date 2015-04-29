@@ -1,99 +1,86 @@
-<!DOCTYPE html>
-<!--
-Created using JS Bin
-http://jsbin.com
+<table>
+    <!-- IMPORTANT, class="list" have to be at tbody -->
+    <tbody id="sortable_table">
+        <tr id="name">
+            <td class="sort" id="name"> sort by name</td>
+            <td class="name" id="0">Martina Elm</td>
+            <td class="name" id="1">Jonas Arnklint</td>
+            <td class="name" id="2">Jonny Stromberg</td>
+            <td class="name" id="3">Gustaf Lindqvist</td>
+        </tr>
+        <tr id="year">
+            <td class="sort" id="year">sort by year</td>
+            <td class="year" id="0">1986</td>
+            <td class="year" id="1">1985</td>
+            <td class="year" id="2">2020</td>
+            <td class="year" id="3">2015</td>
+        </tr>
+    </tbody>
+  </table>
+<script type="text/javascript">
+    var order = 'asc';
+    var table_rows = [];
+    var row_object = {};
+    var unsorted_object = {};
+    var sorted_id_array = [];
+    var i = 1;
+    $('#sortable_table').on('click','td.sort',function(){
+        var i = 0;
+        var sorted_array = [];
+        
+        //console.log(this.id);
+        $('.'+this.id).each(function(index,element){
+             //console.log($(this).html());
+             //console.log(element);
+            sorted_array[index] = $(this).html();
+            unsorted_object[this.id] = $(this).html();
+        });
+        //console.log('array before sort: '+td_array);
+        if(order == 'asc'){
+                sorted_array.sort();
+                order = 'desc';
+        }
+        else{
+            sorted_array.sort();
+            sorted_array.reverse();
+            order = 'asc';
+        }
+            
+//        console.log('array after sort: '+sorted_array);
+//        console.log(' unsorted object: ');
+//        console.log(unsorted_object);
+        for (var key in unsorted_object) {
+            //console.log(key);
+            sorted_id_array[i] = sorted_array.indexOf(unsorted_object[key]);
+            i++;
+        }
+       // console.log('sorted_id_array');
+        //console.log(sorted_id_array);
 
-Copyright (c) 2015 by anonymous (http://jsbin.com/oyepoz/19/edit)
-
-Released under the MIT license: http://jsbin.mit-license.org
--->
-<meta name="robots" content="noindex">
-<html>
-<head>
-  
-<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<meta charset=utf-8 />
-<title>JS Bin</title>
-<!--[if IE]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-
-  
-<style>
-  
-  ul{list-style:none;}
-  a{text-decoration:none;}
-
-  .more{
-    color:#aaccdd;
-    cursor:pointer;
-  }
-
-</style>
-<style id="jsbin-css">
-#rtcontent{
-     
-     list-style-type:none;
-     margin:0;
-     padding-left:18px;
-     padding-right:14px;
-     width:240px;
-
-}
-
-#rtcontent li{
-     height:20px;
-     background-color:#003366;
-     text-align:center;
-     font-family:Times New Roman; serif;
-     font-weight:bold;
-     font-size: 11pt;
-}     
-
-#rtcontent li a{
-     display:block;
-     text-decoration:none;
-     color:white;
-     margin:5px;
-     padding:0px;
-}
-
-#rtcontent li a:hover,a:active{
-     background-color:#006699;
-}
-</style>
-</head>
-<body>
-<div id="rtcontent">
-<ul class="term-list">
-  <li class="term-item "><a href="#">Item 1</a></li>
-<li class="term-item "><a href="#">Item 2</a></li>
-<li class="term-item "><a href="#">Item 3</a></li>
-<li class="term-item "><a href="#">Item 4</a></li>
-<li class="term-item "><a href="#">Item 5</a></li>
-<li class="term-item "><a href="#">Item 6</a></li>
-<li class="term-item "><a href="#">Item 7</a></li>
-</ul>
-</div>
-
-  
-  
-<script id="jsbin-javascript">
-$(document).ready(function(){
-$('ul.term-list').each(function(){ 
-  var LiN = $(this).find('li').length;
-  if( LiN > 4){    
-    $('li', this).eq(3).nextAll().hide().addClass('extras');
-    $(this).append('<li class="more" style="text-align: right; padding-right: 10px; font-style: italic">More...</li>');    
-  }
-});
-$('ul.term-list').on('click','.more',function(){
-  $this = $(this);
-  var text = ($this.text() == 'Less...') ? 'More...' : 'Less...';
-  $this.text(text);  
-  $(this).siblings('li.extras').slideToggle();
-});
-});
+        //get all table rows and rewrite them in order by selected row
+        $('tr').each(function(index,element){
+            table_rows[index] = this.id
+            //console.log(table_rows);
+            //for every td get contens in row-object
+            $('td.'+this.id).each(function(index,element){
+                row_object[this.id] = $(this).html();
+                console.log('row_object');
+                console.log(row_object);
+                //iterate through sorted array and print object propertie
+                var print = $(this);
+                $.each(sorted_id_array, function( index, value ) {
+                    print.html(row_object[value]);
+                    //console.log( index + ": " + value );
+                  });
+               
+                //console.log(row_object);
+            });
+            var j = 0;
+            $('td.'+this.id).each(function(index,element){
+                $(this).html(row_object[sorted_id_array[j]]);
+                j++;
+                //console.log(row_object);
+            });
+        });
+    });
 </script>
-</body>
-</html>
