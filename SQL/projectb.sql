@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 24, 2015 at 11:27 AM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Host: 127.0.0.1
+-- Generation Time: May 01, 2015 at 02:19 PM
+-- Server version: 5.6.24
+-- PHP Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `articles` (
-`id` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL,
   `title` varchar(50) DEFAULT NULL,
   `body` text,
   `created` datetime DEFAULT NULL,
@@ -66,17 +66,17 @@ CREATE TABLE IF NOT EXISTS `processors` (
   `max_ram_memory` tinyint(3) DEFAULT NULL,
   `graphics` varchar(100) NOT NULL,
   `device_type` enum('desktop','laptop','embedded','') NOT NULL DEFAULT 'desktop',
-  `series` enum('i7','i5','i3','FX') DEFAULT NULL,
-  `code_name` enum('Devil''s Canyon','Haswell','Zambezi','Broadwell','Crystal Well') NOT NULL,
+  `series` enum('i7','i5','i3','FX','Atom','Pentium') DEFAULT NULL,
+  `code_name` enum('Devil''s Canyon','Haswell','Zambezi','Broadwell','Crystal Well','Bay Trail') NOT NULL,
   `number_of_cores` tinyint(2) NOT NULL,
   `number_of_threads` tinyint(2) NOT NULL,
-  `socket` enum('LGA 1150','AM3+','FCBGA 1168','FCBGA 1364','FCPGA 946') NOT NULL DEFAULT 'FCPGA 946',
-`id` int(11) NOT NULL,
+  `socket` enum('LGA 1150','AM3+','FCBGA 1168','FCBGA 1364','FCPGA 946','FCBGA 1170') NOT NULL DEFAULT 'FCPGA 946',
+  `id` int(11) NOT NULL,
   `litography` varchar(10) NOT NULL,
   `max_memory_channels` tinyint(4) DEFAULT NULL,
   `max_memory_bandwidth` smallint(4) DEFAULT NULL,
   `brand` enum('AMD','Intel','','') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=ucs2;
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=ucs2;
 
 --
 -- Dumping data for table `processors`
@@ -207,7 +207,31 @@ INSERT INTO `processors` (`product_name`, `launch_year`, `cache`, `price_range`,
 ('i7-4910MQ', '2014', '8 MB Intel® Smart Cache ', '>$300', '2,5GHz - 2,99GHz', 2900, 3900, 47, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 8, 'FCPGA 946', 123, '22', 2, 25600, 'Intel'),
 ('i7-4810MQ', '2014', '6 MB Intel® Smart Cache ', '>$300', '2,5GHz - 2,99GHz', 2800, 3800, 47, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 8, 'FCPGA 946', 124, '22', 2, 25600, 'Intel'),
 ('i7-4610M', '2014', '4 MB Intel® Smart Cache ', '>$300', '3,0GHz - 3,49GHz', 3000, 3700, 37, 32, 'Intel® HD Graphics 4600', 'laptop', 'i7', 'Haswell', 4, 8, 'FCPGA 946', 125, '22', 2, 25600, 'Intel'),
-('i7-4860HQ', '2014', '6MB Intel® Smart Cache ', '>$300', '2,0GHz - 2,49GHz', 2400, 3600, 47, 32, 'Intel® Iris™ Pro Graphics 5200', 'laptop', 'i7', 'Crystal Well', 4, 8, 'FCBGA 1364', 126, '22', 2, 25600, 'Intel');
+('i7-4860HQ', '2014', '6MB Intel® Smart Cache ', '>$300', '2,0GHz - 2,49GHz', 2400, 3600, 47, 32, 'Intel® Iris™ Pro Graphics 5200', 'laptop', 'i7', 'Crystal Well', 4, 8, 'FCBGA 1364', 126, '22', 2, 25600, 'Intel'),
+('E3815', '2013', '512 KB L2 Cache ', '< $50', '1,0GHz - 1,49GHz', 1460, 0, 5, 4, 'Intel® HD Graphics', 'laptop', 'Atom', 'Bay Trail', 1, 1, 'FCBGA 1170', 127, '22', 0, 0, 'Intel'),
+('E3825', '2013', '1 MB L2 Cache  ', '< $50', '1,0GHz - 1,49GHz', 1330, 0, 6, 8, 'Intel® HD Graphics', 'laptop', 'Atom', 'Bay Trail', 2, 2, 'FCBGA 1170', 128, '22', 0, 0, 'Intel'),
+('E3826', '2013', '1 MB L2 Cache  ', '< $50', '1,0GHz - 1,49GHz', 1460, 0, 7, 8, 'Intel® HD Graphics', 'laptop', 'Atom', 'Bay Trail', 2, 2, 'FCBGA 1170', 129, '22', 0, 0, 'Intel'),
+('E3827', '2013', '1 MB L2 Cache  ', '< $50', '1,5GHz - 1,99GHz', 1750, 0, 8, 8, 'Intel® HD Graphics', 'laptop', 'Atom', 'Bay Trail', 2, 2, 'FCBGA 1170', 130, '22', 0, 0, 'Intel'),
+('E3845', '2013', '2 MB L2 Cache ', '$50 - $100', '1,5GHz - 1,99GHz', 1910, 0, 10, 8, 'Intel® HD Graphics', 'laptop', 'Atom', 'Bay Trail', 4, 4, 'FCBGA 1170', 131, '22', 0, 0, 'Intel'),
+('E3805', '2014', '1 MB L2 Cache ', '< $50', '1,0GHz - 1,49GHz', 1330, 0, 3, 8, '', 'laptop', 'Atom', 'Bay Trail', 2, 2, 'FCBGA 1170', 132, '22', 0, 0, 'Intel'),
+('3805U', '2015', '2 MB', '$150 - $200', '1,5GHz - 1,99GHz', 1900, 0, 15, 16, 'Intel® HD Graphics', 'laptop', 'Pentium', 'Broadwell', 2, 2, 'FCBGA 1168', 133, '14', 2, 25600, 'Intel'),
+('3825U', '2015', '2 MB', '$150 - $200', '1,5GHz - 1,99GHz', 1900, 0, 15, 16, 'Intel® HD Graphics', 'laptop', 'Pentium', 'Broadwell', 2, 4, 'FCBGA 1168', 134, '14', 2, 25600, 'Intel'),
+('G3260', '2015', '3 MB ', '$50 - $100', '3,0GHz - 3,49GHz', 3300, 0, 53, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 135, '22', 2, 25600, 'Intel'),
+('G3260T', '2015', '3 MB ', '$50 - $100', '2,5GHz - 2,99GHz', 2900, 0, 35, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 136, '22', 2, 25600, 'Intel'),
+('G3460T', '2015', '3 MB ', '$50 - $100', '3,0GHz - 3,49GHz', 3000, 0, 35, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 137, '22', 2, 25600, 'Intel'),
+('G3470', '2015', '3 MB ', '$50 - $100', '3,5GHz - 3,99GHz', 3600, 0, 35, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 138, '22', 2, 25600, 'Intel'),
+('G3258', '2014', '3 MB ', '$50 - $100', '3,0GHz - 3,49GHz', 3200, 0, 53, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 139, '22', 2, 21300, 'Intel'),
+('G3450', '2014', '3 MB Intel® Smart Cache ', '$50 - $100', '3,0GHz - 3,49GHz', 3400, 0, 53, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 140, '22', 2, 25600, 'Intel'),
+('G3440T', '2014', '3 MB Intel® Smart Cache ', '$50 - $100', '2,5GHz - 2,99GHz', 2800, 0, 35, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 141, '22', 2, 25600, 'Intel'),
+('G3240T', '2014', '3 MB Intel® Smart Cache  ', '$50 - $100', '2,5GHz - 2,99GHz', 2700, 0, 35, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 142, '22', 2, 21300, 'Intel'),
+('G3240', '2014', '3 MB Intel® Smart Cache  ', '$50 - $100', '3,0GHz - 3,49GHz', 3100, 0, 53, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 143, '22', 2, 21300, 'Intel'),
+('G3250T', '2014', '3 MB Intel® Smart Cache  ', '$50 - $100', '2,5GHz - 2,99GHz', 2800, 0, 35, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 144, '22', 2, 21300, 'Intel'),
+('G3250', '2014', '3 MB Intel® Smart Cache  ', '$50 - $100', '3,0GHz - 3,49GHz', 3200, 0, 53, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 145, '22', 2, 21300, 'Intel'),
+('G3450', '2014', '3 MB Intel® Smart Cache  ', '$50 - $100', '3,0GHz - 3,49GHz', 3400, 0, 53, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 146, '22', 2, 25600, 'Intel'),
+('G3440T', '2014', '3 MB Intel® Smart Cache  ', '$50 - $100', '2,5GHz - 2,99GHz', 2800, 0, 35, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 147, '22', 2, 25600, 'Intel'),
+('G3440', '2014', '3 MB Intel® Smart Cache  ', '$50 - $100', '3,0GHz - 3,49GHz', 3300, 0, 53, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 148, '22', 2, 25600, 'Intel'),
+('G3460', '2014', '3 MB Intel® Smart Cache  ', '$50 - $100', '3,5GHz - 3,99GHz', 3500, 0, 53, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 149, '22', 2, 25600, 'Intel'),
+('G3450T', '2014', '3 MB Intel® Smart Cache  ', '$50 - $100', '2,5GHz - 2,99GHz', 2900, 0, 35, 32, 'Intel® HD Graphics', 'desktop', 'Pentium', 'Haswell', 2, 2, 'LGA 1150', 150, '22', 2, 25600, 'Intel');
 
 --
 -- Indexes for dumped tables
@@ -217,13 +241,13 @@ INSERT INTO `processors` (`product_name`, `launch_year`, `cache`, `price_range`,
 -- Indexes for table `articles`
 --
 ALTER TABLE `articles`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `processors`
 --
 ALTER TABLE `processors`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -233,12 +257,12 @@ ALTER TABLE `processors`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `processors`
 --
 ALTER TABLE `processors`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=127;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=151;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -4,7 +4,7 @@
             <?php
             if(isset($search_results)){
                 foreach ($search_results as $search_result): ?>
-                <ul class="featureList">
+            <ul class="featureList">
                     <li><b>Brand:</b> <?php echo $search_result['processors']['brand']; ?></li>
                     <li><b>Product name:</b><?php echo $search_result['processors']['product_name']; ?></li>
                     <li><b>Socket:</b><?php echo $search_result['processors']['socket']; ?></li>
@@ -15,7 +15,7 @@
                     <li><b>Device type:</b> <?php echo $search_result['processors']['device_type']; ?></li>
                     <li><b>Number of cores:</b> <?php echo $search_result['processors']['number_of_cores']; ?></li>
                     <li><b>Launch year:</b> <?php echo $search_result['processors']['launch_year']; ?></li>
-                    <li class = 'comparison' comparison='add' value = '<?php echo $search_result['processors']['id']; ?>'><?php echo __('Add to comparison'); ?></li>
+                    <li class = 'comparison' comparison='add' id="<?php echo $search_result['processors']['id']; ?>"><?php echo __('Add to comparison'); ?></li>
                 </ul>
                 <?php endforeach; ?> 
                 

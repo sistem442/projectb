@@ -37,10 +37,19 @@ class ProcessorsController extends AppController {
             $num_of_pages = $total_count/$limit_per_page;
             $this->set('search_results',$search_results);
             $this->set('num_of_pages',$num_of_pages);
-            $this->filter_conditions($conditions);
-            
+            $this->set('conditions_are_set',true);
+            if($conditions != '')
+            {
+                $this->filter_conditions($conditions);
+            }
+            else
+            {
+                $this->set('conditions_are_set',false);
+                $this->filter_conditions();
+            }
         }
         else{
+            $this->set('conditions_are_set',false);
             $this->filter_conditions();
         }
     }
@@ -87,7 +96,7 @@ class ProcessorsController extends AppController {
         {
             $this->layout = false;
             $conditions = ' WHERE '.$conditions;
-            $this -> render('/Elements/filter_content');
+            
         }
     }
 
