@@ -1,5 +1,5 @@
 <div class="container">
-    <div id="comparison_div" style = "display:none"><?php echo __('Compare specifications'); ?>(<span id="comparison_sum"></span>)<span id = "delete_comparison_items">x</span></div>
+    <div id="comparison_div" style = "display:none"><span id="compare"><?php echo __('Compare specifications'); ?>(<span id="comparison_sum"></span>)</span><span id = "delete_comparison_items">x</span></div>
     <div class="row" id='main_content'>
         <?php echo $this->element('filter_content'); ?>
     </div>
@@ -167,6 +167,7 @@
                 comparison_items[$(this).val()] = $(this).val();
             }
             else{
+                var comparison_items = {};
                 comparison_items[$(this).val()] = $(this).val();
             }
             
@@ -199,6 +200,20 @@
         delete window.sessionStorage.num_of_comparison_items;
         $('#comparison_div').css('display','none');
         $('li.comparison').html('Add to comparison.');
+    });
+    
+    $('#compare').click(function(){
+        var comparison_string = '';
+        if(typeof window.sessionStorage.comparison_items != 'undefined'){
+            var comparison_object = JSON.parse(window.sessionStorage["comparison_items"]);
+            for (var index in comparison_object) {
+                if (comparison_object.hasOwnProperty(index)) {
+                    comparison_string += comparison_object[index]+',';
+                }
+            }
+            comparison_string = comparison_string.substring(0, comparison_string.length - 1);
+        }
+        document.location = "/processors/comparison/"+comparison_string;
     });
     
     

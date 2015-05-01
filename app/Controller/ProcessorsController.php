@@ -90,7 +90,35 @@ class ProcessorsController extends AppController {
             $this -> render('/Elements/filter_content');
         }
     }
-    
+
+public function comparison($ids){
+    $query = 'SELECT '
+            . 'product_name,'
+            . 'cache,'
+            . 'frequency,'
+            . 'turbo_frequency,'
+            . 'tdp,'
+            . 'max_ram_memory,'
+            . 'graphics,'
+            . 'device_type,'
+            . 'number_of_threads,'
+            . 'litography,'
+            . 'max_memory_channels,'
+            . 'max_memory_bandwidth,'            
+            . 'brand,'
+            . 'socket,'
+            . 'price_range,'
+            . 'device_type,'
+            . 'series,'
+            . 'code_name,'
+            . 'number_of_cores,'
+            . 'frequency_range,'
+            . 'launch_year '
+            . 'FROM processors WHERE id in ('.$ids.');';
+      
+          $comparison_items = $this->Processor->query($query);
+          $this->set('comparison_items',$comparison_items);
+}    
 public function test(){}
         
                 

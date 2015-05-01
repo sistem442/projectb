@@ -23,19 +23,14 @@
     var row_object = {};
     var unsorted_object = {};
     var sorted_id_array = [];
-    var i = 1;
     $('#sortable_table').on('click','td.sort',function(){
         var i = 0;
         var sorted_array = [];
-        
         //console.log(this.id);
         $('.'+this.id).each(function(index,element){
-             //console.log($(this).html());
-             //console.log(element);
             sorted_array[index] = $(this).html();
             unsorted_object[this.id] = $(this).html();
         });
-        //console.log('array before sort: '+td_array);
         if(order == 'asc'){
                 sorted_array.sort();
                 order = 'desc';
@@ -45,36 +40,19 @@
             sorted_array.reverse();
             order = 'asc';
         }
-            
-//        console.log('array after sort: '+sorted_array);
-//        console.log(' unsorted object: ');
-//        console.log(unsorted_object);
         for (var key in unsorted_object) {
-            //console.log(key);
             sorted_id_array[i] = sorted_array.indexOf(unsorted_object[key]);
             i++;
         }
-       // console.log('sorted_id_array');
-        //console.log(sorted_id_array);
-
         //get all table rows and rewrite them in order by selected row
         $('tr').each(function(index,element){
             table_rows[index] = this.id
-            //console.log(table_rows);
             //for every td get contens in row-object
             $('td.'+this.id).each(function(index,element){
                 row_object[this.id] = $(this).html();
-                console.log('row_object');
-                console.log(row_object);
                 //iterate through sorted array and print object propertie
-                var print = $(this);
-                $.each(sorted_id_array, function( index, value ) {
-                    print.html(row_object[value]);
-                    //console.log( index + ": " + value );
-                  });
-               
-                //console.log(row_object);
             });
+            //replace html with sorted data 
             var j = 0;
             $('td.'+this.id).each(function(index,element){
                 $(this).html(row_object[sorted_id_array[j]]);
