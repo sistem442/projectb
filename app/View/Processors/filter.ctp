@@ -15,7 +15,15 @@ if($conditions_are_set){
     var query_conditions = {};
     
     $( document ).ready(function() {
-        
+        //if sesion is set clear it
+        if(typeof window.sessionStorage.query_conditions != 'undefined')
+        {
+            window.sessionStorage.query_conditions = '{}';
+        }
+        if(typeof window.sessionStorage.conditions_array != 'undefined')
+        {
+            window.sessionStorage.conditions_array = '{}';
+        }
         //check if comparison is set
         if(typeof window.sessionStorage.num_of_comparison_items != 'undefined')
         {
@@ -79,7 +87,7 @@ if($conditions_are_set){
         });
         
         /***************************************************************************
-    
+        
                             AJAX
 
         ***************************************************************************/
@@ -106,13 +114,11 @@ if($conditions_are_set){
 
                     //set remove from conditions for selected items
                     if(typeof window.sessionStorage.comparison_items != 'undefined'){
-                        //CHANGE add to comparison to remove from comaprison for items that 
-                        //are already selected from comparison
+                        //CHANGE 'add to comparison' to 'remove from comaprison' 
+                        //for items in search result list that are already selected for comparison
                         var comparison_items = JSON.parse(window.sessionStorage.comparison_items);
                         $.each( comparison_items, function( key, value ) {
-                             console.log(value);
-                             $('#'+value).html('<?php echo __('Remove from comparison.'); ?>');
-                             $('#102').html('<?php echo __('Remove from comparison.'); ?>');
+                            $('#'+value).html('<?php echo __('Remove from comparison.'); ?>');
                         });
 
                     }
@@ -125,37 +131,37 @@ if($conditions_are_set){
             });
             
         }
-        /***************************************************************************
+        /***********************************************************************
     
-                            remove conditions
+                               remove conditions
 
-    ***************************************************************************/
-     $('#main_content').on('click','.remove_condition',function(){
-        last_condition_removed = false;
-        //remove condition from query
-        query_conditions = JSON.parse(window.sessionStorage.query_conditions);
-        var removed_condition = this.id;
-        delete query_conditions[removed_condition]; 
-        if(jQuery.isEmptyObject(query_conditions)){
-            query_conditions = {};
-            last_condition_removed = true;
-        }
-        window.sessionStorage.query_conditions = JSON.stringify(query_conditions);
-         
-        //remove condition from top of filter
-        $(this).closest('li').remove();
+       ************************************************************************/
+        $('#main_content').on('click','.remove_condition',function(){
+            last_condition_removed = false;
+            //remove condition from query
+            query_conditions = JSON.parse(window.sessionStorage.query_conditions);
+            var removed_condition = this.id;
+            delete query_conditions[removed_condition]; 
+            if(jQuery.isEmptyObject(query_conditions)){
+                query_conditions = {};
+                last_condition_removed = true;
+            }
+            window.sessionStorage.query_conditions = JSON.stringify(query_conditions);
 
-        //remove condition from query
-        if(typeof window.sessionStorage.conditions_array != 'undefined'){
-            var conditions_array = JSON.parse(window.sessionStorage.conditions_array);
-            delete conditions_array[removed_condition];
-            window.sessionStorage.conditions_array = JSON.stringify(conditions_array);
-        }
-         
-         //do ajax call to reload page data based on new conditions
-          make_ajax_call(0,last_condition_removed);
-         
-    });
+            //remove condition from top of filter
+            $(this).closest('li').remove();
+
+            //remove condition from query
+            if(typeof window.sessionStorage.conditions_array != 'undefined'){
+                var conditions_array = JSON.parse(window.sessionStorage.conditions_array);
+                delete conditions_array[removed_condition];
+                window.sessionStorage.conditions_array = JSON.stringify(conditions_array);
+            }
+  
+            //do ajax call to reload page data based on new conditions
+             make_ajax_call(0,last_condition_removed);
+
+       });
     });
     
     /***************************************************************************
