@@ -173,13 +173,11 @@
     var sorted_id_array = [];
     $('#sortable_table').on('click','td.sort',function(){
         var unsorted_array = [];
-        //console.log(this.id);
         //get value of selected row and put it in array, append id because 
         //you need id as link between selected properti and other properies
         $('.'+this.id).each(function(index,element){
             unsorted_array[index] = $(this).html()+this.id;
         });
-        console.log(unsorted_array);
         //sort array of valoes of selected property
         if(order == 'asc'){
             var sorted_array = unsorted_array.sort();
@@ -190,19 +188,16 @@
             var sorted_array = unsorted_array.reverse();
             order = 'asc';
         }
-        console.log(sorted_array);
         //create array of sorted id's from arry of sorted properties
         for (var i = 0; i < sorted_array.length; i++) {
             sorted_id_array[i] = sorted_array[i][sorted_array[i].length -1];
         }
-        console.log(sorted_id_array);
         //get all table rows and rewrite them in order by selected row
         $('tr').each(function(index,element){
             table_rows[index] = this.id
             //for every td get contens in row-object
             $('td.'+this.id).each(function(index,element){
                 row_object[this.id] = $(this).html();
-               // console.log(row_object);
                 //iterate through sorted array and print object propertie
             });
             //replace html with sorted data 
@@ -210,7 +205,6 @@
             $('td.'+this.id).each(function(index,element){
                 $(this).html(row_object[sorted_id_array[j]]);
                 j++;
-                //console.log(row_object);
             });
         });
     });
