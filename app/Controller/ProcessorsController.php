@@ -18,7 +18,7 @@ class ProcessorsController extends AppController {
 
     public function filter(){
 
-        $limit_per_page = 8;
+        //$limit_per_page = 8;
         $conditions = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->layout = false;
@@ -28,17 +28,16 @@ class ProcessorsController extends AppController {
             }
             $conditions = substr($conditions, 0, -4);
             $page = $_POST['page'];
-            var_dump($page);
-             if($conditions != '') $conditions = ' WHERE '.$conditions;
+            if($conditions != '') $conditions = ' WHERE '.$conditions;
 
             $query = 'SELECT id,brand,socket,price_range,device_type,product_name,number_of_cores,frequency,series,launch_year FROM processors ';
-            $search_results = $this->Processor->query($query.$conditions.' ORDER BY id DESC LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
+            $search_results = $this->Processor->query($query.$conditions.' ORDER BY id DESC');//LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
             $total_count_array = $this->Processor->query('SELECT COUNT(*) as total_results FROM processors '.$conditions);
-            $total_count = $total_count_array[0][0]['total_results'];
-            $num_of_pages = $total_count/$limit_per_page;
+            //$num_of_pages = $total_count/$limit_per_page;
             $this->set('search_results',$search_results);
-            $this->set('num_of_pages',$num_of_pages);
+            //$this->set('num_of_pages',$num_of_pages);
             $this->set('conditions_are_set',true);
+            $this->set('number_of_results',$total_count_array[0][0]['total_results']);
             if($conditions != '')
             {
                 $this->filter_conditions($conditions);
@@ -128,7 +127,37 @@ public function comparison($ids){
       
           $comparison_items = $this->Processor->query($query);
           $this->set('comparison_items',$comparison_items);
-}    
+}
+
+public function item($id){
+    $query = 'SELECT '
+            . 'product_name,'
+            . 'cache,'
+            . 'frequency,'
+            . 'turbo_frequency,'
+            . 'tdp,'
+            . 'max_ram_memory,'
+            . 'graphics,'
+            . 'device_type,'
+            . 'number_of_threads,'
+            . 'litography,'
+            . 'max_memory_channels,'
+            . 'max_memory_bandwidth,'            
+            . 'brand,'
+            . 'socket,'
+            . 'price_range,'
+            . 'device_type,'
+            . 'series,'
+            . 'code_name,'
+            . 'number_of_cores,'
+            . 'frequency_range,'
+            . 'launch_year '
+            . 'FROM processors WHERE id = '.$id.';';
+      
+          $item = $this->Processor->query($query);
+          $this->set('item',$item);
+}
+
 public function test(){}
             
            

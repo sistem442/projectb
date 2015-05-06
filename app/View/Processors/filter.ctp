@@ -1,4 +1,7 @@
 <?php 
+echo $this->Html->script('jquery.tablesorter.min'); 
+echo $this->Html->css('style');
+
 if($conditions_are_set){
     echo $this->element('filter_content'); 
     die;
@@ -72,9 +75,9 @@ if($conditions_are_set){
                             pagination
 
         ***************************************************************************/
-        $("#main_content").on( "click",".pagination", function() {
-            make_ajax_call($(this).val());
-        });
+//        $("#main_content").on( "click",".pagination", function() {
+//            make_ajax_call($(this).val());
+//        });
         
         /***************************************************************************
         
@@ -113,7 +116,8 @@ if($conditions_are_set){
                         });
 
                     }
-                        
+                    //Initialize table sorter
+                    $("#processor_table").tablesorter();    
                 },
                 error: function()
                 {

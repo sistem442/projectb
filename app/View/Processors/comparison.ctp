@@ -169,28 +169,38 @@
     var order = 'asc';
     var table_rows = [];
     var row_object = {};
-    var unsorted_object = {};
     var sorted_id_array = [];
     $('#sortable_table').on('click','td.sort',function(){
-        var unsorted_array = [];
+        var unsorted_object_array = [];
         //get value of selected row and put it in array, append id because 
         //you need id as link between selected properti and other properies
         $('.'+this.id).each(function(index,element){
-            unsorted_array[index] = $(this).html()+this.id;
+            //console.log(this.id);
+            var temp_object = {};
+            temp_object['item_id'] = this.id;
+            temp_object['item_value']= $(this).html();
+            unsorted_object_array.push(temp_object); 
         });
         //sort array of valoes of selected property
         if(order == 'asc'){
-            var sorted_array = unsorted_array.sort();
+            var sorted_object_array = unsorted_object_array.sort(function (a, b) {
+                return a.item_value.localeCompare( b.item_value );
+            });
             order = 'desc';
         }
         else{
-            unsorted_array.sort();
-            var sorted_array = unsorted_array.reverse();
+            unsorted_object_array.sort(function (a, b) {
+                return a.item_value.localeCompare( b.item_value );
+            });
+            var sorted_object_array = unsorted_object_array.reverse(function (a, b) {
+                return a.item_value.localeCompare( b.item_value );
+            });
             order = 'asc';
         }
-        //create array of sorted id's from arry of sorted properties
-        for (var i = 0; i < sorted_array.length; i++) {
-            sorted_id_array[i] = sorted_array[i][sorted_array[i].length -1];
+                
+        //create array of sorted id's from array of sorted properties
+        for (var i = 0; i < sorted_object_array.length; i++) {
+            sorted_id_array[i] = sorted_object_array[i].item_id;
         }
         //get all table rows and rewrite them in order by selected row
         $('tr').each(function(index,element){

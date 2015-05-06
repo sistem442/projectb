@@ -4,64 +4,43 @@
     <?php
     if(isset($search_results)){
     ?>
-    <table>
-        <tbody>
-            <tr>
-                <td><?php echo __('Brand'); ?></td>
-                <td><?php echo __('Series'); ?></td>
-                <td><?php echo __('Name'); ?></td>
-                <td><?php echo __('Socket'); ?></td>
-                <td><?php echo __('Frequency'); ?></td>
-                <td><?php echo __('Price Range'); ?></td>
-                <td><?php echo __('Device Type'); ?></td>
-                <td><?php echo __('# of</br> Cores'); ?></td>
-                <td><?php echo __('Lanch Year'); ?></td>
-                <td id="compare_all"><?php echo __('Add All'); ?></td>
-                
-            </tr>
-        <?php foreach ($search_results as $search_result): ?>
-            <tr>
-                <td><?php echo $search_result['processors']['brand']; ?></td>
-                <td><?php echo $search_result['processors']['series']; ?></td>
-                <td><?php echo $search_result['processors']['product_name']; ?></td>
-                <td><?php echo $search_result['processors']['socket']; ?></td>
-                <td><?php echo $search_result['processors']['frequency']/1000; ?>GHz</td>
-                <td><?php echo $search_result['processors']['price_range']; ?>
-                <td><?php echo $search_result['processors']['device_type']; ?></td>
-                <td><?php echo $search_result['processors']['number_of_cores']; ?></td>
-                <td><?php echo $search_result['processors']['launch_year']; ?></td>
-                <td class='comparison' comparison='add' id="<?php echo $search_result['processors']['id']; ?>"><?php echo __('Compare +'); ?></td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-    
-    
-    
-    
-<!--        <div class="filter_result">
-            <ul class="featureList">
-                <li><b>Brand:</b> <?php echo $search_result['processors']['brand']; ?></li>
-                <li><b>Product name:</b><?php echo $search_result['processors']['product_name']; ?></li>
-                <li><b>Socket:</b><?php echo $search_result['processors']['socket']; ?></li>
-                <li><b>Frequency:</b> <?php echo $search_result['processors']['frequency_range']/1000; ?>GHz</li>
-                <?php if(isset($search_result['processors']['price_range'])): ?>
-                    <li><b>Price:</b> <?php echo $search_result['processors']['price_range']; ?></li>
-                <?php endif; ?>
-                <li><b>Device type:</b> <?php echo $search_result['processors']['device_type']; ?></li>
-                <li><b>Number of cores:</b> <?php echo $search_result['processors']['number_of_cores']; ?></li>
-                <li><b>Launch year:</b> <?php echo $search_result['processors']['launch_year']; ?></li>
-                <li class = 'comparison' comparison='add' id="<?php echo $search_result['processors']['id']; ?>"><?php echo __('Compare'); ?></li>
-            </ul>
-        </div>
-        <?php // endforeach; ?> -->
-
     <div>
-        <?php
-        for($i = 1; $i <=$num_of_pages; $i++){
-            ?><li class = 'pagination' value="<?php echo $i-1; ?>" > <?php echo $i; ?></li> <?php
-        }
-        ?> 
+        <table class="tablesorter" id="processor_table">
+            <thead>
+                <tr>
+                    <td id="compare_all"><?php echo __('Add All'); ?></td>
+                    <th><?php echo __('Brand'); ?></th>
+                    <th><?php echo __('Series'); ?></th>
+                    <th><?php echo __('Name'); ?></th>
+                    <th><?php echo __('# of</br> Cores'); ?></th>
+                    <th><?php echo __('Frequency'); ?></th>
+                    <th><?php echo __('Price Range'); ?></th>
+                    <th><?php echo __('Device Type'); ?></th>
+                    <th><?php echo __('Socket'); ?></th>
+                    <th><?php echo __('Lanch Year'); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($search_results as $search_result): ?>
+                <tr>
+                    <td class='comparison' comparison='add' id="<?php echo $search_result['processors']['id']; ?>"><?php echo __('Compare +'); ?></td>
+                    <td><?php echo $search_result['processors']['brand']; ?></td>
+                    <td><?php echo $search_result['processors']['series']; ?></td>
+                    <td>
+                        <a href="/processors/item/<?php echo $search_result['processors']['id']; ?>">
+                            <?php echo $search_result['processors']['product_name']; ?>
+                        </a>
+                    </td>
+                    <td><?php echo $search_result['processors']['number_of_cores']; ?></td>
+                    <td><?php echo $search_result['processors']['frequency']/1000; ?> GHz</td>
+                    <td><?php if($search_result['processors']['price_range'] == '') echo 'unknown'; else echo $search_result['processors']['price_range']; ?>
+                    <td><?php echo $search_result['processors']['device_type']; ?></td>
+                    <td><?php echo $search_result['processors']['socket']; ?></td>
+                    <td><?php echo $search_result['processors']['launch_year']; ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
     <?php 
     } 
@@ -74,6 +53,7 @@
 
     </div>
     <div id="searchFacets" class="gdSearchList">
+        <?php if(isset($number_of_results)) echo __('Number of results: ').$number_of_results; ?>
         <?php $success = asort($price); ?>
         <?php if($success && count($price)>1): ?>
         <dl class="main">
