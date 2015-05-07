@@ -1,175 +1,185 @@
-<table>
+<table id="comparison_table">
     <tbody id="sortable_table">
         <tr id="product_name">
             <td class="sort" id="product_name"><></td>
-            <td><?php echo __('Name'); ?></td>
+            <td class='compare-cell' ><?php echo __('Name'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="product_name" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['product_name']; ?></td>
+                <td class="compare-cell product_name" id="<?php echo $i; ?>">
+                    <?php echo $processor['processors']['product_name']; ?>
+                    <span class="remove_column" id="<?php echo $i; $i++; ?>">x</span>
+                </td>
             <?php endforeach; ?>
         </tr>
         <tr id="launch_year">
             <td class="sort" id="launch_year"><></td>
-            <td><?php echo __('Launch Year'); ?></td>
+            <td class='compare-cell' ><?php echo __('Launch Year'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="launch_year" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['launch_year']; ?></td>
+                <td class="compare-cell launch_year" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['launch_year']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="cache">
             <td class="sort" id="cache"><></td>
-            <td><?php echo __('Cache'); ?></td>
+            <td class='compare-cell' ><?php echo __('Cache'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="cache" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['cache']; ?></td>
+                <td class="compare-cell cache" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['cache']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="price_range">
             <td class="sort" id="price_range"><></td>
-            <td><?php echo __('Price Range'); ?></td>
+            <td class='compare-cell' ><?php echo __('Price Range'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="price_range" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['price_range']; ?></td>
+                <td class="compare-cell price_range" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['price_range']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="frequency_range">
             <td class="sort" id="frequency_range"><></td>
-            <td><?php echo __('Frequency Range'); ?></td>
+            <td class='compare-cell' ><?php echo __('Frequency Range'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="frequency_range" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['frequency_range']; ?></td>
+                <td class="compare-cell frequency_range" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['frequency_range']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="frequency">
             <td class="sort" id="frequency"><></td>
-            <td><?php echo __('Frequency'); ?></td>
+            <td class='compare-cell' ><?php echo __('Frequency'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="frequency" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['frequency']; ?></td>
+                <td class="compare-cell frequency" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['frequency']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="turbo_frequency">
             <td class="sort" id="turbo_frequency"><></td>
-            <td><?php echo __('Turbo Frequency'); ?></td>
+            <td class='compare-cell' ><?php echo __('Turbo Frequency'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="turbo_frequency" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['turbo_frequency']; ?></td>
+                <td class="compare-cell turbo_frequency" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['turbo_frequency']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="tdp">
             <td class="sort" id="tdp"><></td>
-            <td><?php echo __('TDP'); ?></td>
+            <td class='compare-cell' ><?php echo __('TDP'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="tdp" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['tdp']; ?></td>
+                <td class="compare-cell tdp" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['tdp']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="max_ram_memory">
             <td class="sort" id="max_ram_memory"><></td>
-            <td><?php echo __('Max Memory Size'); ?></td>
+            <td class='compare-cell' ><?php echo __('Max Memory Size'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="max_ram_memory" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['max_ram_memory']; ?></td>
+                <td class="compare-cell max_ram_memory" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['max_ram_memory']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="graphics">
             <td class="sort" id="graphics"><></td>
-            <td><?php echo __('Graphics'); ?></td>
+            <td class='compare-cell' ><?php echo __('Graphics'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="graphics" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['graphics']; ?></td>
+                <td class="compare-cell graphics" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['graphics']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="device_type">
             <td class="sort" id="device_type"><></td>
-            <td><?php echo __('Device Type'); ?></td>
+            <td class='compare-cell' ><?php echo __('Device Type'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="device_type" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['device_type']; ?></td>
+                <td class="compare-cell device_type" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['device_type']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="series">
             <td class="sort" id="series"><></td>
-            <td><?php echo __('Series'); ?></td>
+            <td class='compare-cell' ><?php echo __('Series'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="series" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['series']; ?></td>
+                <td class="compare-cell series" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['series']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="code_name">
             <td class="sort" id="code_name"><></td>
-            <td><?php echo __('Code Name'); ?></td>
+            <td class='compare-cell' ><?php echo __('Code Name'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="code_name" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['code_name']; ?></td>
+                <td class="compare-cell code_name" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['code_name']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="number_of_cores">
             <td class="sort" id="number_of_cores"><></td>
-            <td><?php echo __('Number of Cores'); ?></td>
+            <td class='compare-cell' ><?php echo __('Number of Cores'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="number_of_cores" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['number_of_cores']; ?></td>
+                <td class="compare-cell number_of_cores" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['number_of_cores']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="number_of_threads">
             <td class="sort" id="number_of_threads"><></td>
-            <td><?php echo __('Number of Threads'); ?></td>
+            <td class='compare-cell' ><?php echo __('Number of Threads'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="number_of_threads" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['number_of_threads']; ?></td>
+                <td class="compare-cell number_of_threads" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['number_of_threads']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="socket">
             <td class="sort" id="socket"><></td>
-            <td><?php echo __('Socket'); ?></td>
+            <td class='compare-cell' ><?php echo __('Socket'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="socket" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['socket']; ?></td>
+                <td class="compare-cell socket" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['socket']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="litography">
             <td class="sort" id="litography"><></td>
-            <td><?php echo __('Litography'); ?></td>
+            <td class='compare-cell' ><?php echo __('Litography'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="litography" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['litography']; ?></td>
+                <td class="compare-cell litography" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['litography']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="max_memory_channels">
             <td class="sort" id="max_memory_channels"><></td>
-            <td><?php echo __('Max # of Memory Channels'); ?></td>
+            <td class='compare-cell' ><?php echo __('Max # of Memory Channels'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="max_memory_channels" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['max_memory_channels']; ?></td>
+                <td class="compare-cell max_memory_channels" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['max_memory_channels']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="max_memory_bandwidth">
             <td class="sort" id="max_memory_bandwidth"><></td>
-            <td><?php echo __('Max Memory Bandwidth'); ?></td>
+            <td class='compare-cell' ><?php echo __('Max Memory Bandwidth'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="max_memory_bandwidth" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['max_memory_bandwidth']; ?></td>
+                <td class="compare-cell max_memory_bandwidth" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['max_memory_bandwidth']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="brand">
             <td class="sort" id="brand"><></td>
-            <td><?php echo __('Brand'); ?></td>
+            <td class='compare-cell' ><?php echo __('Brand'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="brand" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['brand']; ?></td>
+                <td class="compare-cell brand" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['brand']; ?></td>
             <?php endforeach; ?>
         </tr>
         
     </tbody>
 </table>
 
-
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
     var order = 'asc';
     var table_rows = [];
     var row_object = {};
     var sorted_id_array = [];
+    
+    $('#sortable_table').on('click',".remove_column",function(){
+       console.log(this.id);
+        $('td[id="'+this.id+'"]').hide("fade", 1000);
+    });
+    
+    
     $('#sortable_table').on('click','td.sort',function(){
         var unsorted_object_array = [];
         //get value of selected row and put it in array, append id because 

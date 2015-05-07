@@ -615,29 +615,6 @@ div.productCells div.featuredProduct{position:relative;display:block;float:none;
 .productCells .disclaimer,
 .productList .disclaimer {display:block;clear:left;padding:1em;}
 
-/* --- comparison page specific --- */
-.productCompare{margin:0 10px 5em 10px;}
-#tblCompareNew{clear:both;border:1px solid #e3e3e3;margin-bottom:1em;color:#333639;}
-#tblCompareNew td, #tblCompareNew th{padding:.5em 10px;vertical-align:top;}
-#tblCompareNew tbody td,
-#tblCompareNew tbody th{border-bottom:1px solid #ccc;}
-#tblCompareNew td, #tblCompareNew thead th{border-left:1px dotted #ccc;}
-#tblCompareNew td,
-#tblCompareNew th{width:15%;}
-#tblCompareNew .first{border-left:0;}
-#tblCompareNew th{font-weight:normal;text-align:left;}
-#tblCompareNew .functionRemove{text-align:right;}
-#tblCompareNew thead th{border-bottom:0;}
-#tblCompareNew .itemImage{display:block;margin:1em auto;}
-#tblCompareNew .itemAction{text-align:center;padding-bottom:1em;font-size:0.95em;}
-#tblCompareNew thead .itemAction{border-bottom:1px solid #444;}
-#tblCompareNew tbody tr:nth-child(odd){background:#eee;}
-#tblCompareNew .groupHead th{background:#e3e6e9;color:#444;border-bottom-color:#444;}
-#tblCompareNew .groupHead a{display:block;padding-left:15px;background:url("http://images10.newegg.com/WebResource/Themes/2005/Nest/n1_minus.gif") no-repeat left center;}
-#tblCompareNew .groupHead a.collapsed{background:url("http://images10.newegg.com/WebResource/Themes/2005/Nest/n1_plus.gif") no-repeat left center;}
-.productCompare .pageTitle{padding:.25em 0;margin:.25em 0;float:left;width:100%;}
-.productCompare .subTitle{padding:0;}
-.pageAction{float:right;padding:2px 0 0 25px;height:16px;background:url("http://images10.newegg.com/WebResource/Themes/2005/Nest/spr_iconsProduct.gif") 0 -200px no-repeat;font-size:0.55em;}
 
 /* --- lists --- */
 .productCells .itemFeatures,
@@ -1067,50 +1044,8 @@ a.blockLink:link,a.blockLink:visited,a.blockLink:active,a.blockLink:hover{displa
 .comparePanel li.expandAll{}
 .comparePanel li.collapseAll{}
 
-/* 23Dec11 * #tblCompareNew .grpSubCat td{border-width:0 0 1px 0;} */
-#tblCompareNew.x_subCatCompare thead .itemAction{border-bottom:0;}
-#tblCompareNew.x_subCatCompare .grpSubCat td,
-#tblCompareNew.x_subCatCompare .grpSubCat th{border:1px solid #ccc; border-top-color:#444;background:#dedfe2;}
-#tblCompareNew.x_subCatCompare .subCatHead{text-align:left;}
-.x_subCatCompare .subCatHead{margin:1em 0 0;padding:.45em 0;border-left:1px solid #dadada;}
-.x_subCatCompare .subCatHead .ctrl{margin-top:3px;vertical-align:top;width:14px;height:14px;}
-.x_subCatCompare .subCatHead .minus{background:url("http://images10.newegg.com/WebResource/Themes/2005/Nest/minus.png") no-repeat;}
-.x_subCatCompare .subCatHead .plus{background:url("http://images10.newegg.com/WebResource/Themes/2005/Nest/plus2.png") no-repeat;}
-.x_subCatCompare .subCatHead a{padding:0 6px 0 0;display:block;font-size:17px;font-weight:bold;font-family:helvetica,arial,verdana,sans-serif;}
-.x_subCatCompare thead .functionRemove a:link,
-.x_subCatCompare thead .functionRemove a:visited,
-.x_subCatCompare tbody a:link,
-.x_subCatCompare tbody a:visited {color:#6180a5;}
-.x_subCatCompare thead .functionRemove a:active,
-.x_subCatCompare thead .functionRemove a:hover, 
-.x_subCatCompare thead .functionRemove a:focus,
-.x_subCatCompare tbody a:active,
-.x_subCatCompare tbody a:hover, 
-.x_subCatCompare tbody a:focus {color:#06f;}
-.x_subCatCompare .subCatHead a span{font-size:.75em;}
-#tblCompareNew.x_subCatCompare tr.show:hover {background:#dedfe2;}
-.x_subCatCompare tfoot th,
-.x_subCatCompare tfoot td{border-top:1px solid #444;}
 
-.price2012 .ContainerMid table:first-child td table {
-	width: 422px;
-	margin:0 10px 0 10px;
-}
-.price2012 .ContainerMid table:first-child td table table {
-	width: 100%;
-	margin-left: 0;
-}
-.price2012 .ContainerMid .smallboxoutline table {
-	width:100% !important;
-	margin: 0 10px 0 0px;
-}
-.price2012 .ContainerMid .smallboxoutline table .oriPrice,
-.price2012 .ContainerMid .smallboxoutline table .savePrice,
-.price2012 .ContainerMid .smallboxoutline table .rebate,
-.price2012 .ContainerMid .smallboxoutline table .rebate + td {
-	font-size: 0;
-	height: 0;
-}
+
 /* =======
  * PRICE MODULE SUBCLASS
  * ======= */
@@ -2225,64 +2160,7 @@ border-bottom: 1px solid #CCC;
 }
 /*End by #9084*/
 
-/* === EggPoints, cat and subcat - Aug, 2013 === */
-.eggpoints-product-cell{
-	display:block;
-	margin-right: 14px;
-}
-.eggpoints-product-cell.has-multiple.eggpoints-multiple{display: none;}
-.eggpoints-product-cell .eggpoints-icon{
-	width: 28px;
-	height: 22px;
-	background-position: -326px -41px;
-}
-.eggpoints-product-cell .eggpoints-upto{display: none;}
-.eggpoints-product-cell .eggpoints-points{font-size:16px;}
 
-.productCells .eggpoints-product-cell{
-	position: absolute;
-	bottom: 19px;
-	left: 11px;
-}
-.productCells .featuredProduct .eggpoints-product-cell{
-	position: relative;
-	bottom: 0;
-	left: 0;
-}
-
-.productCells .wrap_pitch{position: relative;}
-.productCells .wrap_pitch .eggpoints-product-cell{
-	position: absolute;
-	bottom: 5px;
-	left:0;	
-}
-
-#blaNavigation .gdSearchList dl.main dd.text-link .icon-finder {
-    background: url("http://images10.newegg.com/WebResource/Themes/2005/Nest/search_finder.png") no-repeat scroll 0 0;
-    display: inline-block;
-    height: 13px;
-    position: static;
-    vertical-align: middle;
-    width: 12px;
-    padding-right: 3px;
-}
-.ie #blaNavigation .gdSearchList dl.main dd.text-link .icon-finder {
-    padding-right: 6px;
-}
-#blaNavigation .gdSearchList dl.main dd.text-link {
-    padding: 7px 0 0 6px;
-}
-.ie #blaNavigation .gdSearchList dl.main dd.text-link {
-    padding-left:2px;
-}
-
-#blaNavigation.simplified .gdSearchList dl.main dt.commondt {
-    padding-right:18px;
-}
-#tblCompareNew tbody td, #tblCompareNew tbody th {
-border-bottom: 1px solid #CCC;
-word-break: break-all;
-}
 
 /* Newegg Membership - Dec 2013 */
 .has-label-membership .membership-icon{
@@ -2755,3 +2633,21 @@ border: 0;
 .ie.ie_11 .filter .filter-cell label {
     margin: 0 0 0 4px;
 }
+
+td.compare-cell{
+    width:200px;
+    min-width: 200px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+td.sort{
+    width:50px;
+    border: 1px solid black;
+}
+#comparison_table{
+    border: 1px solid black;
+    table-layout: fixed;
+    width: auto;
+}
+
