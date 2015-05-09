@@ -33,9 +33,8 @@ class ProcessorsController extends AppController {
             $query = 'SELECT id,brand,socket,price_range,device_type,product_name,number_of_cores,frequency,series,launch_year FROM processors ';
             $search_results = $this->Processor->query($query.$conditions.' ORDER BY id DESC');//LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
             $total_count_array = $this->Processor->query('SELECT COUNT(*) as total_results FROM processors '.$conditions);
-            //$num_of_pages = $total_count/$limit_per_page;
+            
             $this->set('search_results',$search_results);
-            //$this->set('num_of_pages',$num_of_pages);
             $this->set('conditions_are_set',true);
             $this->set('number_of_results',$total_count_array[0][0]['total_results']);
             if($conditions != '')
@@ -54,7 +53,56 @@ class ProcessorsController extends AppController {
         }
     }
 
+    public function browse(){
+         //queries for links to all processors
+        //
+        //first level brand
+        $brand_query = 'SELECT DISTINCT brand FROM processors ORDER BY brand ASC';
+        $brands2 = $this->Processor->query($brand_query);
+
+        //second level series
+        foreach($brands2 as $brand){
+            $series_query = 'SELECT DISTINCT series '
+                    . 'FROM processors '
+                    . 'WHERE brand = "'.$brand['processors']['brand'].'" '
+                    . ' ORDER BY series ASC';
+            $series2 = $this->Processor->query($series_query);
+
+            
+            //third level years
+            foreach ($series2 as $serie){
+                $years_query = 'SELECT DISTINCT launch_year '
+                    . 'FROM processors '
+                    . 'WHERE brand = "'.$brand['processors']['brand'].'" '
+                    . 'AND series = "'.$serie['processors']['series'].'" '
+                    . ' ORDER BY series ASC';
+                $years = $this->Processor->query($years_query);
+
+                foreach ($years as $year){
+                    $processors_query = 'SELECT product_name '
+                    . 'FROM processors '
+                    . 'WHERE brand = "'.$brand['processors']['brand'].'" '
+                    . 'AND series = "'.$serie['processors']['series'].'" '
+                    . 'AND launch_year = "'.$year['processors']['launch_year'].'" '
+                    . ' ORDER BY product_name ASC';
+                    $processors2 = $this->Processor->query($processors_query);
+                    $year_result_array[$year['processors']['launch_year']] = $processors2;
+                }
+                $series_result_array[$serie['processors']['series']] = $year_result_array;
+                $year_result_array = [];
+            }
+            $processors[$brand['processors']['brand']] = $series_result_array;
+            $series_result_array = [];
+        }
+        
+        $this->set(compact('processors'));
+    }
+
+
     private function filter_conditions($conditions = ''){
+       
+            
+        //query for forming filter radio butons
         $search = $this->Processor->query('SELECT DISTINCT brand,socket,price_range,device_type,series,code_name,number_of_cores,frequency_range,launch_year FROM processors '.$conditions);
  
         foreach ($search as $product)

@@ -44,7 +44,7 @@
     </div>
     <?php 
     } 
-    else{ ?>
+    else{  ?>
     <div class="center">Pick from filter. -></div>
     <?php } ?>
 </div>    
