@@ -63,11 +63,13 @@
 			<?php echo $item[0]['processors']['cache']; ?>
 			&nbsp;
 		</dd>
+                <?php if(!empty($item[0]['processors']['graphics'])): ?>
                 <dt><?php echo __('Graphics'); ?></dt>
 		<dd>
 			<?php echo $item[0]['processors']['graphics']; ?>
 			&nbsp;
 		</dd>
+                <?php endif; ?>
 		<dt><?php echo __('Frequency'); ?></dt>
 		<dd>
 			<?php echo h($item[0]['processors']['frequency']/1000); ?> GHz

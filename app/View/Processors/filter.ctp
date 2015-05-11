@@ -16,7 +16,9 @@ if($conditions_are_set){
 <script type="text/javascript">
     //window.sessionStorage.query_conditions = '{}';
     var query_conditions = {};
-    
+    //prepare labels for comparison
+    var remove_string = '<?php echo __('Remove -'); ?>';
+    var compare_string = '<?php echo __('Compare +'); ?>';
     $( document ).ready(function() {
         //if sesion is set clear it
         if(typeof window.sessionStorage.query_conditions != 'undefined')
@@ -177,92 +179,22 @@ if($conditions_are_set){
         $this.text(text);  
         $(this).siblings('dd.extras').slideToggle();
       });
-    /***************************************************************************
+   /***************************************************************************
     
                             Comparison
 
     ***************************************************************************/
     $('#main_content').on('click','td.comparison',function(){
-        if($(this).data('comparison') !== 'remove'){
-            if(typeof window.sessionStorage.comparison_items != 'undefined'){
-                var comparison_items = JSON.parse(window.sessionStorage["comparison_items"]);
-                comparison_items[this.id] = this.id;
-            }
-            else{
-                var comparison_items = {};
-                comparison_items[this.id] = this.id;
-            }
-            
-            if(typeof window.sessionStorage.num_of_comparison_items == 'undefined'){
-                window.sessionStorage.num_of_comparison_items = 0
-            }
-            
-            window.sessionStorage.comparison_items = JSON.stringify(comparison_items);
-            window.sessionStorage.num_of_comparison_items++;
-            $(this).html( '<?php echo __('Remove -'); ?>' ) ;
+        var action = $(this).data('comparison');
+        var result = compare(action,this.id);
+        if( result == 'remove'){
+            $(this).html( remove_string ) ;
             $(this).data('comparison','remove');
-            $('#comparison_sum').html(window.sessionStorage.num_of_comparison_items);
-            $('#comparison_div').css('display','block');
         }
-        else{
-            var comparison_items = JSON.parse(window.sessionStorage.comparison_items);
-            delete comparison_items[this.id];
-            window.sessionStorage.comparison_items = JSON.stringify(comparison_items);
-            window.sessionStorage.num_of_comparison_items--;
-            $(this).html('<?php echo __('Compare +'); ?>');
+        else if (result == 'add' ){
+            $(this).html( compare_string );
             $(this).data('comparison','add');
-            $('#comparison_sum').html(window.sessionStorage.num_of_comparison_items);
-            if(window.sessionStorage.num_of_comparison_items == 0){
-                $('#comparison_div').css('display','none');
-            }
         }
       });
-      
-    $('#delete_comparison_items').click(function(){
-        delete window.sessionStorage.comparison_items;
-        delete window.sessionStorage.num_of_comparison_items;
-        $('#comparison_div').css('display','none');
-        $('td.comparison').html('<?php echo __('Compare +'); ?>');
-    });
-    
-    $('#compare').click(function(){
-        var comparison_string = '';
-        if(typeof window.sessionStorage.comparison_items != 'undefined'){
-            var comparison_object = JSON.parse(window.sessionStorage["comparison_items"]);
-            for (var index in comparison_object) {
-                if (comparison_object.hasOwnProperty(index)) {
-                    comparison_string += comparison_object[index]+',';
-                }
-            }
-            comparison_string = comparison_string.substring(0, comparison_string.length - 1);
-        }
-        document.location = "/processors/comparison/"+comparison_string;
-    });
-    
-    $('#main_content').on('click','#compare_all',function(){
-        if(typeof window.sessionStorage.comparison_items != 'undefined'){
-            var comparison_items = JSON.parse(window.sessionStorage["comparison_items"]);
-        }
-        else{
-            var comparison_items = {};
-        }
-        
-        if(typeof window.sessionStorage.num_of_comparison_items == 'undefined'){
-            window.sessionStorage.num_of_comparison_items = 0
-        }
-        $('td.comparison').each(function(){
-            if(!(this.id in comparison_items)){
-                window.sessionStorage.num_of_comparison_items++;
-                comparison_items[this.id] = this.id;
-                $(this).html('<?php echo __('Remove -'); ?>');
-                $(this).data('comparison','remove');
-            }
-        });
-        
-        window.sessionStorage.comparison_items = JSON.stringify(comparison_items);
-        $('#comparison_sum').html(window.sessionStorage.num_of_comparison_items);
-        $('#comparison_div').css('display','block');
-    });
-    
-    
     </script>
+<?php echo $this->Html->script('comparison'); ?>

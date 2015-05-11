@@ -4,20 +4,19 @@ App::uses('AppController', 'Controller');
 
 class ProcessorsController extends AppController {
 
-    
-    
- public $paginate = array(
-        'limit' => 25,
-        'order' => array(
-            'Post.title' => 'asc'
-        )
-    );
+    public $paginate = array(
+           'limit' => 25,
+           'order' => array(
+               'Post.title' => 'asc'
+           )
+       );
     public $helpers = array('Html', 'Form', 'Session');
     public $components = array('Session');
     public $scaffold;
 
     public function filter(){
 
+        $this->set('title','Filter processors');
         //$limit_per_page = 8;
         $conditions = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -54,7 +53,9 @@ class ProcessorsController extends AppController {
     }
 
     public function browse(){
-         //queries for links to all processors
+        
+        $this->set('title','Browse processors');
+        //queries for links to all processors
         //
         //first level brand
         $brand_query = 'SELECT DISTINCT brand FROM processors ORDER BY brand ASC';
@@ -79,7 +80,7 @@ class ProcessorsController extends AppController {
                 $years = $this->Processor->query($years_query);
 
                 foreach ($years as $year){
-                    $processors_query = 'SELECT product_name '
+                    $processors_query = 'SELECT product_name,id '
                     . 'FROM processors '
                     . 'WHERE brand = "'.$brand['processors']['brand'].'" '
                     . 'AND series = "'.$serie['processors']['series'].'" '
@@ -101,9 +102,11 @@ class ProcessorsController extends AppController {
 
     private function filter_conditions($conditions = ''){
        
-            
         //query for forming filter radio butons
-        $search = $this->Processor->query('SELECT DISTINCT brand,socket,price_range,device_type,series,code_name,number_of_cores,frequency_range,launch_year FROM processors '.$conditions);
+        $search = $this->Processor->query('SELECT DISTINCT brand,socket,'
+                . 'price_range,device_type,series,code_name,'
+                . 'number_of_cores,frequency_range,launch_year '
+                . 'FROM processors '.$conditions);
  
         foreach ($search as $product)
         {
@@ -149,6 +152,8 @@ class ProcessorsController extends AppController {
     }
 
 public function comparison($ids){
+    
+    $this->set('title','Compare processors');
     $query = 'SELECT '
             . 'product_name,'
             . 'cache,'
@@ -178,6 +183,7 @@ public function comparison($ids){
 }
 
 public function item($id){
+    
     $query = 'SELECT '
             . 'product_name,'
             . 'cache,'
@@ -202,8 +208,9 @@ public function item($id){
             . 'launch_year '
             . 'FROM processors WHERE id = '.$id.';';
       
-          $item = $this->Processor->query($query);
-          $this->set('item',$item);
+    $item = $this->Processor->query($query);
+    $this->set('item',$item);
+    $this->set('title',$item[0]['processors']['brand'].' '.$item[0]['processors']['product_name']);
 }
 
 public function test(){}
