@@ -37,102 +37,39 @@ if($conditions_are_set){
         }
         /***************************************************************************
     
-                           When radio is clicked
+                           When radio button is clicked
 
         ***************************************************************************/
         $("#main_content").on( "click","input[type='radio']", function() {
-            //if value is null set string IS NULL because of database query
-            var value = null;
-            if($(this).val() === '') 
-                value = 'IS NULL'; 
-            else 
-                value = $(this).val();
-            
-            //if previous conditions exists fetch them from session and add new condition            
-            if(typeof window.sessionStorage.query_conditions == 'undefined'){
-                var query_conditions = {};
-            }
-            else{
-                var query_conditions = JSON.parse(window.sessionStorage.query_conditions);;
-            }
-            query_conditions[this.id] = value;
-            window.sessionStorage.query_conditions = JSON.stringify(query_conditions);
-
-            //in this array save all removable conditions for displaing on top of filter div
-            if(typeof window.sessionStorage.conditions_array == 'undefined'){
-                var conditions_array = {};
-            }
-            else{
-                var conditions_array = JSON.parse(window.sessionStorage.conditions_array);;
-            }
-            conditions_array[this.id] = $(this).val();
-            window.sessionStorage.conditions_array = JSON.stringify(conditions_array);
-            
-            //reload page data with new query
-            make_ajax_call(0);
+            var id = this.id;
+            var val = $(this).val();
+            search(id,val);
         });
         
         /***************************************************************************
     
-                            pagination
+                            when text box is used
 
         ***************************************************************************/
-//        $("#main_content").on( "click",".pagination", function() {
-//            make_ajax_call($(this).val());
-//        });
-        
-        /***************************************************************************
-        
-                            AJAX
-
-        ***************************************************************************/
-    
-        function make_ajax_call(page_number,last_condition_removed = false){
-            $.ajax(
-            {
-                url : '/processors/filter',
-                type: "POST",
-                data : {conditions: window.sessionStorage.query_conditions, page: page_number },
-                success:function(data)
-                {
-                    $('#main_content').html(data) ;
-                   //add removable conditions on top of filter div
-                    if(typeof window.sessionStorage.conditions_array != 'undefined'){
-                        conditions = JSON.parse(window.sessionStorage.conditions_array);
-                        var html = '';
-                        $.each( conditions, function( key, value ) {
-                            html = html + '<li>' + value + '<span id='+key+' class = "remove_condition">x</span></li>';
-                        });
-                        $('#removable-conditions').html(html) ;
-                        $('#removable-conditions').css('display','block');
-                    }
-
-                    //set remove from conditions for selected items
-                    if(typeof window.sessionStorage.comparison_items != 'undefined'){
-                        //CHANGE 'add to comparison' to 'remove from comaprison' 
-                        //for items in search result list that are already selected for comparison
-                        var comparison_items = JSON.parse(window.sessionStorage.comparison_items);
-                        $.each( comparison_items, function( key, value ) {
-                            $('#'+value).html('<?php echo __('Remove -'); ?>');
-                            $('#'+value).data('comparison','remove');
-                        });
-
-                    }
-                    //Initialize table sorter
-                    $("#processor_table").tablesorter();    
-                },
-                error: function()
-                {
-                    alert('<?php echo __('Database error. Please try again later.'); ?>');     
-                }
-            });
-            
-        }
+       $("#main_content").on( "click","#submit", function() {
+            var id = 'product_name';
+            var val = '"'+$('#product_name').val()+'"';
+            search(id,val);
+       });
+       $( "#search_form" ).submit(function( event ) {
+            var id = 'product_name';
+            var val = '"'+$('#product_name').val()+'"';
+            search(id,val);
+            event.preventDefault();
+          });
+        $('input,textarea').focus(function(){
+            $(this).removeAttr('placeholder');
+         });
         /***********************************************************************
     
                                remove conditions
 
-       ************************************************************************/
+        ************************************************************************/
         $('#main_content').on('click','.remove_condition',function(){
             last_condition_removed = false;
             //remove condition from query
@@ -196,5 +133,94 @@ if($conditions_are_set){
             $(this).data('comparison','add');
         }
       });
+      
+    /*************************************************************************
+    
+                                    FUNCTIONS
+    
+     ************************************************************************/
+    function search(id,val){
+         var value = null;
+         if(val === '') 
+             value = 'IS NULL'; 
+         else 
+             value = val
+         if(typeof window.sessionStorage.query_conditions == 'undefined'){
+             var query_conditions = {};
+         }
+         else{
+             var query_conditions = JSON.parse(window.sessionStorage.query_conditions);;
+         }
+         query_conditions[id] = value;
+         window.sessionStorage.query_conditions = JSON.stringify(query_conditions);
+
+         //in this array save all removable conditions for displaing on top of filter div
+         if(typeof window.sessionStorage.conditions_array == 'undefined'){
+             var conditions_array = {};
+         }
+         else{
+             var conditions_array = JSON.parse(window.sessionStorage.conditions_array);;
+         }
+         conditions_array[id] = val;
+         window.sessionStorage.conditions_array = JSON.stringify(conditions_array);
+
+         //reload page data with new query
+         make_ajax_call(0);
+    }
+     
+    /***************************************************************************
+        
+                            AJAX
+
+    ***************************************************************************/
+    
+    function make_ajax_call(page_number,last_condition_removed = false){
+        $.ajax(
+        {
+            url : '/processors/filter',
+            type: "POST",
+            data : {conditions: window.sessionStorage.query_conditions, page: page_number },
+            success:function(data)
+            {
+                $('#main_content').html(data) ;
+
+                //if last condition is removed hide div with number of results
+                if(last_condition_removed){
+                    $('#number_of_results').css('display','none');
+                }
+
+               //add removable conditions on top of filter div
+                if(typeof window.sessionStorage.conditions_array != 'undefined'){
+                    conditions = JSON.parse(window.sessionStorage.conditions_array);
+                    console.log(conditions);
+                    var html = '';
+                    $.each( conditions, function( key, value ) {
+                        html = html + '<li>' + value + '<span id='+key+' class = "remove_condition">x</span></li>';
+                    });
+                    $('#removable-conditions').html(html) ;
+                    $('#removable-conditions').css('display','block');
+                }
+
+                //set remove from conditions for selected items
+                if(typeof window.sessionStorage.comparison_items != 'undefined'){
+                    //CHANGE 'add to comparison' to 'remove from comaprison' 
+                    //for items in search result list that are already selected for comparison
+                    var comparison_items = JSON.parse(window.sessionStorage.comparison_items);
+                    $.each( comparison_items, function( key, value ) {
+                        $('#'+value).html('<?php echo __('Remove -'); ?>');
+                        $('#'+value).data('comparison','remove');
+                    });
+
+                }
+                //Initialize table sorter
+                $("#processor_table").tablesorter();    
+            },
+            error: function()
+            {
+                alert('<?php echo __('Database error. Please try again later.'); ?>');     
+            }
+        });
+
+    }
     </script>
 <?php echo $this->Html->script('comparison'); ?>

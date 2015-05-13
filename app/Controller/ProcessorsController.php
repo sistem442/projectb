@@ -28,20 +28,26 @@ class ProcessorsController extends AppController {
             $conditions = substr($conditions, 0, -4);
             $page = $_POST['page'];
             if($conditions != '') $conditions = ' WHERE '.$conditions;
-
+           
             $query = 'SELECT id,brand,socket,price_range,device_type,product_name,number_of_cores,frequency,series,launch_year FROM processors ';
             $search_results = $this->Processor->query($query.$conditions.' ORDER BY id DESC');//LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
             $total_count_array = $this->Processor->query('SELECT COUNT(*) as total_results FROM processors '.$conditions);
             
-            $this->set('search_results',$search_results);
-            $this->set('conditions_are_set',true);
-            $this->set('number_of_results',$total_count_array[0][0]['total_results']);
-            if($conditions != '')
+            $num_of_results = $total_count_array[0][0]['total_results'];
+            $this->set('number_of_results',$num_of_results );
+            
+            if($conditions != '' && $num_of_results != 0)
             {
+                $this->set('search_results',$search_results);
+                $this->set('conditions_are_set',true);
                 $this->filter_conditions($conditions);
             }
             else
             {
+                //if searched by keyword and no products are found display notice
+                $this->set('display_notice',$num_of_results);
+                if(isset($conditions_array['product_name']))
+                    $this->set ('keyword',$conditions_array['product_name']);
                 $this->set('conditions_are_set',false);
                 $this->filter_conditions();
             }
@@ -101,7 +107,7 @@ class ProcessorsController extends AppController {
 
 
     private function filter_conditions($conditions = ''){
-       
+        
         //query for forming filter radio butons
         $search = $this->Processor->query('SELECT DISTINCT brand,socket,'
                 . 'price_range,device_type,series,code_name,'

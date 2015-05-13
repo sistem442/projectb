@@ -2650,4 +2650,36 @@ td.sort{
     table-layout: fixed;
     width: auto;
 }
+////////////////////////////////////////////////////////////////////////////////
 
+//                          SEARCH INPUT
+
+////////////////////////////////////////////////////////////////////////////////
+#product_name {
+    background-color:red;
+    border: 0px solid;
+    //height:18px;
+    width:150px;
+    color:#666;
+    -webkit-appearance: none
+}
+
+div#search_section {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border:solid 1px #DBDBDB;
+    margin-bottom: 5px;
+}
+div#search_left {
+    width: 90%;
+    height: 30px;
+    float: left;
+    padding: 0px;
+    margin: 0px;
+}
+div#search_right {
+    margin-left: 90%;
+    height: 30px;
+    padding: 3px;
+}

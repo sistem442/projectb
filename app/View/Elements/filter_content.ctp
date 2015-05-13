@@ -43,17 +43,30 @@
         </table>
     </div>
     <?php 
-    } 
+    }
+    elseif (isset ($display_notice) && $display_notice == 0) { ?>
+        <div class="center">No results were found for: <?php echo $keyword; ?>. Change keyword or use filter only.</div>
+    <?php }
     else{  ?>
-    <div class="center">Pick from filter. -></div>
+        <div class="center">Pick from filter. -></div>
     <?php } ?>
 </div>    
 <div class="col-sm-3">
     <div id = 'removable-conditions' style="display:none">
 
     </div>
+  
+    <div id="search_section">
+        <div id="search_left">
+            <form id="search_form"><input type="text" id="product_name" placeholder="<?php echo __("Processor name, like: N3700"); ?>" 
+                                          style=" width:100%; border: 0px solid; padding: 0px; height: 30px;"/></form>
+        </div>
+        <div id="search_right"><a href="#" id="submit"><img src="http://www.dksg.rs/images/osnovne/magnifying-glass-icons-2.gif"/></a></div>
+
+    </div><!-- search_section -->
+    
     <div id="searchFacets" class="gdSearchList">
-        <?php if(isset($number_of_results)) echo __('Number of results: ').$number_of_results; ?>
+        <div id="number_of_results"><?php if(isset($number_of_results)) echo __('Number of results: ').$number_of_results; ?></div>
         <?php $success = asort($price); ?>
         <?php if($success && count($price)>1): ?>
         <dl class="main">
