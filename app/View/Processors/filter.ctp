@@ -7,12 +7,12 @@ if($conditions_are_set){
     die;
 }
 ?>
-<div class="container">
-    <div id="comparison_div" style = "display:none"><span id="compare"><?php echo __('Compare specifications'); ?>(<span id="comparison_sum"></span>)</span><span id = "delete_comparison_items">x</span></div>
-    <div class="row" id='main_content'>
+
+<div id="comparison_div" style = "display:none" class="row"><span id="compare"><?php echo __('Compare specifications'); ?>(<span id="comparison_sum"></span>)</span><span id = "delete_comparison_items">x</span></div>
+    <div class="row nopadding" id='main_content'>
         <?php echo $this->element('filter_content'); ?>
     </div>
-</div>
+
 <script type="text/javascript">
     //window.sessionStorage.query_conditions = '{}';
     var query_conditions = {};

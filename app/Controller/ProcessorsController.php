@@ -27,7 +27,7 @@ class ProcessorsController extends AppController {
             }
             $conditions = substr($conditions, 0, -4);
             $page = $_POST['page'];
-            if($conditions != '') $conditions = ' WHERE '.$conditions;
+            if($conditions != '') $conditions = ' WHERE '.$conditions. ' AND status = "active"';
            
             $query = 'SELECT id,brand,socket,price_range,device_type,product_name,number_of_cores,frequency,series,launch_year FROM processors ';
             $search_results = $this->Processor->query($query.$conditions.' ORDER BY id DESC');//LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
@@ -64,14 +64,14 @@ class ProcessorsController extends AppController {
         //queries for links to all processors
         //
         //first level brand
-        $brand_query = 'SELECT DISTINCT brand FROM processors ORDER BY brand ASC';
+        $brand_query = 'SELECT DISTINCT brand FROM processors WHERE status = "active" ORDER BY brand ASC';
         $brands2 = $this->Processor->query($brand_query);
 
         //second level series
         foreach($brands2 as $brand){
             $series_query = 'SELECT DISTINCT series '
                     . 'FROM processors '
-                    . 'WHERE brand = "'.$brand['processors']['brand'].'" '
+                    . 'WHERE brand = "'.$brand['processors']['brand'].'" '. ' AND status = "active"'
                     . ' ORDER BY series ASC';
             $series2 = $this->Processor->query($series_query);
 
@@ -80,7 +80,7 @@ class ProcessorsController extends AppController {
             foreach ($series2 as $serie){
                 $years_query = 'SELECT DISTINCT launch_year '
                     . 'FROM processors '
-                    . 'WHERE brand = "'.$brand['processors']['brand'].'" '
+                    . 'WHERE brand = "'.$brand['processors']['brand'].'" '. ' AND status = "active"'
                     . 'AND series = "'.$serie['processors']['series'].'" '
                     . ' ORDER BY series ASC';
                 $years = $this->Processor->query($years_query);
@@ -88,7 +88,7 @@ class ProcessorsController extends AppController {
                 foreach ($years as $year){
                     $processors_query = 'SELECT product_name,id '
                     . 'FROM processors '
-                    . 'WHERE brand = "'.$brand['processors']['brand'].'" '
+                    . 'WHERE brand = "'.$brand['processors']['brand'].'" '. ' AND status = "active"'
                     . 'AND series = "'.$serie['processors']['series'].'" '
                     . 'AND launch_year = "'.$year['processors']['launch_year'].'" '
                     . ' ORDER BY product_name ASC';
@@ -107,12 +107,22 @@ class ProcessorsController extends AppController {
 
 
     private function filter_conditions($conditions = ''){
-        
+       //var_dump($conditions);
+        if($conditions == ''){
+            $conditions = ' WHERE status = "active"';
+            $conditions_are_set = false;
+        }
+        else {
+            $conditions = $conditions. ' AND status = "active"';
+            $conditions_are_set = true;
+        }
         //query for forming filter radio butons
-        $search = $this->Processor->query('SELECT DISTINCT brand,socket,'
+        $query = 'SELECT DISTINCT brand,socket,'
                 . 'price_range,device_type,series,code_name,'
                 . 'number_of_cores,frequency_range,launch_year '
-                . 'FROM processors '.$conditions);
+                . 'FROM processors '.$conditions;
+        //var_dump($query);
+        $search = $this->Processor->query($query);
  
         foreach ($search as $product)
         {
@@ -149,10 +159,10 @@ class ProcessorsController extends AppController {
         $this->set('launch_year', $launch_year);
         $this->set('title', __('Processors filter')); 
 
-         if($conditions != '') 
+         if($conditions_are_set) 
         {
             $this->layout = false;
-            $conditions = ' WHERE '.$conditions;
+            $conditions = ' WHERE '.$conditions. ' AND status = "active"';
             
         }
     }
@@ -182,7 +192,7 @@ public function comparison($ids){
             . 'number_of_cores,'
             . 'frequency_range,'
             . 'launch_year '
-            . 'FROM processors WHERE id in ('.$ids.');';
+            . 'FROM processors WHERE id in ('.$ids.');'. ' AND status = "active"';
       
           $comparison_items = $this->Processor->query($query);
           $this->set('comparison_items',$comparison_items);
@@ -212,7 +222,7 @@ public function item($id){
             . 'number_of_cores,'
             . 'frequency_range,'
             . 'launch_year '
-            . 'FROM processors WHERE id = '.$id.';';
+            . 'FROM processors WHERE id = '.$id.';'. ' AND status = "active"';
       
     $item = $this->Processor->query($query);
     $this->set('item',$item);
