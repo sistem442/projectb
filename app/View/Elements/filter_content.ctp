@@ -1,7 +1,4 @@
 <div class=" nopadding col-sm-12 col-md-10" >
-    <div class="site_section_title">
-        <?php echo __('Processors'); ?>
-    </div>
     <?php if(isset($search_results)){ ?>
     <div style="min-width: 800px">
         <table class="tablesorter" id="processor_table">
@@ -51,8 +48,10 @@
     <?php } ?>
 </div>    
 <div class="col-xs-12 col-sm-12 col-md-2 nopadding search">
-    <div id = 'removable-conditions' style="display:none">
-
+    <div id = 'removable-conditions'>
+        <ul class = 'removable_conditions'>
+            
+        </ul>
     </div>
   
     <div id="search_section">

@@ -23,6 +23,22 @@ td.sort{
 /*                      processor filter                                      */
 
 /******************************************************************************/
+
+
+#removable-conditions{
+    display:none;
+    padding-top: 5px;
+}
+
+.removable_conditions{
+    margin: 0 auto;
+    width: 90%;
+    list-style-type: none;
+}
+.remove_condition {
+    background: rgba(0, 0, 0, 0) url("/img/delete_icon.png") no-repeat scroll 100% 3px;
+}
+
 #centered-message{
     margin-left:  30%;
     margin-right: 30%;
@@ -87,17 +103,66 @@ margin: 0;
 padding: 0;
 border: 0;
 }
+/******************************************************************************/
 
+/*                      filter.ctp                                            */
+
+/******************************************************************************/
+#section_name_bar{
+    background-color: #DBDBDB;
+    padding: 5px;
+    height: 40px;
+}
+
+#section_name{
+    width: 30%;
+    height: 1em;
+    float: left;
+    padding: 0.3em 0;
+    text-align: center;
+}
+#compare_blank{
+    width: 10%;
+    height: 20px;
+    float: left;
+}
+
+#compare{
+    width: 80%;
+    height: 20px;
+    float: left;
+}
+#delete_comparison_items{
+    background: rgba(0, 0, 0, 0) url("/img/delete_icon.png") no-repeat scroll 100% 3px;
+    	background-position: center; 
+    width: 10%;
+    height: 20px;
+    float: right;
+}
+#comparison_div{
+    display:none;
+    float: left;
+    width: 30%;
+    min-width: 300px;
+    text-align: center;
+    background-color: #a6ce39;
+    cursor: pointer;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #fff;
+    font-weight: bold;
+    overflow: hidden;
+    padding: 0.3em 0;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
 /******************************************************************************/
 
 /*              LAYOUT                                                        */
 
 /******************************************************************************/
 
-.site_section_title{
-    background-color: #DBDBDB;
-    padding: 5px;
-}
 #site-title{
     font-family: Arial Rounded MT Bold,Helvetica Rounded,Arial,sans-serif;
     font-size: 24px;

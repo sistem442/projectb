@@ -7,8 +7,17 @@ if($conditions_are_set){
     die;
 }
 ?>
+<div id="section_name_bar">
+    <div id="section_name"><?php echo __('Processors'); ?></div>
+    <div id="comparison_div" >
+        <div id="compare_blank"></div>
+        <div id="compare">
+            <?php echo __('Compare specifications'); ?> (<span id="comparison_sum"></span>)
+        </div>
+        <div id = "delete_comparison_items"></div>   
+    </div>
+</div>
 
-<div id="comparison_div" style = "display:none" class="row"><span id="compare"><?php echo __('Compare specifications'); ?>(<span id="comparison_sum"></span>)</span><span id = "delete_comparison_items">x</span></div>
     <div class="row nopadding" id='main_content'>
         <?php echo $this->element('filter_content'); ?>
     </div>
@@ -19,6 +28,7 @@ if($conditions_are_set){
     //prepare labels for comparison
     var remove_string = '<?php echo __('Remove -'); ?>';
     var compare_string = '<?php echo __('Compare +'); ?>';
+    var str_delete = '<?php echo __('Delete') ?>'
     $( document ).ready(function() {
         //if sesion is set clear it
         if(typeof window.sessionStorage.query_conditions != 'undefined')
@@ -192,12 +202,15 @@ if($conditions_are_set){
                //add removable conditions on top of filter div
                 if(typeof window.sessionStorage.conditions_array != 'undefined'){
                     conditions = JSON.parse(window.sessionStorage.conditions_array);
-                    console.log(conditions);
                     var html = '';
                     $.each( conditions, function( key, value ) {
-                        html = html + '<li>' + value + '<span id='+key+' class = "remove_condition">x</span></li>';
+                        var fixed_value = value.substring(1, value.length-1);
+                        html = html + '<li id='
+                                + key + ' class = "remove_condition"'
+                                + 'title =' + str_delete + '\n\>'
+                                + fixed_value + '</li>';
                     });
-                    $('#removable-conditions').html(html) ;
+                    $('.removable_conditions').html(html) ;
                     $('#removable-conditions').css('display','block');
                 }
 
