@@ -6,17 +6,31 @@
 td.compare-cell{
     width:200px;
     min-width: 200px;
-    border: 1px solid black;
+    //border: 1px solid black;
     overflow: hidden;
 }
 td.sort{
     width:50px;
-    border: 1px solid black;
+    height: 100px;
+}
+#comparison_table td {
+    border: 1px dotted #cdcdcd;
+    padding: 4px;
+    text-align: center;
+}
+
+div.sort_arrows div {
+    height: 12px;
+}
+
+#comparison_table td, #comparison_table td div{
+    vertical-align:middle;
 }
 #comparison_table{
     border: 1px solid black;
     table-layout: fixed;
     width: auto;
+    //border: 1px dotted #cdcdcd;
 }
 /******************************************************************************/
 
@@ -36,7 +50,9 @@ td.sort{
     font-weight: bold;
     min-width: 75px;
 }
-
+.green_arrow{
+    color: #a6ce39 !important;
+}
 td.comparison{
     cursor: pointer;
     text-align: center;
