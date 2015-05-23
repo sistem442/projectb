@@ -20,6 +20,8 @@
     });
     
     $('#main_content').on('click','#compare_all',function(){
+        $(this).attr("id",'remove_all');
+        $(this).html(remove_all);
         if(typeof window.sessionStorage.comparison_items != 'undefined'){
             var comparison_items = JSON.parse(window.sessionStorage["comparison_items"]);
         }
@@ -43,6 +45,33 @@
         $('#comparison_sum').html(window.sessionStorage.num_of_comparison_items);
         $('#comparison_div').css('display','block');
     });
+    
+    $('#main_content').on('click','#remove_all',function(){
+        $(this).html(add_all);
+        $(this).attr("id",'compare_all');
+        if(typeof window.sessionStorage.comparison_items != 'undefined'){
+            var comparison_items = JSON.parse(window.sessionStorage["comparison_items"]);
+        }
+        else{
+            var comparison_items = {};
+        }
+        $('td.comparison').each(function(){
+            if((this.id in comparison_items)){
+                window.sessionStorage.num_of_comparison_items--;
+                delete comparison_items[this.id];
+                $(this).html( compare_string );
+                $(this).data('comparison','add');
+            }
+        });
+        window.sessionStorage.comparison_items = JSON.stringify(comparison_items);
+        if(window.sessionStorage.num_of_comparison_items > 0){
+            $('#comparison_sum').html(window.sessionStorage.num_of_comparison_items);
+        }
+        else{
+            $('#comparison_div').css('display','none');
+        }
+    });
+    
     
     function compare(action,id) {
         if( action !== 'remove'){

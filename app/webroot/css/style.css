@@ -38,15 +38,4 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 background-color: #8dbdd8;
 }
 
-#compare_all{
-    cursor: pointer;
-    background-color: #e6eeee;
-    border: 1px solid #fff;
-    font-size: 8pt;
-    padding: 4px;
-    text-align: center;
-    height: 30px;
-    line-height: 30px;
-    font-size: 8pt;
-    
-}
+

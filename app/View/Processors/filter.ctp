@@ -42,7 +42,9 @@ if($last_condition_removed){
     //prepare labels for comparison
     var remove_string = '<?php echo __('Remove -'); ?>';
     var compare_string = '<?php echo __('Compare +'); ?>';
-    var str_delete = '<?php echo __('Delete') ?>'
+    var str_delete = '<?php echo __('Delete') ?>';
+    var remove_all = '<?php echo __('Remove All'); ?>';
+    var add_all = '<?php echo __('Add All'); ?>';
     $( document ).ready(function() {
         //if sesion is set clear it
         if(typeof window.sessionStorage.query_conditions != 'undefined')
@@ -235,16 +237,9 @@ if($last_condition_removed){
                     $('#removable-conditions').css('display','block');
                 }
 
-                //set remove from conditions for selected items
+                //call comparison function
                 if(typeof window.sessionStorage.comparison_items != 'undefined'){
-                    //CHANGE 'add to comparison' to 'remove from comaprison' 
-                    //for items in search result list that are already selected for comparison
-                    var comparison_items = JSON.parse(window.sessionStorage.comparison_items);
-                    $.each( comparison_items, function( key, value ) {
-                        $('#'+value).html('<?php echo __('Remove -'); ?>');
-                        $('#'+value).data('comparison','remove');
-                    });
-
+                    check_comparison();
                 }
                 //Initialize table sorter
                 $("#processor_table").tablesorter();    
@@ -254,6 +249,37 @@ if($last_condition_removed){
                 alert('<?php echo __('Database error. Please try again later.'); ?>');     
             }
         });
+        /**********************************************************************/
+        
+        //check all items for current filter selection are in comarison selection
+        //if true change compare all to remove all 
+
+        /**********************************************************************/
+        function check_comparison(){
+            var comparison_items = JSON.parse(window.sessionStorage.comparison_items);
+            var show_remove_all = [];
+            $('td.comparison').each(function(){
+                if((this.id in comparison_items)){
+                    show_remove_all[this.id] = true;
+                }
+                else{
+                    show_remove_all[this.id] = false;
+                }
+            });
+            if(show_remove_all.every(check_if_true)){
+                $('#compare_all').html(remove_all);
+                $('#compare_all').attr("id",'remove_all');
+            }
+            //CHANGE 'add to comparison' to 'remove from comaprison' 
+            //for items in search result list that are already selected for comparison
+            $.each( comparison_items, function( key, value ) {
+                $('#'+value).html('<?php echo __('Remove -'); ?>');
+                $('#'+value).data('comparison','remove');
+            });
+        }
+        function check_if_true(value, index, ar){
+            if(value == true) return true; else return false; 
+        }
 
     }
     </script>

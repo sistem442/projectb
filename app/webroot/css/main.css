@@ -23,7 +23,24 @@ td.sort{
 /*                      processor filter                                      */
 
 /******************************************************************************/
+#compare_all,#remove_all{
+    cursor: pointer;
+    background-color: #e6eeee;
+    border: 1px solid #fff;
+    font-size: 8pt;
+    padding: 4px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    font-size: 8pt;
+    font-weight: bold;
+    min-width: 75px;
+}
 
+td.comparison{
+    cursor: pointer;
+    text-align: center;
+}
 
 #removable-conditions{
     display:none;
