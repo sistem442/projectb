@@ -20,13 +20,14 @@ class ProcessorsController extends AppController {
         //$limit_per_page = 8;
         $conditions = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $last_condition_removed  = json_decode($_POST['last_condition_removed'],TRUE);
+            $this->set('last_condition_removed',$last_condition_removed);
             $this->layout = false;
             $conditions_array = json_decode($_POST['conditions'],TRUE);
             foreach ($conditions_array as $key => $value){
                 $conditions = ' '.$conditions.$key.' = '.$value.' AND '; 
             }
             $conditions = substr($conditions, 0, -4);
-            $page = $_POST['page'];
             if($conditions != '') $conditions = ' WHERE '.$conditions. ' AND status = "active"';
            
             $query = 'SELECT id,brand,socket,price_range,device_type,product_name,number_of_cores,frequency,series,launch_year FROM processors ';
@@ -36,7 +37,7 @@ class ProcessorsController extends AppController {
             $num_of_results = $total_count_array[0][0]['total_results'];
             $this->set('number_of_results',$num_of_results );
             
-            if($conditions != '' && $num_of_results != 0)
+            if($conditions  && $num_of_results != 0)
             {
                 $this->set('search_results',$search_results);
                 $this->set('conditions_are_set',true);
@@ -53,6 +54,7 @@ class ProcessorsController extends AppController {
             }
         }
         else{
+            $this->set('last_condition_removed',false);
             $this->set('conditions_are_set',false);
             $this->filter_conditions();
         }

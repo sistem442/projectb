@@ -1,11 +1,23 @@
 <?php 
 echo $this->Html->script('jquery.tablesorter.min'); 
 echo $this->Html->css('style');
-
+//if conditions are set display only element because this view is called by AJAX
+// and will be displayed within #main_content
 if($conditions_are_set){
     echo $this->element('filter_content'); 
     die;
 }
+//if last condition from conditions is removed, display only filter element 
+// because this view is called by AJAX
+// and will be displayed within #main_content
+if($last_condition_removed){
+    echo $this->element('filter_content'); 
+    die;
+}
+
+//if last condition is not removed and conditions are not set display whole page
+// beacuse this is first call. Because of that #section_name_bar and #main_content 
+// must be generated
 ?>
 <div id="section_name_bar">
     <div id="section_name"><?php echo __('Processors'); ?></div>
@@ -21,7 +33,9 @@ if($conditions_are_set){
     <div class="row nopadding" id='main_content'>
         <?php echo $this->element('filter_content'); ?>
     </div>
-
+        
+    </div>
+    <div class="row " id="loading_overlay" style="display: none"><img src="/img/ajax-loader.gif" class="loading_circle" alt="loading" /></div>
 <script type="text/javascript">
     //window.sessionStorage.query_conditions = '{}';
     var query_conditions = {};
@@ -185,13 +199,20 @@ if($conditions_are_set){
     ***************************************************************************/
     
     function make_ajax_call(page_number,last_condition_removed = false){
+        $('#main_content').hide();
+        $('#loading_overlay').css('display','block');
         $.ajax(
         {
             url : '/processors/filter',
             type: "POST",
-            data : {conditions: window.sessionStorage.query_conditions, page: page_number },
+            data : {
+                conditions: window.sessionStorage.query_conditions, 
+                last_condition_removed: last_condition_removed },
             success:function(data)
             {
+                $('#loading_overlay').css('display','none')
+                $('#main_content').show();
+                
                 $('#main_content').html(data) ;
 
                 //if last condition is removed hide div with number of results

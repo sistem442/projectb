@@ -58,9 +58,11 @@
         <div id="search_left">
             <form id="search_form">
                 <input 
-                    type="text" id="product_name" 
+                    type="text" 
+                    id="product_name"
+                    title="<?php echo __("Processor model"); ?>"
                     placeholder="<?php echo __("Processor model"); ?>" 
-                    style=" width:100%; border: 0px solid; padding: 0px; height: 30px;"
+                    style=" width:100%; border: 0px solid; padding: 0px; height: 30px; text-overflow: ellipsis;"
                 />
             </form>
         </div>
