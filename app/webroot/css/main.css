@@ -1,26 +1,24 @@
-////////////////////////////////////////////////////////////////////////////////
-
-//                          COMPARISON
-
-////////////////////////////////////////////////////////////////////////////////
-td.compare-cell{
-    width:200px;
-    min-width: 200px;
-    //border: 1px solid black;
-    overflow: hidden;
+.compare-cell{
+    width:200px;    
 }
 td.sort{
-    width:50px;
-    height: 100px;
+    width:20px;
+    height: 40px;
+    cursor: pointer;
 }
 #comparison_table td {
     border: 1px dotted #cdcdcd;
     padding: 4px;
     text-align: center;
 }
+#comparison_table td:nth-child(2){
+    text-align: left;
+    padding-left: 1.5em;
+}
 
 div.sort_arrows div {
     height: 12px;
+    line-height: 1;
 }
 
 #comparison_table td, #comparison_table td div{
@@ -30,8 +28,18 @@ div.sort_arrows div {
     border: 1px solid black;
     table-layout: fixed;
     width: auto;
-    //border: 1px dotted #cdcdcd;
 }
+
+.remove_column{
+    background: rgba(0, 0, 0, 0) url("/img/delete_icon.png") no-repeat scroll 100% 3px;
+    background-position: center; 
+    width: 10%;
+    height: 20px;
+    float: right;
+}
+/*.product_name_2{
+    width: 90%;
+}*/
 /******************************************************************************/
 
 /*                      processor filter                                      */
@@ -94,8 +102,6 @@ div#search_section {
     background-color: white;
 }
 #product_name {
-    border: 0px solid;
-    width:150px;
     color:#666;
     -webkit-appearance: none;
 }
@@ -178,7 +184,7 @@ border: 0;
 }
 #delete_comparison_items{
     background: rgba(0, 0, 0, 0) url("/img/delete_icon.png") no-repeat scroll 100% 3px;
-    	background-position: center; 
+    background-position: center; 
     width: 10%;
     height: 20px;
     float: right;
