@@ -40,8 +40,8 @@ if($last_condition_removed){
     //window.sessionStorage.query_conditions = '{}';
     var query_conditions = {};
     //prepare labels for comparison
-    var remove_string = '<?php echo __('Remove -'); ?>';
-    var compare_string = '<?php echo __('Compare +'); ?>';
+    var remove_string = '<?php echo '<div class="comparison3">'.__('Remove -').'</div>'; ?>';
+    var compare_string = '<?php echo '<div class="comparison2">'.__('Compare +').'</div>'; ?>';
     var str_delete = '<?php echo __('Delete') ?>';
     var remove_all = '<?php echo __('Remove All'); ?>';
     var add_all = '<?php echo __('Add All'); ?>';
@@ -153,10 +153,12 @@ if($last_condition_removed){
         if( result == 'remove'){
             $(this).html( remove_string ) ;
             $(this).data('comparison','remove');
+             $(this).children('div.comparison2').class('comparison3.');
         }
         else if (result == 'add' ){
             $(this).html( compare_string );
             $(this).data('comparison','add');
+             $(this).children('div.comparison3').class('comparison2');
         }
       });
       
@@ -273,7 +275,7 @@ if($last_condition_removed){
             //CHANGE 'add to comparison' to 'remove from comaprison' 
             //for items in search result list that are already selected for comparison
             $.each( comparison_items, function( key, value ) {
-                $('#'+value).html('<?php echo __('Remove -'); ?>');
+                $('#'+value).html('<?php echo '<div class="comparison3">'.__('Remove -').'</div>'; ?>');
                 $('#'+value).data('comparison','remove');
             });
         }

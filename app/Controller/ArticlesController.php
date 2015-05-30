@@ -4,14 +4,22 @@ class ArticlesController extends AppController {
 
     public $helpers = array('Html', 'Form', 'Session');
     public $components = array('Session','Paginator');
+   
 
     public function index() {
-        $this->paginate = array(
-            'limit' => 5,
-            'order' => array('id' => 'desc')
-        );
-        $articles = $this->paginate('Article');
+        $articles = $this->Article->query(''
+                . 'SELECT title,id '
+                . 'FROM articles '
+                . 'ORDER BY created '
+                . 'LIMIT 0,4');
         $this->set('articles', $articles);
+        $this->loadModel('News');
+        $news = $this->News->query(''
+                . 'SELECT title,id '
+                . 'FROM news '
+                . 'ORDER BY created '
+                . 'LIMIT 0,4');
+        $this->set('news', $news);
         $this->set('title', __('Beta Electronics'));
     }
 

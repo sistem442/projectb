@@ -1,5 +1,5 @@
 .compare-cell{
-    width:200px;    
+    min-width:200px;    
 }
 td.sort{
     width:20px;
@@ -28,18 +28,14 @@ div.sort_arrows div {
     border: 1px solid black;
     table-layout: fixed;
     width: auto;
+    overflow:scroll;
 }
 
 .remove_column{
-    background: rgba(0, 0, 0, 0) url("/img/delete_icon.png") no-repeat scroll 100% 3px;
-    background-position: center; 
-    width: 10%;
-    height: 20px;
     float: right;
+    margin-right: 10%;
+    cursor: pointer;
 }
-/*.product_name_2{
-    width: 90%;
-}*/
 /******************************************************************************/
 
 /*                      processor filter                                      */
@@ -165,7 +161,7 @@ border: 0;
 }
 
 #section_name{
-    width: 30%;
+    width: 33%;
     height: 1em;
     float: left;
     padding: 0.3em 0;
@@ -192,7 +188,7 @@ border: 0;
 #comparison_div{
     display:none;
     float: left;
-    width: 30%;
+    width: 33%;
     min-width: 300px;
     text-align: center;
     background-color: #a6ce39;
@@ -226,7 +222,44 @@ border: 0;
 #header{
     padding: 10px;
 }
+/******************************************************************************/
 
+/*              for menu                                                      */
+
+/******************************************************************************/
+#nav {
+    float: left;
+    width: 100%;
+    border-top: 1px solid #999;
+    border-right: 1px solid #999;
+    border-left: 1px solid #999;
+    list-style:none;
+}
+#sub_nav{
+    list-style:none;
+}
+#nav li a {
+    display: block;
+    padding: 10px 15px;
+    background: #ccc;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #999;
+    text-decoration: none;
+    color: #000;
+    list-style:none;
+}
+#nav li a:hover, #nav li a.active {
+    background: #999;
+    color: #fff;
+}
+#nav li ul {
+    display: none; // used to hide sub-menus
+}
+#nav li ul li a {
+    padding: 10px 25px;
+    background: #ececec;
+    border-bottom: 1px dotted #ccc;
+}
 /******************************************************************************/
 
 /*              for whole site                                                */
@@ -236,4 +269,65 @@ border: 0;
 .nopadding {
    padding: 0 !important;
    margin: 0 !important;
+}
+/******************************************************************************/
+
+/*              processors browse                                             */
+
+/******************************************************************************/
+.browse_main_div{
+    margin: 2,5em auto !important;
+    width: 100%;
+    text-align: center;
+}
+.brand, .year, .serie {
+   background-color: #52A55C;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    min-width: 100px;
+    overflow: hidden;
+    padding: 0.3em 0;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0em 1em 0em 1em;
+}
+
+.comparison2{
+    background-color: #0C143F;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #fff !important;
+    cursor: pointer;
+    font-weight: bold;
+    overflow: hidden;
+    padding: 0.3em 0;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0em 1em 0em 1em;
+    min-width: 60px;
+    max-width: 80px;
+    margin: 0em auto;
+}
+
+.comparison3{
+    background-color: #6E77AA;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #fff !important;
+    cursor: pointer;
+    font-weight: bold;
+    overflow: hidden;
+    padding: 0.3em 0;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0em 1em 0em 1em;
+    min-width: 60px;
+    max-width: 80px;
+    margin: 0em auto;
 }

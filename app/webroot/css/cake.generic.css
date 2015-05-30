@@ -65,9 +65,9 @@ h4 {
 	color: #993;
 	font-weight: normal;
 }
-ul, li {
+/*ul, li {
 	margin: 0 12px;
-}
+}*/
 p {
 	margin: 0 0 1em 0;
 }
@@ -121,7 +121,7 @@ div.index,
 div.view {
 	float:left;
 	width:76%;
-	border-right:1px solid #666;
+	//border-right:1px solid #666;
 	padding:10px 2%;
 }
 div.actions {

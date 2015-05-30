@@ -2,7 +2,13 @@
         delete window.sessionStorage.comparison_items;
         delete window.sessionStorage.num_of_comparison_items;
         $('#comparison_div').css('display','none');
+        //change all 'remove from comparison' to 'add to comparison' for all
+        // processors in filter.ctp
         $('td.comparison').html( compare_string );
+        //change all 'remove from comparison' to 'add to comparison' for all
+        // processors in browse.ctp
+        $('div.comparison').html( compare_string );
+        $('div.comparison').data('comparison','add');
     });
     
     $('#compare').click(function(){
@@ -38,6 +44,7 @@
                 comparison_items[this.id] = this.id;
                 $(this).html( remove_string );
                 $(this).data('comparison','remove');
+                $(this).css('background-color','#6E77AA');
             }
         });
         

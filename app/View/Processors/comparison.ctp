@@ -11,7 +11,9 @@
             <?php foreach ($comparison_items as $key => $processor): ?>
                 <td class="compare-cell product_name " id="<?php echo $i; ?>">
                     <?php echo $processor['processors']['product_name']; ?>
-                    <span class="remove_column" id="<?php echo $i; $i++; ?>">x</span>
+                    <span class="remove_column" title="remove column" id="<?php echo $i; $i++; ?>">
+                        <img src="/img/delete_icon.png" />
+                    </span>
                 </td>
             <?php endforeach; ?>
         </tr>
@@ -193,7 +195,7 @@
     var sorted_id_array = [];
     
     $('#sortable_table').on('click',".remove_column",function(){
-       $('td[id="'+this.id+'"]').hide("fade", 1000);
+       $('td[id="'+this.id+'"]').remove();
     });
     
     
@@ -202,7 +204,6 @@
         //get value of selected row and put it in array, append id because 
         //you need id as link between selected properti and other properies
         $('.'+this.id).each(function(index,element){
-            //console.log(this.id);
             var temp_object = {};
             temp_object['item_id'] = this.id;
             temp_object['item_value']= $(this).html();
@@ -254,5 +255,6 @@
                 j++;
             });
         });
+        unsorted_object_array = [];
     });
 </script>

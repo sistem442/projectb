@@ -19,7 +19,9 @@
             <tbody>
             <?php foreach ($search_results as $search_result): ?>
                 <tr>
-                    <td class='comparison' comparison='add' id="<?php echo $search_result['processors']['id']; ?>"><?php echo __('Compare +'); ?></td>
+                    <td class='comparison' comparison='add' id="<?php echo $search_result['processors']['id']; ?>">
+                        <div class="comparison2"><?php echo __('Compare +'); ?></div>
+                    </td>
                     <td><?php echo $search_result['processors']['brand']; ?></td>
                     <td><?php echo $search_result['processors']['series']; ?></td>
                     <td>

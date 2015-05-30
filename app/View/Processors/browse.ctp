@@ -1,5 +1,15 @@
-<div id="comparison_div" style = "display:none"><span id="compare"><?php echo __('Compare specifications'); ?>(<span id="comparison_sum"></span>)</span><span id = "delete_comparison_items">x</span></div>
-<div id="main_content">
+<div id="section_name_bar">
+    <div id="section_name"></div>
+    <div id="comparison_div" >
+        <div id="compare_blank"></div>
+        <div id="compare">
+            <?php echo __('Compare specifications'); ?> (<span id="comparison_sum"></span>)
+        </div>
+        <div id = "delete_comparison_items"></div>   
+    </div>
+</div>
+</div>
+<div id="main_content" class="browse_main_div">
     <!-- print brands -->
     <?php foreach ($processors as $brand => $series): ?>
         <div class="brand" style="display: inline "><?php echo $brand; ?></div>
@@ -49,22 +59,28 @@
             var $this = $('#'+$(this).html());
             $(".brand_div").not($this).hide();
             $this.toggle();
+            $(this).css('background-color','#10631b');
+            $(".brand").not($(this)).css('background-color','#52A55C');
         });
         $(".serie").click(function() {
             var $this = $('#'+$(this).html());
             $(".serie_div").not($this).hide();
             $this.toggle();
+            $(this).css('background-color','#10631b');
+            $(".serie").not($(this)).css('background-color','#52A55C');
         });
         $(".year").click(function() {
             var $this = $('#'+$(this).data("processor_list_div_id"));
             $(".year_div").not($this).hide();
             $this.toggle();
+            $(this).css('background-color','#10631b');
+            $(".year").not($(this)).css('background-color','#52A55C');
         });
         
         //check if comparison is set
-        console.log(window.sessionStorage.num_of_comparison_items);
         if(typeof window.sessionStorage.num_of_comparison_items != 'undefined' && window.sessionStorage.num_of_comparison_items != 0){
             $('#comparison_div').css('display','block');
+            $('#comparison_div').css('visibility','visible');
             var text = window.sessionStorage.num_of_comparison_items;
             $('#comparison_sum').html(text);
         }
