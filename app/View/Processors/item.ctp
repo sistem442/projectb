@@ -1,122 +1,147 @@
-<div class="processors view">
-<h2><?php echo __('processors'); ?></h2>
-	<dl>
-                 <dt><?php echo __('Brand'); ?></dt>
-		<dd>
+<div class="processor">
+    <h1>
+<?php echo $item[0]['processors']['brand'].' '.$item[0]['processors']['series'].' '.$item[0]['processors']['product_name']; ?> Processor
+    </h1>
+    <table>
+        <tr>
+            <td><?php echo __('Brand'); ?></td>
+            <td>
 			<?php echo h($item[0]['processors']['brand']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Product Name'); ?></dt>
-		<dd>
+                &nbsp;
+            </td>
+        </tr>
+        <tr><td><?php echo __('Product Name'); ?></td>
+            <td>
 			<?php echo h($item[0]['processors']['product_name']); ?>
-			&nbsp;
-		</dd>
-                <dt><?php echo __('Series'); ?></dt>
-		<dd>
+                &nbsp;
+            </td>
+        </tr>
+        <tr><td><?php echo __('Series'); ?></td>
+            <td>
 			<?php echo h($item[0]['processors']['series']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Code Name'); ?></dt>
-		<dd>
+                &nbsp;
+            </td>
+        </tr>
+        <tr><td><?php echo __('Code Name'); ?></td>
+            <td>
 			<?php echo h($item[0]['processors']['code_name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Brand'); ?></dt>
-		<dd>
+                &nbsp;
+            </td>
+        </tr>
+        <tr><td><?php echo __('Brand'); ?></td>
+            <td>
 			<?php echo h($item[0]['processors']['brand']); ?>
-			&nbsp;
-		</dd>
-                <dt><?php echo __('Launch Year'); ?></dt>
-		<dd>
+                &nbsp;
+            </td>
+        </tr>
+        <tr><td><?php echo __('Launch Year'); ?></td>
+            <td>
 			<?php echo h($item[0]['processors']['launch_year']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Socket'); ?></dt>
-		<dd>
+                &nbsp;
+            </td>
+        </tr>
+        <tr><td><?php echo __('Socket'); ?></td>
+            <td>
 			<?php echo h($item[0]['processors']['socket']); ?>
-			&nbsp;
-		</dd>
-                <dt><?php echo __('Device Type'); ?></dt>
-		<dd>
+                &nbsp;
+            </td>
+        </tr>
+        <tr><td><?php echo __('Device Type'); ?></td>
+            <td>
 			<?php echo h($item[0]['processors']['device_type']); ?>
-			&nbsp;
-		</dd>
-               <dt><?php echo __('Litography'); ?></dt>
-		<dd>
-			<?php echo h($item[0]['processors']['litography']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Number Of Cores'); ?></dt>
-		<dd>
+                &nbsp;
+            </td></tr>
+        <tr><td><?php echo __('Litography'); ?></td>
+            <td>
+			<?php echo h($item[0]['processors']['litography']); ?> nm
+                &nbsp;
+            </td>
+        </tr>
+        <tr><td><?php echo __('Number Of Cores'); ?></td>
+            <td>
 			<?php echo h($item[0]['processors']['number_of_cores']); ?>
-			&nbsp;
-		</dd>
+                &nbsp;
+            </td>
+        </tr>
                 <?php if(isset($item[0]['processors']['number_of_threads'])): ?>
-                    <dt><?php echo __('Number Of Threads'); ?></dt>
-                    <dd>
+        <tr> <td><?php echo __('Number Of Threads'); ?></td>
+            <td>
                             <?php echo h($item[0]['processors']['number_of_threads']); ?>
-                            &nbsp;
-                    </dd>
+                &nbsp;
+            </td>
+        </tr>
                 <?php endif; ?>
-		<dt><?php echo __('Cache'); ?></dt>
-		<dd>
+        <tr><td><?php echo __('Cache'); ?></td>
+            <td>
 			<?php echo $item[0]['processors']['cache']; ?>
-			&nbsp;
-		</dd>
+                &nbsp;
+            </td>
+        </tr>
                 <?php if(!empty($item[0]['processors']['graphics'])): ?>
-                <dt><?php echo __('Graphics'); ?></dt>
-		<dd>
+        <tr><td><?php echo __('Graphics'); ?></td>
+            <td>
 			<?php echo $item[0]['processors']['graphics']; ?>
-			&nbsp;
-		</dd>
+                &nbsp;
+            </td>
+        </tr>
                 <?php endif; ?>
-		<dt><?php echo __('Frequency'); ?></dt>
-		<dd>
+        <tr><td><?php echo __('Frequency'); ?></td>
+            <td>
 			<?php echo h($item[0]['processors']['frequency']/1000); ?> GHz
-			&nbsp;
-		</dd>
-                <?php if(isset($item[0]['processors']['turbo_frequency'])): ?>
-                    <dt><?php echo __('Turbo Frequency'); ?></dt>
-                    <dd>
+                &nbsp;
+            </td>
+        </tr>
+                <?php if(isset($item[0]['processors']['turbo_frequency']) && $item[0]['processors']['turbo_frequency'] != 0): ?>
+        <tr> <td><?php echo __('Turbo Frequency'); ?></td>
+            <td>
                             <?php echo h($item[0]['processors']['turbo_frequency']/1000); ?> GHz
-                            &nbsp;
-                    </dd>
+                &nbsp;
+            </td>
+        </tr>
                 <?php endif; ?>
-		<dt><?php echo __('Tdp'); ?></dt>
-		<dd>
+        <tr><td><?php echo __('Tdp'); ?></td>
+            <td>
 			<?php echo h($item[0]['processors']['tdp']); ?> W
-			&nbsp;
-		</dd>
+                &nbsp;
+            </td>
                 <?php if(isset($item[0]['processors']['max_ram_memory'])): ?>
-                    <dt><?php echo __('Max Ram Memory'); ?></dt>
-                    <dd>
+        <tr> 
+            <td><?php echo __('Max Ram Memory'); ?></td>
+            <td>
                             <?php echo h($item[0]['processors']['max_ram_memory']); ?> GB
-                            &nbsp;
-                    </dd>
+                &nbsp;
+            </td>
+        </tr>
                 <?php endif; ?>
                 <?php if(isset($item[0]['processors']['max_memory_channels'])): ?>
-                    <dt><?php echo __('Max Memory Channels'); ?></dt>
-                    <dd>
+        <tr>
+            <td><?php echo __('Max Memory Channels'); ?></td>
+            <td>
                             <?php echo h($item[0]['processors']['max_memory_channels']); ?>
-                            &nbsp;
-                    </dd>
+                &nbsp;
+            </td>
+        </tr>
                 <?php endif; ?>
                 <?php if(isset($item[0]['processors']['max_memory_bandwidth'])): ?>
-                    <dt><?php echo __('Max Memory Bandwidth'); ?></dt>
-                    <dd>
+        <tr> 
+            <td><?php echo __('Max Memory Bandwidth'); ?></td>
+            <td>
                             <?php echo h($item[0]['processors']['max_memory_bandwidth']/1000); ?> GB/s
-                            &nbsp;
-                    </dd>
+                &nbsp;
+            </td>
+        </tr>
                 <?php endif; ?>
                 <?php if(isset($item[0]['processors']['price_range'])): ?>
-                    <dt><?php echo __('Price range'); ?></dt>
-                    <dd>
+        <tr> 
+            <td><?php echo __('Price range'); ?></td>
+            <td>
                             <?php echo h($item[0]['processors']['price_range']); ?>
-                            &nbsp;
-                    </dd>
+                &nbsp;
+            </td>
+        </tr> 
                 <?php endif; ?>
-	</dl>
+    </table>
 </div>
 <div class="actions">
-	
+
 </div>

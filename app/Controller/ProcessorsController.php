@@ -88,7 +88,7 @@ class ProcessorsController extends AppController {
                 $years = $this->Processor->query($years_query);
 
                 foreach ($years as $year){
-                    $processors_query = 'SELECT product_name,id '
+                    $processors_query = 'SELECT product_name,id,cache,frequency,number_of_cores '
                     . 'FROM processors '
                     . 'WHERE brand = "'.$brand['processors']['brand'].'" '. ' AND status = "active"'
                     . 'AND series = "'.$serie['processors']['series'].'" '
@@ -173,6 +173,7 @@ public function comparison($ids){
     
     $this->set('title','Compare processors');
     $query = 'SELECT '
+            . 'id,'
             . 'product_name,'
             . 'cache,'
             . 'frequency,'

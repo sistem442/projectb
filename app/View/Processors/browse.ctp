@@ -12,7 +12,7 @@
 <div id="main_content" class="browse_main_div">
     <!-- print brands -->
     <?php foreach ($processors as $brand => $series): ?>
-        <div class="brand" style="display: inline "><?php echo $brand; ?></div>
+        <div class="brand2" style="display: inline "><?php echo $brand; ?></div>
     <?php endforeach; ?> 
     <!-- for each brand print list of series -->
     <?php foreach ($processors as $brand => $series){ ?>
@@ -29,16 +29,27 @@
                     <?php endforeach; ?>
                     <?php foreach ($years as $year => $processors): ?>
                         <div id="<?php echo $year.$serie; ?>" style="display: none " class="year_div">        
-                            <ul>
+                            <table>
                                 <?php foreach ($processors as $processor){ ?>
-                                    <li> 
-                                        <div class='comparison' comparison='add' id="<?php echo $processor['processors']['id']; ?>"><?php echo __('Compare +'); ?></div>
-                                        <a href="/processors/item/<?php echo $processor['processors']['id']; ?>">
-                                            <?php echo $processor['processors']['product_name']; ?>
-                                        </a>
-                                    </li>
+                                    <tr>                                         
+                                        <td>
+                                            <div class='comparison' comparison='add' id="<?php echo $processor['processors']['id']; ?>">
+                                                <div class="comparison2"><?php echo __('Compare +'); ?></div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="/processors/item/<?php echo $processor['processors']['id']; ?>">
+                                            <?php echo $processor['processors']['product_name']; ?> 
+                                            </a>
+                                        </td>
+                                        <td>
+                                           <?php echo $processor['processors']['frequency']/1000; ?>GHz / 
+                                            <?php echo $processor['processors']['cache']; ?> / 
+                                            <?php echo $processor['processors']['number_of_cores']; ?>-core
+                                        </td>                                     
+                                    </tr>
                                 <?php  }    ?>
-                            </ul>
+                            </table>
                         </div>
                     <?php endforeach;    ?>
                 </div>
@@ -48,19 +59,19 @@
 </div>
 <script type="text/javascript">
     //prepare labels for comparison
-        var remove_string = '<?php echo __('Remove -'); ?>';
-        var compare_string = '<?php echo __('Compare +'); ?>';
+        var remove_string = '<?php echo '<div class="comparison3">'.__('Remove -').'</div>'; ?>';
+    var compare_string = '<?php echo '<div class="comparison2">'.__('Compare +').'</div>'; ?>';
         
     $( document ).ready(function() {
         
         
         //show/hide divs with resuts
-        $(".brand").click(function() {
+        $(".brand2").click(function() {
             var $this = $('#'+$(this).html());
             $(".brand_div").not($this).hide();
             $this.toggle();
             $(this).css('background-color','#10631b');
-            $(".brand").not($(this)).css('background-color','#52A55C');
+            $(".brand2").not($(this)).css('background-color','#52A55C');
         });
         $(".serie").click(function() {
             var $this = $('#'+$(this).html());
@@ -91,7 +102,7 @@
             //for items in search result list that are already selected for comparison
             var comparison_items = JSON.parse(window.sessionStorage.comparison_items);
             $.each( comparison_items, function( key, value ) {
-                $('#'+value).html('<?php echo __('Remove -'); ?>');
+                $('#'+value).html('<?php echo '<div class="comparison3">'.__('Remove -').'</div>'; ?>');
                 $('#'+value).data('comparison','remove');
             });
 

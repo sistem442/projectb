@@ -275,12 +275,23 @@ border: 0;
 /*              processors browse                                             */
 
 /******************************************************************************/
+.year_div{
+    margin: 10px auto;
+    width: 500px;
+}
+
+.comparison{
+    background-color: yellow;
+    max-width: 120px;
+    min-width: 100px;
+    float: left;
+}
 .browse_main_div{
-    margin: 2,5em auto !important;
+    margin: 10px auto !important;
     width: 100%;
     text-align: center;
 }
-.brand, .year, .serie {
+.brand2, .year, .serie {
    background-color: #52A55C;
     border-radius: 2px;
     box-shadow: none;
@@ -309,8 +320,8 @@ border: 0;
     text-decoration: none;
     white-space: nowrap;
     padding: 0em 1em 0em 1em;
-    min-width: 60px;
-    max-width: 80px;
+    min-width: 80px;
+    max-width: 100px;
     margin: 0em auto;
 }
 
@@ -327,7 +338,20 @@ border: 0;
     text-decoration: none;
     white-space: nowrap;
     padding: 0em 1em 0em 1em;
-    min-width: 60px;
-    max-width: 80px;
+    min-width: 80px;
+    max-width: 100px;
     margin: 0em auto;
+}
+/******************************************************************************/
+
+/*              processor details                                             */
+
+/******************************************************************************/
+.processor{
+    margin: 10px auto;
+    width: 50%;
+    min-width: 500px;        
+}
+.processor table{
+    margin-top: 50px;
 }

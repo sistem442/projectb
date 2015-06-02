@@ -1,5 +1,21 @@
 <table id="comparison_table">
     <tbody id="sortable_table">
+        <tr id="brand">
+            <td class="sort" id="brand"><div title="<?php echo __("sort"); ?>" class ="sort_arrows"><div>▲</div><div>▼</div></div></td>
+            <td class="compare-cell" ><?php echo __('Brand'); ?></td>
+            <?php $i=0; ?>
+            <?php foreach ($comparison_items as $key => $processor): ?>
+                <td class="compare-cell brand" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['brand']; ?></td>
+            <?php endforeach; ?>
+        </tr>
+        <tr id="series">
+            <td class="sort" id="series"><div title="<?php echo __("sort"); ?>" class ="sort_arrows"><div>▲</div><div>▼</div></div></td>
+            <td class="compare-cell" ><?php echo __('Series'); ?></td>
+            <?php $i=0; ?>
+            <?php foreach ($comparison_items as $key => $processor): ?>
+                <td class="compare-cell series" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['series']; ?></td>
+            <?php endforeach; ?>
+        </tr>
         <tr id="product_name">
             <td class="sort" id="product_name">
                 <div title="<?php echo __("sort"); ?>" class ="sort_arrows">
@@ -10,11 +26,21 @@
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
                 <td class="compare-cell product_name " id="<?php echo $i; ?>">
-                    <?php echo $processor['processors']['product_name']; ?>
+                    <a href="/processors/item/<?php echo $processor['processors']['id']; ?>">
+                        <?php echo $processor['processors']['product_name']; ?>
+                    </a>
                     <span class="remove_column" title="remove column" id="<?php echo $i; $i++; ?>">
                         <img src="/img/delete_icon.png" />
                     </span>
                 </td>
+            <?php endforeach; ?>
+        </tr>
+        <tr id="code_name">
+            <td class="sort" id="code_name"><div title="<?php echo __("sort"); ?>" class ="sort_arrows"><div>▲</div><div>▼</div></div></td>
+            <td class="compare-cell" ><?php echo __('Code Name'); ?></td>
+            <?php $i=0; ?>
+            <?php foreach ($comparison_items as $key => $processor): ?>
+                <td class="compare-cell code_name" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['code_name']; ?></td>
             <?php endforeach; ?>
         </tr>
         <tr id="launch_year">
@@ -85,7 +111,14 @@
             <td class="compare-cell" ><?php echo __('Max Memory Size'); ?></td>
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="compare-cell max_ram_memory" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['max_ram_memory']; ?></td>
+                <td class="compare-cell max_ram_memory" id="<?php echo $i; $i++; ?>">
+                    <?php 
+                    if($processor['processors']['max_ram_memory'] != null)
+                        echo $processor['processors']['max_ram_memory'];
+                    else
+                        echo '<span style="font-style:italic; font-weight:normal; color:red">no data</span>';
+                    ?>
+                </td>
             <?php endforeach; ?>
         </tr>
         <tr id="graphics">
@@ -111,22 +144,7 @@
                 <td class="compare-cell device_type" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['device_type']; ?></td>
             <?php endforeach; ?>
         </tr>
-        <tr id="series">
-            <td class="sort" id="series"><div title="<?php echo __("sort"); ?>" class ="sort_arrows"><div>▲</div><div>▼</div></div></td>
-            <td class="compare-cell" ><?php echo __('Series'); ?></td>
-            <?php $i=0; ?>
-            <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="compare-cell series" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['series']; ?></td>
-            <?php endforeach; ?>
-        </tr>
-        <tr id="code_name">
-            <td class="sort" id="code_name"><div title="<?php echo __("sort"); ?>" class ="sort_arrows"><div>▲</div><div>▼</div></div></td>
-            <td class="compare-cell" ><?php echo __('Code Name'); ?></td>
-            <?php $i=0; ?>
-            <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="compare-cell code_name" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['code_name']; ?></td>
-            <?php endforeach; ?>
-        </tr>
+        
         <tr id="number_of_cores">
             <td class="sort" id="number_of_cores"><div title="<?php echo __("sort"); ?>" class ="sort_arrows"><div>▲</div><div>▼</div></div></td>
             <td class="compare-cell" ><?php echo __('Number of Cores'); ?></td>
@@ -175,14 +193,7 @@
                 <td class="compare-cell max_memory_bandwidth" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['max_memory_bandwidth']; ?></td>
             <?php endforeach; ?>
         </tr>
-        <tr id="brand">
-            <td class="sort" id="brand"><div title="<?php echo __("sort"); ?>" class ="sort_arrows"><div>▲</div><div>▼</div></div></td>
-            <td class="compare-cell" ><?php echo __('Brand'); ?></td>
-            <?php $i=0; ?>
-            <?php foreach ($comparison_items as $key => $processor): ?>
-                <td class="compare-cell brand" id="<?php echo $i; $i++; ?>"><?php echo $processor['processors']['brand']; ?></td>
-            <?php endforeach; ?>
-        </tr>
+        
         
     </tbody>
 </table>
