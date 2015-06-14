@@ -1,3 +1,8 @@
+/******************************************************************************/
+
+/*                      comparison                                      */
+
+/******************************************************************************/
 .compare-cell{
     min-width:200px;    
 }
@@ -164,8 +169,8 @@ border: 0;
     width: 33%;
     height: 1em;
     float: left;
-    padding: 0.3em 0;
-    text-align: center;
+    padding: 0.3em 10px;
+    text-align: left;
 }
 #compare_blank{
     width: 10%;
@@ -280,7 +285,7 @@ border: 0;
     width: 500px;
 }
 
-.comparison{
+.comparison4{
     background-color: yellow;
     max-width: 120px;
     min-width: 100px;
@@ -354,4 +359,12 @@ border: 0;
 }
 .processor table{
     margin-top: 50px;
+}
+/******************************************************************************/
+
+/*                      sidebar main menu                                     */
+
+/******************************************************************************/
+#nav a.disabled{
+    color: #999 !important;
 }

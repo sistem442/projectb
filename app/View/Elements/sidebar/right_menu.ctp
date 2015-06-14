@@ -5,10 +5,10 @@
             <li><?php echo $this->Html->link(__('Browse and Compare'), array('controller' => 'Processors','action' => 'browse')); ?></li>
         </ul>
     </li>
-    <li><a href="#"><?php echo __('Smart phones (available soon)'); ?></a></li>
-    <li><a href="#"><?php echo __('Notebooks (available soon)'); ?></a></li>
-    <li><a href="#"><?php echo __('Tablets (available soon)'); ?></a></li>
-    <li><a href="#"><?php echo __('Desktop PC (available soon)'); ?></a></li>
+    <li><a class="disabled" href="#"><?php echo __('Smart phones (available soon)'); ?></a></li>
+    <li><a class="disabled" href="#"><?php echo __('Notebooks (available soon)'); ?></a></li>
+    <li><a class="disabled" href="#"><?php echo __('Tablets (available soon)'); ?></a></li>
+    <li><a class="disabled" href="#"><?php echo __('Desktop PC (available soon)'); ?></a></li>
 </ul>
 <script type="text/javascript">
     $(document).ready(function () {

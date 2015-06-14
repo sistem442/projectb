@@ -33,7 +33,7 @@
                                 <?php foreach ($processors as $processor){ ?>
                                     <tr>                                         
                                         <td>
-                                            <div class='comparison' comparison='add' id="<?php echo $processor['processors']['id']; ?>">
+                                            <div class='comparison4' comparison='add' id="<?php echo $processor['processors']['id']; ?>">
                                                 <div class="comparison2"><?php echo __('Compare +'); ?></div>
                                             </div>
                                         </td>
@@ -114,7 +114,7 @@
                             Comparison
 
     ***************************************************************************/
-    $('#main_content').on('click','div.comparison',function(){
+    $('#main_content').on('click','div.comparison4',function(){
         var action = $(this).data('comparison');
         var result = compare(action,this.id);
         if( result == 'remove'){
