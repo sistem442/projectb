@@ -5,7 +5,7 @@
                 &nbsp;
         </dd>
         <dd>
-                <?php echo h($post['Article']['body']); ?>
+                <?php echo ($post['Article']['body']); ?>
                 &nbsp;
         </dd>
     </dl>
