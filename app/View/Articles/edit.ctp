@@ -10,7 +10,7 @@
         echo $this->Form->input('title');
         echo $this->Form->input('body',array('class'=>'ckeditor'));
         echo $this->Form->input('status', array(
-            'options' => array('active','hidden'),
+            'options' => array('active'=>'active','hidden'=>'hidden'),
             'selected' => 'active'
         ));
         echo $this->Form->input('keywords');

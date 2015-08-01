@@ -74,14 +74,15 @@
             $(".brand2").not($(this)).css('background-color','#52A55C');
         });
         $(".serie").click(function() {
-            var $this = $('#'+$(this).html());
+            var serie_name = $(this).html().toString();
+            var $this = $("[id='"+serie_name+"']");
             $(".serie_div").not($this).hide();
             $this.toggle();
             $(this).css('background-color','#10631b');
             $(".serie").not($(this)).css('background-color','#52A55C');
         });
         $(".year").click(function() {
-            var $this = $('#'+$(this).data("processor_list_div_id"));
+            var $this = $("[id='"+$(this).data("processor_list_div_id")+"']");
             $(".year_div").not($this).hide();
             $this.toggle();
             $(this).css('background-color','#10631b');

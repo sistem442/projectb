@@ -1,27 +1,19 @@
-<ul id="nav">
-    <li><a href="#"><?php echo __('Processors'); ?></a>
-        <ul id="sub_nav">
-            <li><?php echo $this->Html->link(__('Filter and Compare'), array('controller' => 'Processors','action' => 'filter')); ?></li>
-            <li><?php echo $this->Html->link(__('Browse and Compare'), array('controller' => 'Processors','action' => 'browse')); ?></li>
-        </ul>
-    </li>
-    <li><a class="disabled" href="#"><?php echo __('Smart phones (available soon)'); ?></a></li>
-    <li><a class="disabled" href="#"><?php echo __('Notebooks (available soon)'); ?></a></li>
-    <li><a class="disabled" href="#"><?php echo __('Tablets (available soon)'); ?></a></li>
-    <li><a class="disabled" href="#"><?php echo __('Desktop PC (available soon)'); ?></a></li>
+<ul id="main-menu" class="sm sm-vertical sm-blue">
+  
+  <li><a href="#">Processors</a>
+    <ul>
+      <li><?php echo $this->Html->link(__('Filter and Compare'), array('controller' => 'Processors','action' => 'filter')); ?></li>
+      <li><?php echo $this->Html->link(__('Browse and Compare'), array('controller' => 'Processors','action' => 'browse')); ?></li>
+      <li><a href="#" class="has-submenu"><?php echo __('Articles'); ?></a>
+          <ul class="sub-menu sm-nowrap">
+              <li><a href="/">How to select computer processor (CPU)</a></li>
+          </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 <script type="text/javascript">
     $(document).ready(function () {
-      $('#nav > li > a').click(function(){
-        if ($(this).attr('class') != 'active'){
-          $('#nav li ul').slideUp();
-          $(this).next().slideToggle();
-          $('#nav li a').removeClass('active');
-          $(this).addClass('active');
-        }
-        else{
-            $('#nav li ul').slideToggle();
-        }
-      });
+        $('#main-menu').smartmenus();
     });
 </script>

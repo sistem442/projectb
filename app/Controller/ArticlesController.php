@@ -7,13 +7,13 @@ class ArticlesController extends AppController {
    
 
     public function index() {
-        $articles = $this->Article->query(''
-                . 'SELECT title,id '
-                . 'FROM articles '
-                . 'WHERE status = "active" '
-                . 'ORDER BY created '
-                . 'LIMIT 0,4');
-        $this->set('articles', $articles);
+//        $articles = $this->Article->query(''
+//                . 'SELECT title,id '
+//                . 'FROM articles '
+//                . 'WHERE status = "active" '
+//                . 'ORDER BY created '
+//                . 'LIMIT 0,4');
+//        $this->set('articles', $articles);
         $article = $this->Article->query(''
                 . 'SELECT title,body '
                 . 'FROM articles '
@@ -26,7 +26,7 @@ class ArticlesController extends AppController {
 //                . 'ORDER BY created '
 //                . 'LIMIT 0,4');
 //        $this->set('news', $news);
-        $this->set('title', __('Beta Electronics'));
+        $this->set('title', __('Electronics Tree'));
     }
 
     public function view($id) {
