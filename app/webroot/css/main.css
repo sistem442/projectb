@@ -91,34 +91,6 @@ td.comparison{
 .search{
     background: none repeat scroll 0% 0% #EEEFF0;
 }
-div#search_section {
-    width: 90%;
-    height: 50px;
-    padding: 10px;
-    border:solid 1px #DBDBDB;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
-}
-#product_name {
-    color:#666;
-    -webkit-appearance: none;
-}
-div#search_left {
-    width: 80%;
-    height: 30px;
-    float: left;
-    padding: 0px;
-    margin: 0px;
-}
-div#search_right {
-    margin-left: 80%;
-    height: 30px;
-    padding: 3px;
-    text-align: center;
-}
 
 .magni{
     font-size: 1.5em;

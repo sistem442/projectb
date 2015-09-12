@@ -55,22 +55,6 @@
             
         </ul>
     </div>
-  
-    <div id="search_section">
-        <div id="search_left">
-            <form id="search_form">
-                <input 
-                    type="text" 
-                    id="product_name"
-                    title="<?php echo __("Processor model"); ?>"
-                    placeholder="<?php echo __("Processor model"); ?>" 
-                    style=" width:100%; border: 0px solid; padding: 0px; height: 30px; text-overflow: ellipsis;"
-                />
-            </form>
-        </div>
-        <div id="search_right"><a href="#" class="magni glyphicon glyphicon-search"></a></div>
-
-    </div><!-- search_section -->
     
     <div id="searchFacets" class="gdSearchList">
         <div id="number_of_results"><?php if(isset($number_of_results)) echo __('Number of results: ').$number_of_results; ?></div>

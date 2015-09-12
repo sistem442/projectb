@@ -168,6 +168,7 @@ if($last_condition_removed){
     
      ************************************************************************/
     function search(id,val){
+        console.log(val);
          var value = null;
          if(val === '') 
              value = 'IS NULL'; 
