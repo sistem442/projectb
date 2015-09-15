@@ -72,25 +72,7 @@ if($last_condition_removed){
             search(id,val);
         });
         
-        /***************************************************************************
-    
-                            when text box is used
-
-        ***************************************************************************/
-       $("#main_content").on( "click","#submit", function() {
-            var id = 'product_name';
-            var val = '"'+$('#product_name').val()+'"';
-            search(id,val);
-       });
-       $( "#search_form" ).submit(function( event ) {
-            var id = 'product_name';
-            var val = '"'+$('#product_name').val()+'"';
-            search(id,val);
-            event.preventDefault();
-          });
-        $('input,textarea').focus(function(){
-            $(this).removeAttr('placeholder');
-         });
+        
         /***********************************************************************
     
                                remove conditions
@@ -168,7 +150,7 @@ if($last_condition_removed){
     
      ************************************************************************/
     function search(id,val){
-        console.log(val);
+        //console.log(val);
          var value = null;
          if(val === '') 
              value = 'IS NULL'; 

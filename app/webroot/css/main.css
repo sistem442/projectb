@@ -88,7 +88,7 @@ td.comparison{
     margin-bottom: 10%;
     color: #0a0;
 }
-.search{
+.removable-conditions{
     background: none repeat scroll 0% 0% #EEEFF0;
 }
 
@@ -198,6 +198,22 @@ border: 0;
 }
 #header{
     padding: 10px;
+}
+div#search_div {
+    float: right;
+}
+div#search_left {
+    width: 80%;
+    height: 30px;
+    float: left;
+    padding: 0px;
+    margin: 0px;
+}
+div#search_right {
+    margin-left: 80%;
+    height: 30px;
+    padding: 3px;
+    text-align: center;
 }
 /******************************************************************************/
 

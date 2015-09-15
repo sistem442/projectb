@@ -49,7 +49,7 @@
         <div id="centered-message"><?php echo __('Please select option from filter or enter processor model.'); ?></div>
     <?php } ?>
 </div>    
-<div class="col-xs-12 col-sm-12 col-md-2 nopadding search">
+<div class="col-xs-12 col-sm-12 col-md-2 nopadding removable-conditions">
     <div id = 'removable-conditions'>
         <ul class = 'removable_conditions'>
             
