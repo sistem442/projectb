@@ -31,9 +31,10 @@
             <div class="col-xs-4" id="search_div">
                 <div id="search_section">
                     <div id="search_left">
-                        <form id="search_form">
+                        <form id="search_form" method="POST" action="/search/search">
                             <input 
-                                type="text" 
+                                type="text"
+                                name="search_string"
                                 id="search"
                                 title="<?php echo __("Search"); ?>"
                                 placeholder="<?php echo __(" Search"); ?>" 
@@ -74,30 +75,12 @@
      *                      
      **************************************************************************/
     $('#search_button').click(function() {
-        var val = '"' + $('#search').val() + '"';
-        console.log(val);
-        make_search_post(val);
+        var val = $('#search').val();
+        $('#search_form').submit();
+        
       });
-    $("#search_form").submit(function (event) {
-        var val = '"' + $('#search').val() + '"';
-        console.log(val);
-        event.preventDefault();
-        make_search_post(val);
-    });
     $('input,textarea').focus(function () {
         $(this).removeAttr('placeholder');
     });
-    function make_search_post(search_string) {
-
-        // Send the data using post
-        var posting = $.post( "/search/search", { search_string: search_string } );
-
-        // Put the results in a div
-        posting.done(function( data ) {
-            console.log(data);
-//          var content = $( data ).find( "#content" );
-//          $( "#result" ).empty().append( content );
-        });
-      }
 </script>
 </html>

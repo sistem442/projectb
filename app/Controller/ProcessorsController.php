@@ -16,7 +16,7 @@ class ProcessorsController extends AppController {
 
     public function filter(){
 
-        $this->set('title','Filter processors');
+        $this->set('title',__("Filter Processors"));
         //$limit_per_page = 8;
         $conditions = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
