@@ -186,7 +186,7 @@ border: 0;
 
 /******************************************************************************/
 
-#site-title{
+#site_title{
     font-family: Arial Rounded MT Bold,Helvetica Rounded,Arial,sans-serif;
     font-size: 24px;
     font-style: normal;
@@ -195,6 +195,7 @@ border: 0;
     line-height: 26.4px;
     color: #BBBAB8;
     text-decoration: none;
+    padding-bottom: 10px;
 }
 #header{
     padding: 10px;
@@ -355,4 +356,27 @@ div#search_right {
 /******************************************************************************/
 #nav a.disabled{
     color: #999 !important;
+}
+/******************************************************************************/
+
+/*                      search_results                                     */
+
+/******************************************************************************/
+.search_results{
+    margin: 10px auto;
+    width: 50%;
+    min-width: 500px;
+}
+.search_result{
+    margin: 10px;
+}
+.processor_desc{
+    color: black;
+    font-weight: normal;
+    font-size: 11px;
+}
+.search_section_title{
+    color:#006400;
+    font-weight: bold;
+    font-size: 20px;
 }

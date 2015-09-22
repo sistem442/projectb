@@ -22,7 +22,7 @@ class SearchController extends AppController {
 
         //search processors
         $conditions_2 = "WHERE series LIKE $search_string OR product_name LIKE $search_string OR graphics LIKE $search_string";
-        $query_2 = "SELECT id,series,brand,product_name FROM processors ";
+        $query_2 = "SELECT id,series,brand,product_name,cache,litography,number_of_cores,socket,launch_year,device_type FROM processors ";
         $processors_results = $this->Processor->query($query_2.$conditions_2.' ORDER BY id DESC');//LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
         $processors_count_array = $this->Processor->query('SELECT COUNT(*) as total_results FROM processors '.$conditions_2);
         

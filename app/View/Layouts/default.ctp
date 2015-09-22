@@ -27,8 +27,8 @@
 <body>
     <div id="container">
         <div id="header" class="col-xs-12" style="background-color: #9d9d9d">
-            <a href="/" id="site-title">Electronics Tree</a>
-            <div class="col-xs-4" id="search_div">
+            <a href="/" id="site_title">Electronics Tree</a>
+            <div class="col-xs-12 col-sm-4" id="search_div">
                 <div id="search_section">
                     <div id="search_left">
                         <form id="search_form" method="POST" action="/search/search">
