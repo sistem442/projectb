@@ -75,7 +75,7 @@
      
     <div id="searchFacets" class="gdSearchList">
         <div id="number_of_results"><?php if(isset($number_of_results)) echo __('Number of results: ').$number_of_results; ?></div>
-        <?php $success = asort($price); ?>
+        <?php $success = natsort($price); ?>
         <?php if($success && count($price)>1): ?>
         <dl class="main">
             <dt style="border-bottom: 1px solid black; width: 100%; border-color: #787878;">Price</dt>
