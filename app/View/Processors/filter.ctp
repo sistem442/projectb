@@ -10,7 +10,7 @@ if($conditions_are_set){
 //if last condition from conditions is removed, display only filter element 
 // because this view is called by AJAX
 // and will be displayed within #main_content
-if($last_condition_removed){
+if($last_condition_or_keyword_removed){
     echo $this->element('filter_content'); 
     die;
 }
@@ -18,6 +18,10 @@ if($last_condition_removed){
 //if last condition is not removed and conditions are not set display whole page
 // beacuse this is first call. Because of that #section_name_bar and #main_content 
 // must be generated
+
+//if thera are no results do not render section_name_bar because it is alerady 
+//generated generate only filter element
+if(!$display_no_result_notice_only){
 ?>
 <div id="section_name_bar">
     <div id="section_name"><?php echo __('Processors'); ?></div>
@@ -29,7 +33,7 @@ if($last_condition_removed){
         <div id = "delete_comparison_items"></div>   
     </div>
 </div>
-
+<?php } /*end if display notice */ ?>
     <div class="row nopadding" id='main_content'>
         <?php echo $this->element('filter_content'); ?>
     </div>
@@ -45,11 +49,18 @@ if($last_condition_removed){
     var str_delete = '<?php echo __('Delete') ?>';
     var remove_all = '<?php echo __('Remove All'); ?>';
     var add_all = '<?php echo __('Add All'); ?>';
+    var please = '<?php echo __('Please enter keywords.'); ?>';
+    var last_keyword_removed = false;
+    
     $( document ).ready(function() {
         //if sesion is set clear it
         if(typeof window.sessionStorage.query_conditions != 'undefined')
         {
             window.sessionStorage.query_conditions = '{}';
+        }
+        if(typeof window.sessionStorage.keywords_array != 'undefined')
+        {
+            window.sessionStorage.keywords_array = '{}';
         }
         if(typeof window.sessionStorage.conditions_array != 'undefined')
         {
@@ -72,7 +83,21 @@ if($last_condition_removed){
             search(id,val);
         });
         
+        /***************************************************************************
         
+                            when text box is used
+
+        ***************************************************************************/
+        $('#main_content').on('click','#keywords_button',function(){
+           add_keywords_to_search();
+      });       
+       $('#main_content').on('submit', "#keywords_form" ,function( event ) {
+           event.preventDefault();
+           add_keywords_to_search();
+          });
+        $('input,textarea').focus(function(){
+            $(this).removeAttr('placeholder');
+         });
         /***********************************************************************
     
                                remove conditions
@@ -86,7 +111,6 @@ if($last_condition_removed){
             delete query_conditions[removed_condition]; 
             if(jQuery.isEmptyObject(query_conditions)){
                 query_conditions = {};
-                last_condition_removed = true;
             }
             window.sessionStorage.query_conditions = JSON.stringify(query_conditions);
 
@@ -101,7 +125,30 @@ if($last_condition_removed){
             }
   
             //do ajax call to reload page data based on new conditions
-             make_ajax_call(0,last_condition_removed);
+             make_ajax_call();
+
+       });
+       $('#main_content').on('click','.remove_keyword',function(){
+            //remove condition from query
+            var keyword_array= JSON.parse(window.sessionStorage.keywords_array);
+            var removed_id = this.id;
+            keyword_array.splice(removed_id, 1);
+            if(jQuery.isEmptyObject(keyword_array)){
+                keyword_array = {};
+            }
+            window.sessionStorage.keywords_array = JSON.stringify(keyword_array);
+
+            //remove condition from top of filter
+            $(this).closest('li').remove();
+
+            //remove condition from query
+            if(typeof window.sessionStorage.keywords_array != 'undefined'){
+                var keywords_array = JSON.parse(window.sessionStorage.keywords_array);
+                delete keywords_array[removed_id];
+                window.sessionStorage.keywords_array = JSON.stringify(keyword_array);
+            }
+            //do ajax call to reload page data based on new conditions
+             make_ajax_call();
 
        });
     });
@@ -149,8 +196,31 @@ if($last_condition_removed){
                                     FUNCTIONS
     
      ************************************************************************/
+    /**
+     * takes value of keywords text field explodes words to array and stores array
+     * in session storage
+     * @returns {bool}
+     */
+    function add_keywords_to_search(){
+        if($('#keywords').val().length === 0){
+            alert(please);            
+        }
+        else{
+            var keywords = $('#keywords').val();
+            var keywords_array = keywords.split(" ");
+            if(typeof window.sessionStorage.keywords_array != 'undefined' && window.sessionStorage.keywords_array != '{}'){
+                var existing_keywords = JSON.parse(window.sessionStorage.keywords_array);
+                var all_keywords = $.merge(existing_keywords,keywords_array); 
+                window.sessionStorage.keywords_array = JSON.stringify(all_keywords);
+            }
+            else{
+                window.sessionStorage.keywords_array = JSON.stringify(keywords_array);
+            }
+            make_ajax_call();
+        }
+    }
+    
     function search(id,val){
-        //console.log(val);
          var value = null;
          if(val === '') 
              value = 'IS NULL'; 
@@ -160,7 +230,7 @@ if($last_condition_removed){
              var query_conditions = {};
          }
          else{
-             var query_conditions = JSON.parse(window.sessionStorage.query_conditions);;
+             var query_conditions = JSON.parse(window.sessionStorage.query_conditions);
          }
          query_conditions[id] = value;
          window.sessionStorage.query_conditions = JSON.stringify(query_conditions);
@@ -176,7 +246,7 @@ if($last_condition_removed){
          window.sessionStorage.conditions_array = JSON.stringify(conditions_array);
 
          //reload page data with new query
-         make_ajax_call(0);
+         make_ajax_call();
     }
      
     /***************************************************************************
@@ -185,16 +255,42 @@ if($last_condition_removed){
 
     ***************************************************************************/
     
-    function make_ajax_call(page_number,last_condition_removed = false){
+    function make_ajax_call(){
         $('#main_content').hide();
         $('#loading_overlay').css('display','block');
+        
+        //set keywords is any given by user and check if keywords exists
+        last_keyword_removed = false;
+        if(typeof window.sessionStorage.keywords_array != 'undefined'){
+            keywords_array = window.sessionStorage.keywords_array;
+            if(keywords_array === '{}'){
+                last_keyword_removed = true;
+            }
+        }
+        else{
+            last_keyword_removed = true;
+        }
+        // check if last condition is removed
+        last_condition_removed = false;
+        if(typeof window.sessionStorage.query_conditions != 'undefined'){
+            last_condition_removed = false;
+            query_conditions = JSON.parse(window.sessionStorage.query_conditions);
+            if(jQuery.isEmptyObject(query_conditions)){
+                last_condition_removed = true;
+            }
+        }
+        else{
+            last_condition_removed = true;
+        }
+
         $.ajax(
         {
             url : '/processors/filter',
             type: "POST",
             data : {
                 conditions: window.sessionStorage.query_conditions, 
-                last_condition_removed: last_condition_removed },
+                last_condition_or_keyword_removed: last_condition_removed && last_keyword_removed ,
+                keywords_array: keywords_array},
             success:function(data)
             {
                 $('#loading_overlay').css('display','none')
@@ -203,14 +299,27 @@ if($last_condition_removed){
                 $('#main_content').html(data) ;
 
                 //if last condition is removed hide div with number of results
-                if(last_condition_removed){
+                if(last_condition_removed && last_keyword_removed){
                     $('#number_of_results').css('display','none');
                 }
-
+                 
                //add removable conditions on top of filter div
+               var keyword_html = '';
+               
+                 if(typeof window.sessionStorage.keywords_array != 'undefined'){
+                    var keywords = JSON.parse(window.sessionStorage.keywords_array);
+                    $.each( keywords, function( key, value ) {
+                        keyword_html = keyword_html + '<li id='
+                                + key + ' class = "remove_keyword"'
+                                + 'title =' + str_delete + '\n\>'
+                                + value + '</li>';
+                    });
+                    $('.removable_conditions').html(keyword_html) ;
+                    $('#removable-conditions').css('display','block');
+                }
                 if(typeof window.sessionStorage.conditions_array != 'undefined'){
                     conditions = JSON.parse(window.sessionStorage.conditions_array);
-                    var html = '';
+                    var html = keyword_html;
                     $.each( conditions, function( key, value ) {
                         var fixed_value = value.substring(1, value.length-1);
                         html = html + '<li id='
@@ -221,6 +330,7 @@ if($last_condition_removed){
                     $('.removable_conditions').html(html) ;
                     $('#removable-conditions').css('display','block');
                 }
+                
 
                 //call comparison function
                 if(typeof window.sessionStorage.comparison_items != 'undefined'){

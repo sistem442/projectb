@@ -80,13 +80,15 @@ td.comparison{
 .remove_condition {
     background: rgba(0, 0, 0, 0) url("/img/delete_icon.png") no-repeat scroll 100% 3px;
 }
+.remove_keyword {
+    background: rgba(0, 0, 0, 0) url("/img/delete_icon.png") no-repeat scroll 100% 3px;
+}
 
-#centered-message{
+.centered-message{
     margin-left:  30%;
     margin-right: 30%;
     margin-top: 10%;
     margin-bottom: 10%;
-    color: #0a0;
 }
 .removable-conditions{
     background: none repeat scroll 0% 0% #EEEFF0;
@@ -120,8 +122,38 @@ border: 0;
 /*                      filter.ctp                                            */
 
 /******************************************************************************/
+.search{
+     background: none repeat scroll 0% 0% #EEEFF0;
+ }
 
-
+div#keywords_section {
+    width: 90%;
+    height: 50px;
+    padding: 10px;
+    border:solid 1px #DBDBDB;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+#keywords {
+   color:#666;
+   -webkit-appearance: none;
+}
+div#keywords_left {
+    width: 80%;
+    height: 30px;
+    float: left;
+    padding: 0px;
+    margin: 0px;
+}
+div#keywords_right {
+    margin-left: 80%;
+    height: 30px;
+    padding: 3px;
+    text-align: center;
+}
 
 #loading_overlay {
     position: absolute;
@@ -263,6 +295,13 @@ div#search_right {
 .nopadding {
    padding: 0 !important;
    margin: 0 !important;
+}
+
+.red{
+    color: red;
+}
+.green{
+    color: green;
 }
 /******************************************************************************/
 

@@ -42,20 +42,37 @@
     </div>
     <?php 
     }
-    elseif (isset ($display_notice) && $display_notice == 0) { ?>
-        <div class="center">No results were found for: <?php echo $keyword; ?>. Change keyword or use filter only.</div>
+    elseif ($display_no_result_notice_only) { ?>
+    <div class="centered-message red">No results were found. Change keyword or use filter only.</div>
     <?php }
     else{  ?>
-        <div id="centered-message"><?php echo __('Please select option from filter or enter processor model.'); ?></div>
+        <div class="centered-message green"><?php echo __('Please select option from filter or enter keyword.'); ?></div>
     <?php } ?>
 </div>    
-<div class="col-xs-12 col-sm-12 col-md-2 nopadding removable-conditions">
+<div class="col-xs-12 col-sm-12 col-md-2 nopadding search">
     <div id = 'removable-conditions'>
         <ul class = 'removable_conditions'>
             
         </ul>
     </div>
     
+    <div id="keywords_section">
+        <div id="keywords_left">
+            <form id="keywords_form" onsubmit="return false;">
+                <input 
+                    type="text" 
+                    id="keywords"
+                    title="<?php echo __("Keyword"); ?>"
+                    placeholder="<?php echo __("Keyword"); ?>" 
+                    style=" width:100%; border: 0px solid; padding: 0px; height: 30px; text-overflow: ellipsis;"
+                />
+                <button type="submit" style="display:none"/>
+            </form>
+        </div>
+        <div id="keywords_right"><a href="#" id="keywords_button" class="magni glyphicon glyphicon-search"></a></div>
+
+    </div><!-- search_section -->
+     
     <div id="searchFacets" class="gdSearchList">
         <div id="number_of_results"><?php if(isset($number_of_results)) echo __('Number of results: ').$number_of_results; ?></div>
         <?php $success = asort($price); ?>

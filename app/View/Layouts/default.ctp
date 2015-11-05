@@ -22,10 +22,11 @@
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
-    
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0" name="viewport">
 </head>
 <body>
     <div id="container">
+            <div class="row nopadding">
         <div id="header" class="col-xs-12" style="background-color: #9d9d9d">
             <a href="/" id="site_title">Electronics Tree</a>
             <div class="col-xs-12 col-sm-4" id="search_div">
@@ -47,6 +48,26 @@
                 </div><!-- search_section -->
             </div>
         </div>
+            </div>
+            <div class="row nopadding">
+
+
+                <ul id="main-menu" class="sm sm-blue">
+                    <li><a href="#">Processors</a>
+                        <ul>
+                            <li><?php echo $this->Html->link(__('Filter and Compare'), array('controller' => 'Processors', 'action' => 'filter')); ?></li>
+                            <li><?php echo $this->Html->link(__('Browse and Compare'), array('controller' => 'Processors', 'action' => 'browse')); ?></li>
+                            <li><a href="#" class="has-submenu"><?php echo __('Articles'); ?></a>
+                                <ul class="sub-menu sm-nowrap">
+                                    <li><a href="/">How to select computer processor (CPU)</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                
+            </div>
         <div id="content" class="row nopadding">
 
                 <?php echo $this->Session->flash(); ?><?php echo $this->fetch('content'); ?>
@@ -71,6 +92,16 @@
 <script>
     /***************************************************************************
      *                     
+         *                     for smart menu
+         *                      
+         **************************************************************************/
+        $(document).ready(function () {
+            $('#main-menu').smartmenus({
+                showOnClick: false
+            });
+        });
+        /***************************************************************************
+         *                     
      *                     for search box
      *                      
      **************************************************************************/

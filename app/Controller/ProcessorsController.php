@@ -16,48 +16,91 @@ class ProcessorsController extends AppController {
 
     public function filter(){
 
+        $this->set('display_no_result_notice_only',false);
         $this->set('title',__("Filter Processors"));
         //$limit_per_page = 8;
         $conditions = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $last_condition_removed  = json_decode($_POST['last_condition_removed'],TRUE);
-            $this->set('last_condition_removed',$last_condition_removed);
+            $last_condition_or_keyword_removed  = json_decode($_POST['last_condition_or_keyword_removed'],TRUE);
+            $this->set('last_condition_or_keyword_removed',$last_condition_or_keyword_removed);
             $this->layout = false;
-            $conditions_array = json_decode($_POST['conditions'],TRUE);
-            foreach ($conditions_array as $key => $value){
-                $conditions = ' '.$conditions.$key.' = '.$value.' AND '; 
-            }
-            $conditions = substr($conditions, 0, -4);
-            if($conditions != '') $conditions = ' WHERE '.$conditions. ' AND status = "active"';
-           
-            $query = 'SELECT id,brand,socket,price_range,device_type,product_name,number_of_cores,frequency,series,launch_year FROM processors ';
-            $search_results = $this->Processor->query($query.$conditions.' ORDER BY id DESC');//LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
-            $total_count_array = $this->Processor->query('SELECT COUNT(*) as total_results FROM processors '.$conditions);
             
-            $num_of_results = $total_count_array[0][0]['total_results'];
-            $this->set('number_of_results',$num_of_results );
-            
-            if($conditions  && $num_of_results != 0)
-            {
-                $this->set('search_results',$search_results);
-                $this->set('conditions_are_set',true);
-                $this->filter_conditions($conditions);
-            }
-            else
-            {
-                //if searched by keyword and no products are found display notice
-                $this->set('display_notice',$num_of_results);
-                if(isset($conditions_array['product_name']))
-                    $this->set ('keyword',$conditions_array['product_name']);
+            if($last_condition_or_keyword_removed){
+                $this->set('display_no_result_notice_only',false);
                 $this->set('conditions_are_set',false);
                 $this->filter_conditions();
+                
+            }
+            else{            
+                if(isset($_POST['conditions']))
+                    $conditions_array = json_decode($_POST['conditions'],TRUE);
+                $keywords_array = json_decode($_POST['keywords_array'],TRUE);
+                //$keywords_array = null;
+    //            var_dump($keywords_array);
+    //            echo '<br/>';
+    //            var_dump($conditions_array);
+
+                //prepare conditions from filter
+                if(!empty($conditions_array)){
+                    foreach ($conditions_array as $key => $value){
+                        $conditions = ' '.$conditions.$key.' = '.$value.' AND '; 
+                    }
+                }
+                else {
+                    $conditions = '';
+                }
+
+                //prepare keywords
+                if($keywords_array != null){
+                    $keyword_conditions = '';
+                    foreach ($keywords_array as $keyword){
+                        $keyword_conditions .= " (series LIKE '".$keyword."' "
+                                . "OR product_name LIKE '".$keyword."' "
+                                . "OR graphics LIKE '".$keyword."' "
+                                . "OR socket LIKE '".$keyword."' "
+                                . "OR code_name LIKE '".$keyword."' "
+                                . "OR brand LIKE '".$keyword."') AND ";
+                    }
+                    $keyword_conditions = substr($keyword_conditions, 0,-4);
+                }
+                else {
+                    $keyword_conditions ='';
+                    $conditions = substr($conditions, 0, -4);
+                }
+
+
+                //build query
+                $conditions = ' WHERE '.$conditions.$keyword_conditions. ' AND status = "active"';
+                $query = 'SELECT id,brand,socket,price_range,device_type,product_name,number_of_cores,frequency,series,launch_year FROM processors ';
+               // var_dump($query.$conditions);
+    //                    die;
+                $search_results = $this->Processor->query($query.$conditions.' ORDER BY id DESC');//LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
+                $total_count_array = $this->Processor->query('SELECT COUNT(*) as total_results FROM processors '.$conditions);
+
+                $num_of_results = $total_count_array[0][0]['total_results'];
+                $this->set('number_of_results',$num_of_results );
+
+                if($conditions  && $num_of_results != 0)
+                {
+                    $this->set('search_results',$search_results);
+                    $this->set('conditions_are_set',true);
+                    $this->filter_conditions($conditions);
+                }
+                else
+                {
+                    //if searched by keyword and no products are found display notice
+                    $this->set('display_no_result_notice_only',true);
+                    $this->set('conditions_are_set',false);
+                    $this->filter_conditions();
+                }
             }
         }
         else{
-            $this->set('last_condition_removed',false);
+            $this->set('last_condition_or_keyword_removed',false);
             $this->set('conditions_are_set',false);
             $this->filter_conditions();
         }
+        
     }
 
     public function browse(){
@@ -232,7 +275,9 @@ public function item($id){
     $this->set('title',$item[0]['processors']['brand'].' '.$item[0]['processors']['product_name']);
 }
 
-public function test(){}
-            
+public function test(){
+     $this->layout = false;
+}
+           
            
 }
