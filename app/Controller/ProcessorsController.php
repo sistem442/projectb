@@ -277,6 +277,11 @@ public function item($id){
 
 public function test(){
      $this->layout = false;
+     $array =  array('61'=>  "$0 - $50", '4'=>  "$100 - $150", '2'=>  "$150 - $200", '36'=>  "$200- $250", '6'=>  "$250 - $300", '63'=>  "$50 - $100", '0'=>  ">$300" );
+     var_dump('sorted array <br/>');
+     natsort($array);
+     var_dump($array);
+     die;
 }
            
            

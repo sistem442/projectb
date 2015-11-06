@@ -51,16 +51,20 @@ if(!$display_no_result_notice_only){
     var add_all = '<?php echo __('Add All'); ?>';
     var please = '<?php echo __('Please enter keywords.'); ?>';
     var last_keyword_removed = false;
+    console.log('page is reloaded');
     
     $( document ).ready(function() {
+        console.log('document ready is executed');
         //if sesion is set clear it
         if(typeof window.sessionStorage.query_conditions != 'undefined')
         {
             window.sessionStorage.query_conditions = '{}';
+            console.log('conditions are cleared');
         }
         if(typeof window.sessionStorage.keywords_array != 'undefined')
         {
             window.sessionStorage.keywords_array = '{}';
+             console.log('keywords are cleared');
         }
         if(typeof window.sessionStorage.conditions_array != 'undefined')
         {
@@ -269,6 +273,7 @@ if(!$display_no_result_notice_only){
         }
         else{
             last_keyword_removed = true;
+            keywords_array = null;
         }
         // check if last condition is removed
         last_condition_removed = false;

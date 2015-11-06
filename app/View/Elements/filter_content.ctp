@@ -135,7 +135,8 @@
             <?php } ?>
         </dl>
         <?php endif; ?>
-        <?php if(count($series)>1): ?>
+        <?php $success = natsort($series); ?>
+        <?php if($success && count($series)>1): ?>
         <dl class="main">
             <dt style="border-bottom: 1px solid black; width: 100%; border-color: #787878;">Series</dt>
             <?php foreach ($series as $value) { ?>
@@ -146,7 +147,8 @@
             <?php } ?>
         </dl>
         <?php endif; ?>
-        <?php if(count($code_name)>1): ?>
+        <?php $success = natsort($code_name); ?>
+        <?php if($success && count($code_name)>1): ?>
         <dl class="main">
             <dt style="border-bottom: 1px solid black; width: 100%; border-color: #787878;">Code name</dt>
             <?php foreach ($code_name as $value) { ?>
@@ -157,7 +159,7 @@
             <?php } ?>
         </dl>
         <?php endif; ?>
-        <?php $success = asort($socket); ?>
+        <?php $success = natsort($socket); ?>
         <?php if($success && count($socket)>1): ?>
         <dl class="main">
             <dt style="border-bottom: 1px solid black; width: 100%; border-color: #787878;">CPU Socket Type</dt>
@@ -169,7 +171,8 @@
             <?php } ?>
         </dl>
         <?php endif; ?>
-        <?php if(count($brands)>1): ?>
+       <?php $success = natsort($brands); ?>
+        <?php if($success && count($brands)>1): ?>
         <dl class="main">
             <dt style="border-bottom: 1px solid black; width: 100%; border-color: #787878;">Brand</dt>
             <?php foreach ($brands as $value) { ?>
