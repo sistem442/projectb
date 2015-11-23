@@ -31,4 +31,10 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+    function beforeFilter(){
+        $this->loadModel('Article');
+        $article_titles = $this->Article->query('SELECT id,title FROM articles WHERE 
+            category = "components" AND subcategory = "cpu"' );
+        $this->set('article_titles', $article_titles);
+    }
 }

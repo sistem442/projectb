@@ -30,7 +30,7 @@ class ArticlesController extends AppController {
     }
 
     public function view($id) {
-        $this->set('title', __('Beta Electronics'));
+        $this->set('title', __('Electronics Tree'));
         if (!$id) {
             throw new NotFoundException(__('Invalid post'));
         }
