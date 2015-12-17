@@ -26,7 +26,7 @@
             <?php $i=0; ?>
             <?php foreach ($comparison_items as $key => $processor): ?>
                 <td class="compare-cell product_name " id="<?php echo $i; ?>">
-                    <a href="/processors/item/<?php echo $processor['processors']['id']; ?>">
+                    <a href="/processors/view/<?php echo $processor['processors']['brand']; ?>/<?php echo $processor['processors']['id']; ?>">
                         <?php echo $processor['processors']['product_name']; ?>
                     </a>
                     <span class="remove_column" title="remove column" id="<?php echo $i; $i++; ?>">

@@ -61,7 +61,7 @@
                                 <ul class="sub-menu sm-nowrap">
                                     <?php foreach ($article_titles as $article_title): ?>
                                     <li>
-                                        <a href="/articles/view/<?php echo $article_title['articles']['id']; ?>">
+                                        <a href="/articles/components/cpu/<?php echo $article_title['articles']['article_url_title']; ?>">
                                             <?php echo $article_title['articles']['title']; ?>
                                         </a>
                                     </li>

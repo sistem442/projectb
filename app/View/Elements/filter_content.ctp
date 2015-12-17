@@ -25,7 +25,7 @@
                     <td><?php echo $search_result['processors']['brand']; ?></td>
                     <td><?php echo $search_result['processors']['series']; ?></td>
                     <td>
-                        <a href="/processors/item/<?php echo $search_result['processors']['id']; ?>">
+                        <a href="/processors/view/<?php echo $search_result['processors']['brand']; ?>/<?php echo $search_result['processors']['product_name']; ?>">
                             <?php echo $search_result['processors']['product_name']; ?>
                         </a>
                     </td>

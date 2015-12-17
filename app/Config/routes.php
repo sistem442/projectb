@@ -29,6 +29,40 @@
  * ...and connect the rest of 'Pages' controller's URLs.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+        
+        Router::connect(
+        '/users/:user_name', array(
+            'controller' => 'users', // default controller 
+            'action' => 'profile' // default action 
+        ), array(
+            'pass' => array('user_name'), //username to your action
+            'username' => '[a-zA-Z0-9@_\s]+' // regular expression match parameter 
+            )
+        );
+        
+         Router::connect(
+        '/processors/view/:brand/:product_name', array(
+            'controller' => 'processors', // default controller 
+            'action' => 'view' // default action 
+        ), array(
+            'pass' => array('brand','product_name'), //username to your action
+            'productname' => '[a-zA-Z0-9@_\s/-]+',
+            'brand' => '[a-zA-Z0-9@_\s/-]+'
+        ));
+         
+         
+         
+        Router::connect(
+        '/articles/:category/:subcategory/:article_url_title', array(
+            'controller' => 'articles', // default controller 
+            'action' => 'view' // default action 
+        ), array(
+            'pass' => array('category','subcategory','article_url_title'), //username to your action
+            'category' => '[a-zA-Z0-9@_\s]+',
+            'subcategory' => '[a-zA-Z0-9@_\s]+',
+            'article_url_title' => '[a-zA-Z0-9@_\s\-]+'
+            )
+        );
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

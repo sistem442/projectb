@@ -29,17 +29,18 @@ class ArticlesController extends AppController {
         $this->set('title', __('Electronics Tree'));
     }
 
-    public function view($id) {
-        $this->set('title', __('Electronics Tree'));
-        if (!$id) {
-            throw new NotFoundException(__('Invalid post'));
-        }
-
-        $post = $this->Article->findById($id);
-        if (!$post) {
-            throw new NotFoundException(__('Invalid post'));
-        }
-        $this->set('post', $post);
+    public function view($category,$subcategory,$article_url_title) {
+        $query = 'SELECT '
+            . 'title,'
+            . 'body '
+            . 'FROM articles WHERE category = "'.$category.'" AND '
+                . 'subcategory = "'.$subcategory.'" AND '
+                . 'article_url_title = "'.$article_url_title.'" AND '
+                . 'status = "active"';
+      
+    $article = $this->Article->query($query);
+    $this->set('title',$article[0]['articles']['title']);
+    $this->set('body',$article[0]['articles']['body']);
         
     }
 

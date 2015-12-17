@@ -38,7 +38,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="/processors/item/<?php echo $processor['processors']['id']; ?>">
+                                            <a href="/processors/view/<?php echo $processor['processors']['brand']; ?>/<?php echo $processor['processors']['product_name']; ?>">
                                             <?php echo $processor['processors']['product_name']; ?> 
                                             </a>
                                         </td>

@@ -33,7 +33,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
     function beforeFilter(){
         $this->loadModel('Article');
-        $article_titles = $this->Article->query('SELECT id,title FROM articles WHERE 
+        $article_titles = $this->Article->query('SELECT article_url_title,title FROM articles WHERE 
             category = "components" AND subcategory = "cpu"' );
         $this->set('article_titles', $article_titles);
     }
