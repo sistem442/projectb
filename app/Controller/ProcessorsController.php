@@ -131,7 +131,7 @@ class ProcessorsController extends AppController {
                 $years = $this->Processor->query($years_query);
 
                 foreach ($years as $year){
-                    $processors_query = 'SELECT brand,product_name,id,cache,frequency,number_of_cores '
+                    $processors_query = 'SELECT brand,series,product_name,id,cache,frequency,number_of_cores '
                     . 'FROM processors '
                     . 'WHERE brand = "'.$brand['processors']['brand'].'" '. ' AND status = "active"'
                     . 'AND series = "'.$serie['processors']['series'].'" '
@@ -243,7 +243,7 @@ public function comparison($ids){
           $comparison_items = $this->Processor->query($query);
           $this->set('comparison_items',$comparison_items);
 }
-public function view($brand,$product_name){
+public function view($brand,$series,$product_name){
     $query = 'SELECT '
             . 'product_name,'
             . 'cache,'
@@ -269,11 +269,12 @@ public function view($brand,$product_name){
             . 'FROM processors '
             . 'WHERE product_name = "'.$product_name.'" '
             . 'AND brand = "'.$brand.'" '
+            . 'AND series = "'.$series.'" '
             . 'AND status = "active"';
       
     $item = $this->Processor->query($query);
     $this->set('item',$item);
-    $this->set('title',$item[0]['processors']['brand'].' '.$item[0]['processors']['product_name']);
+    $this->set('title',$item[0]['processors']['brand'].' '.$item[0]['processors']['series'].' '.$item[0]['processors']['product_name']);
 }
 
 public function test(){

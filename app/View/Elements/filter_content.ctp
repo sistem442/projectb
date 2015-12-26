@@ -7,7 +7,7 @@
                     <td id="compare_all"><?php echo __('Add All'); ?></td>
                     <th><?php echo __('Brand'); ?></th>
                     <th><?php echo __('Series'); ?></th>
-                    <th><?php echo __('Name'); ?></th>
+                    <th><?php echo __('Model'); ?></th>
                     <th><?php echo __('# of</br> Cores'); ?></th>
                     <th><?php echo __('Frequency'); ?></th>
                     <th><?php echo __('Price Range'); ?></th>
@@ -25,7 +25,7 @@
                     <td><?php echo $search_result['processors']['brand']; ?></td>
                     <td><?php echo $search_result['processors']['series']; ?></td>
                     <td>
-                        <a href="/processors/view/<?php echo $search_result['processors']['brand']; ?>/<?php echo $search_result['processors']['product_name']; ?>">
+                        <a href="/processors/view/<?php echo $search_result['processors']['brand']; ?>/<?php echo $search_result['processors']['series']; ?>/<?php echo $search_result['processors']['product_name']; ?>">
                             <?php echo $search_result['processors']['product_name']; ?>
                         </a>
                     </td>

@@ -9,13 +9,13 @@ class SearchController extends AppController {
         $this->set('title',__("Search Results"));
         $this->loadModel('Article');
         $this->loadModel('Processor');
-        $search_string  = $_POST['search_string'];
-        $search_string = $this->mres($search_string);
+        $search_string0  = $_POST['search_string'];
+        $search_string = $this->mres($search_string0);
         $search_string = '"%'.$search_string.'%"';
         
         // search articles
         $conditions = "WHERE body LIKE $search_string OR title LIKE $search_string";
-        $query = "SELECT id,title,body,keywords FROM articles ";
+        $query = "SELECT id,title,article_url_title,body,keywords FROM articles ";
 //        echo $query.$conditions;
         $articles_results = $this->Article->query($query.$conditions.' ORDER BY id DESC');//LIMIT '.$page*$limit_per_page.', '.$limit_per_page);
         $articles_count_array = $this->Article->query('SELECT COUNT(*) as total_results FROM articles '.$conditions);
@@ -32,7 +32,7 @@ class SearchController extends AppController {
         
         $num_of_processors = $processors_count_array[0][0]['total_results'];
         $num_of_articles = $articles_count_array[0][0]['total_results'];
-        $this->set(compact('num_of_processors','num_of_articles','articles_results','processors_results'));
+        $this->set(compact('num_of_processors','num_of_articles','articles_results','processors_results','search_string0'));
     }
     
     function mres($value)

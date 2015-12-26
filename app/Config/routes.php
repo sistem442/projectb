@@ -41,13 +41,14 @@
         );
         
          Router::connect(
-        '/processors/view/:brand/:product_name', array(
+        '/processors/view/:brand/:series/:product_name', array(
             'controller' => 'processors', // default controller 
             'action' => 'view' // default action 
         ), array(
-            'pass' => array('brand','product_name'), //username to your action
+            'pass' => array('brand','series','product_name'), //username to your action
             'productname' => '[a-zA-Z0-9@_\s/-]+',
-            'brand' => '[a-zA-Z0-9@_\s/-]+'
+            'brand' => '[a-zA-Z0-9@_\s/-]+',
+            'series' => '[a-zA-Z0-9@_\s/-]+'
         ));
          
          

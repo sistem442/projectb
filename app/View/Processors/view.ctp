@@ -9,16 +9,18 @@
 			<?php echo h($item[0]['processors']['brand']); ?>
                 &nbsp;
             </td>
-        </tr>
-        <tr><td><?php echo __('Product Name'); ?></td>
+        </tr>        
+        <tr>
+            <td><?php echo __('Series'); ?></td>
             <td>
-			<?php echo h($item[0]['processors']['product_name']); ?>
+			<?php echo h($item[0]['processors']['series']); ?>
                 &nbsp;
             </td>
         </tr>
-        <tr><td><?php echo __('Series'); ?></td>
+        <tr>
+            <td><?php echo __('Model'); ?></td>
             <td>
-			<?php echo h($item[0]['processors']['series']); ?>
+			<?php echo h($item[0]['processors']['product_name']); ?>
                 &nbsp;
             </td>
         </tr>

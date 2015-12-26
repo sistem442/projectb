@@ -11,7 +11,7 @@ if (!empty($articles_results)){
     <?php foreach($articles_results as $article){
         ?>
     <div class="search_result">
-        <a href="/articles/view/<?php echo $article['articles']['id'];?>">
+        <a href="/articles/components/cpu/<?php echo $article['articles']['article_url_title'];?>">
         <?php echo $article['articles']['title'];?></a>
     </div>
         <?php
@@ -25,7 +25,9 @@ if (!empty($processors_results)){
     <?php foreach($processors_results as $processor){
         ?>
     <div class="search_result">
-        <a href="/processors/item/<?php echo $processor['processors']['id'];?>">
+        <a href="/processors/view/<?php echo $processor['processors']['brand'].'/'.
+                $processor['processors']['series'].'/'.
+                $processor['processors']['product_name'];?>">
             <div class="processor_name">
                 <?php echo $processor['processors']['brand'].' '.
                 $processor['processors']['series'].' '.
@@ -45,5 +47,16 @@ if (!empty($processors_results)){
         <?php
     }
 }
-?>
+else { 
+    ?>
+    <div class='search_section_title'>
+        <span style="color: red">
+            No results were found for search:</br>
+        </span>
+        <span style="color: grey">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $search_string0; ?>
+        </span>
+    </div>
+    <?php
+}?>
 </div>
