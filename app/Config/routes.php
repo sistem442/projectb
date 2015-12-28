@@ -41,7 +41,7 @@
         );
         
          Router::connect(
-        '/processors/view/:brand/:series/:product_name', array(
+        '/processors/:brand-:series-:product_name', array(
             'controller' => 'processors', // default controller 
             'action' => 'view' // default action 
         ), array(

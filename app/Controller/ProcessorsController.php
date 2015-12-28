@@ -244,6 +244,12 @@ public function comparison($ids){
           $this->set('comparison_items',$comparison_items);
 }
 public function view($brand,$series,$product_name){
+//    var_dump($brand);
+//    var_dump($series);
+//    var_dump($product_name);
+//    die;
+    $series = str_replace('_', ' ', $series);
+    $product_name = str_replace('_', '-', $product_name);
     $query = 'SELECT '
             . 'product_name,'
             . 'cache,'

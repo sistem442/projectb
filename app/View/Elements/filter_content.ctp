@@ -17,7 +17,10 @@
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($search_results as $search_result): ?>
+            <?php foreach ($search_results as $search_result):
+                $processor_series = str_replace(' ', '_', $search_result['processors']['series']);
+                $processor_model = str_replace('-', '_', $search_result['processors']['product_name']);
+                ?>
                 <tr>
                     <td class='comparison' comparison='add' id="<?php echo $search_result['processors']['id']; ?>">
                         <div class="comparison2"><?php echo __('Compare +'); ?></div>
@@ -25,7 +28,7 @@
                     <td><?php echo $search_result['processors']['brand']; ?></td>
                     <td><?php echo $search_result['processors']['series']; ?></td>
                     <td>
-                        <a href="/processors/view/<?php echo $search_result['processors']['brand']; ?>/<?php echo $search_result['processors']['series']; ?>/<?php echo $search_result['processors']['product_name']; ?>">
+                        <a href="/processors/<?php echo $search_result['processors']['brand']; ?>-<?php echo $processor_series; ?>-<?php echo $processor_model; ?>">
                             <?php echo $search_result['processors']['product_name']; ?>
                         </a>
                     </td>

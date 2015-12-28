@@ -1,6 +1,7 @@
 <?php
-
-// var_dump($processors_results); ?>
+    $processor_series = str_replace(' ', '_', $processor['processors']['series']);
+    $processor_model = str_replace('-', '_', $processor['processors']['product_name']);
+?>
 <div class="search_results">
 <?php 
 if (!empty($articles_results)){
@@ -25,9 +26,8 @@ if (!empty($processors_results)){
     <?php foreach($processors_results as $processor){
         ?>
     <div class="search_result">
-        <a href="/processors/view/<?php echo $processor['processors']['brand'].'/'.
-                $processor['processors']['series'].'/'.
-                $processor['processors']['product_name'];?>">
+        <a href="/processors/<?php echo $processor['processors']['brand'].'-'.
+                $processor_series.'-'.$processor_model;?>">
             <div class="processor_name">
                 <?php echo $processor['processors']['brand'].' '.
                 $processor['processors']['series'].' '.

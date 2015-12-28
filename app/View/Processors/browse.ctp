@@ -30,7 +30,10 @@
                     <?php foreach ($years as $year => $processors): ?>
                         <div id="<?php echo $year.$serie; ?>" style="display: none " class="year_div">        
                             <table>
-                                <?php foreach ($processors as $processor){ ?>
+                                <?php foreach ($processors as $processor){ 
+                                    $processor_series = str_replace(' ', '_', $processor['processors']['series']);
+                                    $processor_model = str_replace('-', '_', $processor['processors']['product_name']);
+                                    ?>
                                     <tr>                                         
                                         <td>
                                             <div class='comparison4' comparison='add' id="<?php echo $processor['processors']['id']; ?>">
@@ -38,7 +41,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="/processors/view/<?php echo $processor['processors']['brand']; ?>/<?php echo $processor['processors']['series']; ?>/<?php echo $processor['processors']['product_name']; ?>">
+                                            <a href="/processors/<?php echo $processor['processors']['brand']; ?>-<?php echo $processor_series; ?>-<?php echo $processor_model; ?>">
                                             <?php echo $processor['processors']['product_name']; ?> 
                                             </a>
                                         </td>

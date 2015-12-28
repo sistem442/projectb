@@ -22,11 +22,14 @@
                     <div>▲</div><div>▼</div>
                 </div>
             </td>
-            <td class="compare-cell" ><?php echo __('Name'); ?></td>
+            <td class="compare-cell" ><?php echo __('Model'); ?></td>
             <?php $i=0; ?>
-            <?php foreach ($comparison_items as $key => $processor): ?>
+            <?php foreach ($comparison_items as $key => $processor): 
+                $processor_series = str_replace(' ', '_', $processor['processors']['series']);
+                $processor_model = str_replace('-', '_', $processor['processors']['product_name']);
+                ?>
                 <td class="compare-cell product_name " id="<?php echo $i; ?>">
-                    <a href="/processors/view/<?php echo $processor['processors']['brand']; ?>/<?php echo $processor['processors']['series']; ?>/<?php echo $processor['processors']['product_name']; ?>">
+                    <a href="/processors/<?php echo $processor['processors']['brand']; ?>-<?php echo $processor_series; ?>-<?php echo $processor_model; ?>">
                         <?php echo $processor['processors']['product_name']; ?>
                     </a>
                     <span class="remove_column" title="remove column" id="<?php echo $i; $i++; ?>">
